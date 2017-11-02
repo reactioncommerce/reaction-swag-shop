@@ -1,0 +1,54 @@
+[
+	{
+		"_id": "fadoPeuNTswxnyhpY",
+		"title": "Baby Yoga Outfit",
+		"type": "simple",
+		"ancestors": [
+
+		],
+		"shopId": "J8Bhq3uTtdgwZx3rz",
+		"requiresShipping": true,
+		"handle": "baby-yoga-outfit",
+		"isVisible": true,
+		"createdAt": {
+			"$date": "2016-08-01T02:41:08.736Z"
+		},
+		"updatedAt": {
+			"$date": "2016-11-14T23:48:15.693Z"
+		},
+		"workflow": {
+			"status": "new"
+		},
+		"pageTitle": "Align your baby's chakra",
+		"vendor": "Bee's Knees - Made in U.S.A.",
+		"description": "This two piece Yoga outfit is made from all organic cotton and is loose fitting for all your downward dogs",
+		"price": {
+			"range": "18.45",
+			"min": 18.45,
+			"max": 18.45
+		},
+		"isSoldOut": false,
+		"isLowQuantity": false,
+		"isBackorder": true,
+		"metafields": [
+			{
+				"key": "Material",
+				"value": "100% Organic Cotton"
+			},
+			{
+				"key": "Ages",
+				"value": "3 mons. - 1 year"
+			},
+			{
+				"key": "Clasps",
+				"value": "Brass"
+			}
+		],
+		"hashtags": [
+			"fThYz6ZhexfMP95KR",
+			"XMubvFRKnqA44ZKT3"
+		],
+		"isDeleted": false,
+		"template": "productDetailSimple"
+	}
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "_id": "GenZZBB6DnP6kbWKu",
+    "name": "Two-piece",
+    "slug": "two-piece",
+    "isTopLevel": false,
+    "shopId": "J8Bhq3uTtdgwZx3rz",
+    "isDeleted": false
+  },
+  {
+    "_id": "XMubvFRKnqA44ZKT3",
+    "name": "One-piece",
+    "slug": "one-piece",
+    "isTopLevel": false,
+    "shopId": "J8Bhq3uTtdgwZx3rz",
+    "isDeleted": false
+  },
+  {
+    "_id": "fThYz6ZhexfMP95KR",
+    "name": "Toddler",
+    "slug": "toddler",
+    "isTopLevel": true,
+    "shopId": "J8Bhq3uTtdgwZx3rz",
+    "isDeleted": false
+  },
+  {
+    "_id": "Q6Fk3T7TpLKKkNuxZ",
+    "name": "Newborn",
+    "slug": "newborn",
+    "isTopLevel": true,
+    "shopId": "J8Bhq3uTtdgwZx3rz",
+    "isDeleted": false
+  }
+]
