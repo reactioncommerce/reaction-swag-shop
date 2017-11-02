@@ -1,54 +1,679 @@
-[
-	{
-		"_id": "fadoPeuNTswxnyhpY",
-		"title": "Baby Yoga Outfit",
-		"type": "simple",
-		"ancestors": [
-
-		],
-		"shopId": "J8Bhq3uTtdgwZx3rz",
-		"requiresShipping": true,
-		"handle": "baby-yoga-outfit",
-		"isVisible": true,
-		"createdAt": {
-			"$date": "2016-08-01T02:41:08.736Z"
-		},
-		"updatedAt": {
-			"$date": "2016-11-14T23:48:15.693Z"
-		},
-		"workflow": {
-			"status": "new"
-		},
-		"pageTitle": "Align your baby's chakra",
-		"vendor": "Bee's Knees - Made in U.S.A.",
-		"description": "This two piece Yoga outfit is made from all organic cotton and is loose fitting for all your downward dogs",
-		"price": {
-			"range": "18.45",
-			"min": 18.45,
-			"max": 18.45
-		},
-		"isSoldOut": false,
-		"isLowQuantity": false,
-		"isBackorder": true,
-		"metafields": [
-			{
-				"key": "Material",
-				"value": "100% Organic Cotton"
-			},
-			{
-				"key": "Ages",
-				"value": "3 mons. - 1 year"
-			},
-			{
-				"key": "Clasps",
-				"value": "Brass"
-			}
-		],
-		"hashtags": [
-			"fThYz6ZhexfMP95KR",
-			"XMubvFRKnqA44ZKT3"
-		],
-		"isDeleted": false,
-		"template": "productDetailSimple"
+[{
+	"_id": "h2v7MYCXBtjMm7Piv",
+	"type": "simple",
+	"ancestors": [],
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"title": "Reaction Bag of Beans",
+	"originCountry": "US",
+	"requiresShipping": true,
+	"handle": "reaction-bag-of-beans",
+	"isDeleted": false,
+	"isVisible": true,
+	"template": "productDetailSimple",
+	"price": {
+		"range": "12 - 24",
+		"min": 12,
+		"max": 24
+	},
+	"workflow": {
+		"status": "new"
+	},
+	"isLowQuantity": false,
+	"isSoldOut": true,
+	"vendor": "Bluestone Coffee",
+	"description": "A bag of rich Arabica coffee. Great for a fueling up for a night out or for settling in for a night of coding at home",
+	"isBackorder": true,
+	"positions": {
+		"reaction swag shop": {
+			"weight": 1
+		}
 	}
-]
+},
+{
+	"_id": "PH8xNGE8pRHdPo8Qc",
+	"ancestors": [
+		"h2v7MYCXBtjMm7Piv"
+	],
+	"price": 0,
+	"type": "variant",
+	"isVisible": true,
+	"isDeleted": false,
+	"compareAtPrice": 0,
+	"weight": 0,
+	"length": 0,
+	"width": 0,
+	"height": 0,
+	"inventoryManagement": true,
+	"inventoryPolicy": false,
+	"lowInventoryWarningThreshold": 0,
+	"inventoryQuantity": 0,
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"taxable": true,
+	"taxCode": "0000",
+	"title": "Bag",
+	"optionTitle": "Untitled Option",
+	"originCountry": "US",
+	"workflow": {
+		"status": "new"
+	}
+},
+{
+	"_id": "sxW4riWptXTyXN6W7",
+	"ancestors": [
+		"h2v7MYCXBtjMm7Piv",
+		"PH8xNGE8pRHdPo8Qc"
+	],
+	"type": "variant",
+	"title": "One pound bag",
+	"price": 12,
+	"isVisible": true,
+	"isDeleted": false,
+	"compareAtPrice": 15,
+	"weight": 2,
+	"length": 2,
+	"width": 2,
+	"height": 2,
+	"inventoryManagement": true,
+	"inventoryPolicy": false,
+	"lowInventoryWarningThreshold": 0,
+	"inventoryQuantity": 1000,
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"taxable": true,
+	"taxCode": "0000",
+	"optionTitle": "One pound bag",
+	"originCountry": "US",
+	"workflow": {
+		"status": "new"
+	}
+},
+{
+	"_id": "Nsm4GmyerWC7wnwML",
+	"ancestors": [
+		"h2v7MYCXBtjMm7Piv",
+		"PH8xNGE8pRHdPo8Qc"
+	],
+	"type": "variant",
+	"title": "Two pound bag",
+	"price": 24,
+	"isVisible": true,
+	"isDeleted": false,
+	"compareAtPrice": 28,
+	"weight": 4,
+	"length": 4,
+	"width": 4,
+	"height": 4,
+	"inventoryManagement": true,
+	"inventoryPolicy": false,
+	"lowInventoryWarningThreshold": 0,
+	"inventoryQuantity": 1000,
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"taxable": true,
+	"taxCode": "0000",
+	"optionTitle": "Two pound bag",
+	"originCountry": "US",
+	"workflow": {
+		"status": "new"
+	}
+},
+{
+	"_id": "z6paQqnrGnWBvepyB",
+	"type": "simple",
+	"ancestors": [],
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"title": "Reaction Mug",
+	"originCountry": "US",
+	"requiresShipping": true,
+	"handle": "reaction-mug",
+	"isDeleted": false,
+	"isVisible": true,
+	"template": "productDetailSimple",
+	"price": {
+		"range": "15",
+		"min": 15,
+		"max": 15
+	},
+	"workflow": {
+		"status": "new"
+	},
+	"isLowQuantity": false,
+	"isSoldOut": true,
+	"vendor": "Mugworks",
+	"description": "A sturdy mug to keep your hot drinks hot and your cold drinks cold",
+	"isBackorder": true,
+	"positions": {
+		"reaction swag shop": {
+			"weight": 1
+		}
+	}
+},
+{
+	"_id": "oWNyqhaeyw9eKdZKv",
+	"ancestors": [
+		"z6paQqnrGnWBvepyB"
+	],
+	"price": 15,
+	"type": "variant",
+	"isVisible": true,
+	"isDeleted": false,
+	"compareAtPrice": 22,
+	"weight": 1,
+	"length": 1,
+	"width": 1,
+	"height": 1,
+	"inventoryManagement": true,
+	"inventoryPolicy": false,
+	"lowInventoryWarningThreshold": 0,
+	"inventoryQuantity": 1999,
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"taxable": true,
+	"taxCode": "0000",
+	"title": "One Size",
+	"optionTitle": "Untitled Option",
+	"originCountry": "US",
+	"workflow": {
+		"status": "new"
+	}
+},
+{
+	"_id": "gygxrADdPPWoCCmS7",
+	"type": "simple",
+	"ancestors": [],
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"title": "Reaction Commerce Pouch",
+	"originCountry": "US",
+	"requiresShipping": true,
+	"handle": "reaction-commerce-pouch",
+	"isDeleted": false,
+	"isVisible": true,
+	"template": "productDetailSimple",
+	"price": {
+		"range": "8",
+		"min": 8,
+		"max": 8
+	},
+	"workflow": {
+		"status": "new"
+	},
+	"vendor": "Pouchworks",
+	"description": "Need a small pouch to keep things in? This is your ticket",
+	"isLowQuantity": false,
+	"isSoldOut": false,
+	"isBackorder": false
+},
+{
+	"_id": "zhXWhcsisSexE9bg8",
+	"ancestors": [
+		"gygxrADdPPWoCCmS7"
+	],
+	"price": 8,
+	"type": "variant",
+	"isVisible": true,
+	"isDeleted": false,
+	"compareAtPrice": 10,
+	"weight": 1,
+	"length": 1,
+	"width": 1,
+	"height": 1,
+	"inventoryManagement": true,
+	"inventoryPolicy": true,
+	"lowInventoryWarningThreshold": 0,
+	"inventoryQuantity": 1000,
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"taxable": true,
+	"taxCode": "0000",
+	"title": "One Size",
+	"optionTitle": "Untitled Option",
+	"originCountry": "US",
+	"workflow": {
+		"status": "new"
+	}
+},
+{
+	"_id": "ioKwBYk6Nom9K92cv",
+	"type": "simple",
+	"ancestors": [],
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"title": "Reaction Scout Book",
+	"originCountry": "US",
+	"requiresShipping": true,
+	"handle": "reaction-scout-book",
+	"isDeleted": false,
+	"isVisible": false,
+	"template": "productDetailSimple",
+	"price": {
+		"range": "0.00",
+		"min": 0,
+		"max": 0
+	},
+	"workflow": {
+		"status": "new"
+	},
+	"isLowQuantity": false,
+	"isSoldOut": true,
+	"vendor": "Bookworks",
+	"description": "Need to make a quick note? Got a once-in-a-lifetime idea? Write it down in one of these great little notebooks",
+	"isBackorder": true
+},
+{
+	"_id": "ddzkNjFJ3MjfkzvMg",
+	"ancestors": [
+		"ioKwBYk6Nom9K92cv"
+	],
+	"price": 6,
+	"type": "variant",
+	"isVisible": false,
+	"isDeleted": false,
+	"compareAtPrice": 8,
+	"weight": 1,
+	"length": 1,
+	"width": 1,
+	"height": 1,
+	"inventoryManagement": true,
+	"inventoryPolicy": false,
+	"lowInventoryWarningThreshold": 0,
+	"inventoryQuantity": 1000,
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"taxable": true,
+	"taxCode": "0000",
+	"title": "One Size",
+	"optionTitle": "Untitled Option",
+	"originCountry": "US",
+	"workflow": {
+		"status": "new"
+	}
+},
+{
+	"_id": "xsudQc3K2EbqCeFBm",
+	"type": "simple",
+	"ancestors": [],
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"title": "Reaction Ladies Shirt",
+	"originCountry": "US",
+	"requiresShipping": true,
+	"handle": "reaction-ladies-shirt",
+	"isDeleted": false,
+	"isVisible": true,
+	"template": "productDetailSimple",
+	"price": {
+		"range": "18 - 20",
+		"min": 18,
+		"max": 20
+	},
+	"workflow": {
+		"status": "new"
+	},
+	"isLowQuantity": false,
+	"isSoldOut": true,
+	"vendor": "Shirtworks",
+	"description": "The same hip Reaction logo in a cut more suitable for the ladies. 100% cotton fabric and double-stitching make this a shirt that will last for years to come",
+	"isBackorder": true
+},
+{
+	"_id": "78zu2u3in4rNrWtKt",
+	"ancestors": [
+		"xsudQc3K2EbqCeFBm"
+	],
+	"price": 18,
+	"type": "variant",
+	"isVisible": true,
+	"isDeleted": false,
+	"compareAtPrice": 24,
+	"weight": 0,
+	"length": 2,
+	"width": 2,
+	"height": 2,
+	"inventoryManagement": true,
+	"inventoryPolicy": false,
+	"lowInventoryWarningThreshold": 0,
+	"inventoryQuantity": 0,
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"taxable": true,
+	"taxCode": "0000",
+	"title": "Blue",
+	"optionTitle": "Untitled Option",
+	"originCountry": "US",
+	"workflow": {
+		"status": "new"
+	}
+},
+{
+	"_id": "sznWKKjZKirqmots9",
+	"ancestors": [
+		"xsudQc3K2EbqCeFBm",
+		"78zu2u3in4rNrWtKt"
+	],
+	"type": "variant",
+	"title": "SM",
+	"price": 18,
+	"isVisible": true,
+	"isDeleted": false,
+	"compareAtPrice": 24,
+	"weight": 1,
+	"length": 1,
+	"width": 1,
+	"height": 1,
+	"inventoryManagement": true,
+	"inventoryPolicy": false,
+	"lowInventoryWarningThreshold": 0,
+	"inventoryQuantity": 200,
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"taxable": true,
+	"taxCode": "0000",
+	"optionTitle": "Small",
+	"originCountry": "US",
+	"workflow": {
+		"status": "new"
+	}
+},
+{
+	"_id": "L4TCjAdBwxPERZq4x",
+	"ancestors": [
+		"xsudQc3K2EbqCeFBm",
+		"78zu2u3in4rNrWtKt"
+	],
+	"type": "variant",
+	"title": "M",
+	"price": 18,
+	"isVisible": true,
+	"isDeleted": false,
+	"compareAtPrice": 24,
+	"weight": 2,
+	"length": 2,
+	"width": 2,
+	"height": 2,
+	"inventoryManagement": true,
+	"inventoryPolicy": false,
+	"lowInventoryWarningThreshold": 0,
+	"inventoryQuantity": 1000,
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"taxable": true,
+	"taxCode": "0000",
+	"optionTitle": "Medium",
+	"originCountry": "US",
+	"workflow": {
+		"status": "new"
+	}
+},
+{
+	"_id": "m2xTjjeCzLpb7J2vc",
+	"ancestors": [
+		"xsudQc3K2EbqCeFBm",
+		"78zu2u3in4rNrWtKt"
+	],
+	"type": "variant",
+	"title": "L",
+	"price": 18,
+	"isVisible": true,
+	"isDeleted": false,
+	"compareAtPrice": 24,
+	"weight": 1,
+	"length": 1,
+	"width": 1,
+	"height": 1,
+	"inventoryManagement": true,
+	"inventoryPolicy": true,
+	"lowInventoryWarningThreshold": 0,
+	"inventoryQuantity": 1000,
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"taxable": true,
+	"taxCode": "0000",
+	"optionTitle": "Large",
+	"originCountry": "US",
+	"workflow": {
+		"status": "new"
+	}
+},
+{
+	"_id": "NvjcjqppXzeX9nuNQ",
+	"ancestors": [
+		"xsudQc3K2EbqCeFBm",
+		"78zu2u3in4rNrWtKt"
+	],
+	"type": "variant",
+	"title": "XL",
+	"price": 20,
+	"isVisible": true,
+	"isDeleted": false,
+	"compareAtPrice": 26,
+	"weight": 1,
+	"length": 1,
+	"width": 1,
+	"height": 1,
+	"inventoryManagement": true,
+	"inventoryPolicy": false,
+	"lowInventoryWarningThreshold": 0,
+	"inventoryQuantity": 1000,
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"taxable": true,
+	"taxCode": "0000",
+	"optionTitle": "Extra-Large",
+	"originCountry": "US",
+	"workflow": {
+		"status": "new"
+	}
+},
+{
+	"_id": "GpZM5v5qQBCdXsoqW",
+	"type": "simple",
+	"ancestors": [],
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"title": "Reaction Mens Shirt",
+	"originCountry": "US",
+	"requiresShipping": true,
+	"isDeleted": false,
+	"isVisible": false,
+	"template": "productDetailSimple",
+	"price": {
+		"range": "18 - 20",
+		"min": 18,
+		"max": 20
+	},
+	"workflow": {
+		"status": "new"
+	},
+	"isLowQuantity": false,
+	"isSoldOut": true,
+	"vendor": "Shirtworks",
+	"description": "Get your Reaction together and show it to the world. 100% cotton fabric and double-stitching make this a shirt that will last for years to come",
+	"isBackorder": true,
+	"handle": "reaction-mens-shirt"
+},
+{
+	"_id": "cxYA8s8qdi8qnYSNw",
+	"ancestors": [
+		"GpZM5v5qQBCdXsoqW"
+	],
+	"price": 18,
+	"type": "variant",
+	"isVisible": true,
+	"isDeleted": false,
+	"compareAtPrice": 24,
+	"weight": 0,
+	"length": 2,
+	"width": 2,
+	"height": 2,
+	"inventoryManagement": true,
+	"inventoryPolicy": false,
+	"lowInventoryWarningThreshold": 0,
+	"inventoryQuantity": 0,
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"taxable": true,
+	"taxCode": "0000",
+	"title": "Blue",
+	"optionTitle": "Untitled Option",
+	"originCountry": "US",
+	"workflow": {
+		"status": "new"
+	}
+},
+{
+	"_id": "TC9i4PfCEGLGgjxMa",
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"ancestors": [
+		"GpZM5v5qQBCdXsoqW",
+		"cxYA8s8qdi8qnYSNw"
+	],
+	"lowInventoryWarningThreshold": 0,
+	"price": 18,
+	"height": 1,
+	"compareAtPrice": 24,
+	"originCountry": "US",
+	"weight": 1,
+	"workflow": {
+		"status": "new"
+	},
+	"inventoryPolicy": false,
+	"length": 1,
+	"type": "variant",
+	"taxable": true,
+	"inventoryManagement": true,
+	"taxCode": "0000",
+	"isDeleted": false,
+	"inventoryQuantity": 200,
+	"isVisible": true,
+	"optionTitle": "Small",
+	"width": 1,
+	"title": "SM"
+},
+{
+	"_id": "u7BcWyqS9WHc4zDfJ",
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"ancestors": [
+		"GpZM5v5qQBCdXsoqW",
+		"cxYA8s8qdi8qnYSNw"
+	],
+	"lowInventoryWarningThreshold": 0,
+	"price": 18,
+	"height": 2,
+	"compareAtPrice": 24,
+	"originCountry": "US",
+	"weight": 2,
+	"workflow": {
+		"status": "new"
+	},
+	"inventoryPolicy": false,
+	"length": 2,
+	"type": "variant",
+	"taxable": true,
+	"inventoryManagement": true,
+	"taxCode": "0000",
+	"isDeleted": false,
+	"inventoryQuantity": 1000,
+	"isVisible": true,
+	"optionTitle": "Medium",
+	"width": 2,
+	"title": "M"
+},
+{
+	"_id": "eJQdg8nQ3g7LJJXWJ",
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"ancestors": [
+		"GpZM5v5qQBCdXsoqW",
+		"cxYA8s8qdi8qnYSNw"
+	],
+	"lowInventoryWarningThreshold": 0,
+	"price": 18,
+	"height": 1,
+	"compareAtPrice": 24,
+	"originCountry": "US",
+	"weight": 1,
+	"workflow": {
+		"status": "new"
+	},
+	"inventoryPolicy": true,
+	"length": 1,
+	"type": "variant",
+	"taxable": true,
+	"inventoryManagement": true,
+	"taxCode": "0000",
+	"isDeleted": false,
+	"inventoryQuantity": 1000,
+	"isVisible": true,
+	"optionTitle": "Large",
+	"width": 1,
+	"title": "L"
+},
+{
+	"_id": "RYqHfoqpQBWc53Apo",
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"ancestors": [
+		"GpZM5v5qQBCdXsoqW",
+		"cxYA8s8qdi8qnYSNw"
+	],
+	"lowInventoryWarningThreshold": 0,
+	"price": 20,
+	"height": 1,
+	"compareAtPrice": 26,
+	"originCountry": "US",
+	"weight": 1,
+	"workflow": {
+		"status": "new"
+	},
+	"inventoryPolicy": false,
+	"length": 1,
+	"type": "variant",
+	"taxable": true,
+	"inventoryManagement": true,
+	"taxCode": "0000",
+	"isDeleted": false,
+	"inventoryQuantity": 1000,
+	"isVisible": true,
+	"optionTitle": "Extra-Large",
+	"width": 1,
+	"title": "XL"
+},
+{
+	"_id": "9zxhE27pAvx8vbKr5",
+	"type": "simple",
+	"ancestors": [],
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"title": "Reaction Sticker",
+	"originCountry": "US",
+	"requiresShipping": true,
+	"handle": "reaction-sticker",
+	"isDeleted": false,
+	"isVisible": true,
+	"template": "productDetailSimple",
+	"price": {
+		"range": "4",
+		"min": 4,
+		"max": 4
+	},
+	"workflow": {
+		"status": "new"
+	},
+	"isLowQuantity": false,
+	"isSoldOut": true,
+	"vendor": "Stickerworks",
+	"description": "Show your pride and affix some Reaction to almost any surface",
+	"isBackorder": true
+},
+{
+	"_id": "aXsSSpddrPcBWppFK",
+	"ancestors": [
+		"9zxhE27pAvx8vbKr5"
+	],
+	"price": 4,
+	"type": "variant",
+	"isVisible": true,
+	"isDeleted": false,
+	"compareAtPrice": 6,
+	"weight": 1,
+	"length": 1,
+	"width": 1,
+	"height": 1,
+	"inventoryManagement": true,
+	"inventoryPolicy": false,
+	"lowInventoryWarningThreshold": 0,
+	"inventoryQuantity": 1000,
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"taxable": true,
+	"taxCode": "0000",
+	"title": "One Size",
+	"optionTitle": "Untitled Option",
+	"originCountry": "US",
+	"workflow": {
+		"status": "new"
+	}
+}]
+

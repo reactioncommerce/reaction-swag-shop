@@ -7,6 +7,7 @@ function checkForShops() {
 }
 
 function loadShops() {
+  Logger.info("Starting load Shops");
   if (!checkForShops()) {
     const shops =   require("/imports/plugins/custom/reaction-swag-shop/private/data/Shops.json");
     shops.forEach((shop) => {
@@ -17,8 +18,11 @@ function loadShops() {
 }
 
 function loadProducts() {
+  Logger.info("Starting load Products");
   const products = require("/imports/plugins/custom/reaction-swag-shop/private/data/Products.json");
   products.forEach((product) => {
+    product.createdAt = new Date();
+    product.updatedAt = new Date();
     Products.direct.insert(product);
   });
   Logger.info("Products loaded");
@@ -34,6 +38,7 @@ function loadTags() {
 }
 
 function loadShipping() {
+  Logger.info("Starting load Shipping");
   const shipping = require("/imports/plugins/custom/reaction-swag-shop/private/data/Shipping.json");
   shipping.forEach((shippingRecord) => {
     Shipping.insert(shippingRecord);
