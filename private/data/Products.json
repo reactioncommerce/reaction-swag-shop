@@ -461,7 +461,7 @@
 	"originCountry": "US",
 	"requiresShipping": true,
 	"isDeleted": false,
-	"isVisible": false,
+	"isVisible": true,
 	"template": "productDetailSimple",
 	"price": {
 		"range": "18 - 20",
