@@ -1,9 +1,14 @@
 import { Shops, Products, Tags, Shipping } from "/lib/collections";
-import { Hooks, Reaction, Logger } from "/server/api";
+import { Hooks, Logger } from "/server/api";
 
 function checkForShops() {
   const numShops = Shops.find().count();
   return numShops;
+}
+
+function checkForProducts() {
+  const numProducts = Products.find().count();
+  return numProducts !== 0;
 }
 
 function loadShops() {
@@ -19,19 +24,25 @@ function loadShops() {
 
 function loadProducts() {
   Logger.info("Starting load Products");
-  const products = require("/imports/plugins/custom/reaction-swag-shop/private/data/Products.json");
-  products.forEach((product) => {
-    product.createdAt = new Date();
-    product.updatedAt = new Date();
-    Products.direct.insert(product);
-  });
-  Logger.info("Products loaded");
+  if (!checkForProducts()) {
+    const products = require("/imports/plugins/custom/reaction-swag-shop/private/data/Products.json");
+    products.forEach((product) => {
+      product.createdAt = new Date();
+      product.updatedAt = new Date();
+      Products.direct.insert(product);
+    });
+    Logger.info("Products loaded");
+  } else {
+    Logger.info("Products skipped. Already exists");
+  }
+
 }
 
 function loadTags() {
   Logger.info("Starting load Tags");
   const tags = require("/imports/plugins/custom/reaction-swag-shop/private/data/Tags.json");
   tags.forEach((tag) => {
+    tag.updatedAt = new Date();
     Tags.insert(tag);
   });
   Logger.info("Tags loaded");

@@ -252,7 +252,10 @@
 	"isSoldOut": true,
 	"vendor": "Bookworks",
 	"description": "Need to make a quick note? Got a once-in-a-lifetime idea? Write it down in one of these great little notebooks",
-	"isBackorder": true
+	"isBackorder": true,
+	"hashtags": [
+		"hZdSevCBP8dDc66Ba"
+	]
 },
 {
 	"_id": "ddzkNjFJ3MjfkzvMg",
@@ -306,7 +309,10 @@
 	"isSoldOut": true,
 	"vendor": "Shirtworks",
 	"description": "The same hip Reaction logo in a cut more suitable for the ladies. 100% cotton fabric and double-stitching make this a shirt that will last for years to come",
-	"isBackorder": true
+	"isBackorder": true,
+	"hashtags": [
+		"dhqmJjXWotCNkTzxg"
+	]
 },
 {
 	"_id": "78zu2u3in4rNrWtKt",
@@ -476,7 +482,10 @@
 	"vendor": "Shirtworks",
 	"description": "Get your Reaction together and show it to the world. 100% cotton fabric and double-stitching make this a shirt that will last for years to come",
 	"isBackorder": true,
-	"handle": "reaction-mens-shirt"
+	"handle": "reaction-mens-shirt",
+  "hashtags": [
+    "dhqmJjXWotCNkTzxg"
+  ]
 },
 {
 	"_id": "cxYA8s8qdi8qnYSNw",
