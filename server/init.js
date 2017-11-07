@@ -1,4 +1,4 @@
-import { Shops, Products, Tags, Shipping } from "/lib/collections";
+import { Shops, Products, Tags, Shipping, Media } from "/lib/collections";
 import { Hooks, Logger } from "/server/api";
 
 function checkForShops() {
@@ -65,6 +65,28 @@ function enablePayment() {
   // Enable the example payment method
 }
 
+function importProductImages() {
+  const products = Products.find({ type: "simple" }).fetch();
+  for (const product of products) {
+    const productId = product._id;
+    if (!Media.findOne( {"metadata.productId": productId })) {
+      const shopId = product.shopId;
+      const filepath = "custom/images/" + productId + ".jpg";
+      const binary = Assets.getBinary(filepath);
+      const fileObj = new FS.File();
+      fileObj.attachData(binary, { type: "image/jpeg" });
+      fileObj.metadata = {
+        productId: productId,
+        landing: true,
+        toGrid: 1,
+        shopId: shopId,
+        priority: 0
+      };
+      Media.insert(fileObj);
+    }
+  }
+}
+
 /**
  * Hook to make additional configuration changes
  */
@@ -75,4 +97,5 @@ Hooks.Events.add("beforeCoreInit", () => {
   loadShipping();
   enableShipping();
   enablePayment();
+  importProductImages();
 });
