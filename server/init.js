@@ -11,6 +11,16 @@ function checkForProducts() {
   return numProducts !== 0;
 }
 
+function checkForTags() {
+  const numTags = Tags.find().count();
+  return numTags !== 0;
+}
+
+function checkForShipping() {
+  const numShipping = Shipping.find().count();
+  return numShipping !== 0;
+}
+
 function loadShops() {
   Logger.info("Starting load Shops");
   if (!checkForShops()) {
@@ -39,22 +49,26 @@ function loadProducts() {
 }
 
 function loadTags() {
-  Logger.info("Starting load Tags");
-  const tags = require("/imports/plugins/custom/reaction-swag-shop/private/data/Tags.json");
-  tags.forEach((tag) => {
-    tag.updatedAt = new Date();
-    Tags.insert(tag);
-  });
-  Logger.info("Tags loaded");
+  if (!checkForTags()) {
+    Logger.info("Starting load Tags");
+    const tags = require("/imports/plugins/custom/reaction-swag-shop/private/data/Tags.json");
+    tags.forEach((tag) => {
+      tag.updatedAt = new Date();
+      Tags.insert(tag);
+    });
+    Logger.info("Tags loaded");
+  }
 }
 
 function loadShipping() {
-  Logger.info("Starting load Shipping");
-  const shipping = require("/imports/plugins/custom/reaction-swag-shop/private/data/Shipping.json");
-  shipping.forEach((shippingRecord) => {
-    Shipping.insert(shippingRecord);
-  });
-  Logger.info("Shipping loaded");
+  if (!checkForShipping()) {
+    Logger.info("Starting load Shipping");
+    const shipping = require("/imports/plugins/custom/reaction-swag-shop/private/data/Shipping.json");
+    shipping.forEach((shippingRecord) => {
+      Shipping.insert(shippingRecord);
+    });
+    Logger.info("Shipping loaded");
+  }
 }
 
 function enableShipping() {
