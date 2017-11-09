@@ -14,7 +14,7 @@ Hooks.Events.add("afterCoreInit", () => {
       backoff: "exponential" // delay by twice as long for each subsequent retry
     })
     .repeat({
-      schedule: later.parse.text("every minute")
+      schedule: later.parse.text("every 55 minutes")
     })
     .save({
       // Cancel any jobs of the same type,
