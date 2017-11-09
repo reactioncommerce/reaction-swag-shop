@@ -1,4 +1,6 @@
-import { Shops, Products, Tags, Shipping, Media } from "/lib/collections";
+import { Shops, Products, ProductSearch, Tags, Shipping, Media, Packages } from "/lib/collections";
+import core from "/server/api/core";
+
 import { Logger } from "/server/api";
 
 function checkForShops() {
@@ -28,25 +30,36 @@ function checkForMedia() {
 
 const methods = {};
 
-methods.loadShops = function() {
+methods.loadShops = function () {
   Logger.info("Starting load Shops");
   if (!checkForShops()) {
-    const shops =   require("/imports/plugins/custom/reaction-swag-shop/private/data/Shops.json");
+    const shops = require("/imports/plugins/custom/reaction-swag-shop/private/data/Shops.json");
     shops.forEach((shop) => {
       Shops.insert(shop);
+      Logger.info(`Inserted shop: ${shop.name}`);
     });
     Logger.info("Shops loaded");
   }
 };
 
-methods.loadProducts = function() {
+methods.resetShops = function () {
+  const shops =   require("/imports/plugins/custom/reaction-swag-shop/private/data/Shops.json");
+  const shop = shops[0];
+  // Let's remove any shops that are not ours
+  Shops.remove({ _id: { $ne: shop._id } });
+  const rawShopCollection = Shops.rawCollection();
+  rawShopCollection.update({ _id: shop._id }, shop);
+  Logger.info("Shop reset to original values");
+};
+
+methods.loadProducts = function () {
   Logger.info("Starting load Products");
   if (!checkForProducts()) {
     const products = require("/imports/plugins/custom/reaction-swag-shop/private/data/Products.json");
     products.forEach((product) => {
       product.createdAt = new Date();
       product.updatedAt = new Date();
-      Products.direct.insert(product);
+      Products.insert(product);
     });
     Logger.info("Products loaded");
   } else {
@@ -54,7 +67,7 @@ methods.loadProducts = function() {
   }
 };
 
-methods.loadTags = function() {
+methods.loadTags = function () {
   if (!checkForTags()) {
     Logger.info("Starting load Tags");
     const tags = require("/imports/plugins/custom/reaction-swag-shop/private/data/Tags.json");
@@ -66,7 +79,7 @@ methods.loadTags = function() {
   }
 };
 
-methods.loadShipping = function() {
+methods.loadShipping = function () {
   if (!checkForShipping()) {
     Logger.info("Starting load Shipping");
     const shipping = require("/imports/plugins/custom/reaction-swag-shop/private/data/Shipping.json");
@@ -77,20 +90,20 @@ methods.loadShipping = function() {
   }
 };
 
-methods.enableShipping = function() {
+methods.enableShipping = function () {
   // Enable flat rate shipping records
 };
 
-methods.enablePayment = function() {
+methods.enablePayment = function () {
   // Enable the example payment method
 };
 
-methods.importProductImages = function() {
+methods.importProductImages = function () {
   if (!checkForMedia()) {
     const products = Products.find({ type: "simple" }).fetch();
     for (const product of products) {
       const productId = product._id;
-      if (!Media.findOne( {"metadata.productId": productId })) {
+      if (!Media.findOne({ "metadata.productId": productId })) {
         const shopId = product.shopId;
         const filepath = "custom/images/" + productId + ".jpg";
         const binary = Assets.getBinary(filepath);
@@ -112,15 +125,22 @@ methods.importProductImages = function() {
 
 methods.resetData = function() {
   // delete existing data
+  Logger.warn("::: Starting to remove data");
   Shipping.remove({});
   Tags.remove({});
-  Products.remove({});
-  Shops.remove({});
+  Products.direct.remove({});
+  ProductSearch.remove({});
+  Media.remove({});
+  Logger.warn("Removing data complete");
   // add data back in
-  methods.loadShops();
+  Logger.warn("::: Starting load data");
+  methods.resetShops();
+  core.loadPackages();
   methods.loadProducts();
   methods.loadTags();
   methods.loadShipping();
+  methods.importProductImages();
+  Logger.warn("::: Reload data complete");
 };
 
 export default methods;

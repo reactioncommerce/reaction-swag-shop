@@ -7,11 +7,15 @@ import methods from "./methods";
  */
 Hooks.Events.add("beforeCoreInit", () => {
   methods.loadShops();
+  Logger.info("Finished loading Shop data");
+});
+
+Hooks.Events.add("afterCoreInit", () => {
   methods.loadProducts();
   methods.loadTags();
   methods.loadShipping();
   methods.enableShipping();
   methods.enablePayment();
   methods.importProductImages();
-  Logger.info("Finished loading Demo data");
+  Logger.info("Finished loading thr rest of the Demo data");
 });
