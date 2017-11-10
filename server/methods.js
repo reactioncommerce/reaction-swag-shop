@@ -57,9 +57,10 @@ methods.loadProducts = function () {
   if (!checkForProducts()) {
     const products = require("/imports/plugins/custom/reaction-swag-shop/private/data/Products.json");
     products.forEach((product) => {
+      product.workflow.workflow = ["imported"];
       product.createdAt = new Date();
       product.updatedAt = new Date();
-      Products.insert(product);
+      Products.insert(product, { publish: true });
     });
     Logger.info("Products loaded");
   } else {
@@ -91,11 +92,21 @@ methods.loadShipping = function () {
 };
 
 methods.enableShipping = function () {
-  // Enable flat rate shipping records
+  Packages.update({ name: "reaction-shipping-rates" }, {
+    $set: {
+      "settings.flatRates.enabled": true
+    }
+  });
+  Logger.info("Flat Rates shipping enabled");
 };
 
 methods.enablePayment = function () {
-  // Enable the example payment method
+  Packages.update({ name: "example-paymentmethod" }, {
+    $set: {
+      "settings.example-paymentmethod.enabled": true
+    }
+  });
+  Logger.info("Example payment method enabled");
 };
 
 methods.importProductImages = function () {
@@ -140,6 +151,8 @@ methods.resetData = function() {
   methods.loadTags();
   methods.loadShipping();
   methods.importProductImages();
+  methods.enablePayment();
+  methods.enableShipping();
   Logger.warn("::: Reload data complete");
 };
 
