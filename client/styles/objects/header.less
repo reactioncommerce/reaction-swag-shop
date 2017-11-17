@@ -1,0 +1,61 @@
+.navbar {
+  min-height: inherit;
+}
+
+.rui.menu.dropdown-menu {
+  margin-top: 0;
+}
+
+.rui.navbar {
+  background-color: inherit;
+  height: 100%;
+}
+
+.rui.navbar .languages {
+  height: inherit;
+  .dropdown-toggle {
+    padding: 0;
+    .btn {
+      font-size: 12px;
+    }
+    .fa {
+      padding-left: 2px;
+      font-size: 9px;
+    }
+  }
+}
+
+html .rui.navbar .accounts {
+  height: 100%;
+  .accounts-dropdown {
+    height: initial;
+    .dropdown-toggle {
+      font-size: 12px;
+      font-weight: bold;
+      padding: 0 25px 0 15px;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.caret {
+  border: none;
+  font-weight: lighter;
+
+  padding: 0 16px 0 2px;
+  vertical-align: inherit;
+
+  width: 0;
+  height: 100%;
+
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: 9px;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "FontAwesome", "FontAwesomeFallback";
+  &:before {
+    content: "\f078";
+  }
+}

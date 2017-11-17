@@ -1,7 +1,7 @@
 import { Shops, Products, ProductSearch, Tags, Shipping, Media, Packages } from "/lib/collections";
 import core from "/server/api/core";
 
-import { Logger } from "/server/api";
+import { Logger, Reaction } from "/server/api";
 
 function checkForShops() {
   const numShops = Shops.find().count();
@@ -26,6 +26,14 @@ function checkForShipping() {
 function checkForMedia() {
   const numMedia = Media.find().count();
   return numMedia !== 0;
+}
+
+function getTopVariant(productId) {
+  const topVariant = Products.findOne({
+    "ancestors": { $in: [productId] },
+    "ancestors.1": { $exists: false }
+  });
+  return topVariant;
 }
 
 const methods = {};
@@ -100,6 +108,17 @@ methods.enableShipping = function () {
   Logger.info("Flat Rates shipping enabled");
 };
 
+methods.initLayout = function () {
+  // TODO: Everytime the packages are inserted into registry, the packages layout will
+  // be cloned, regardless if the shop's layout is already there. This is the reason, we need
+  // to set the layout again in this method.
+  const layout = require("/imports/plugins/custom/reaction-swag-shop/private/data/Layout.json");
+  const shopId = Reaction.getShopId();
+  return Shops.update(shopId, {
+    $set: { layout: layout }
+  });
+};
+
 methods.enablePayment = function () {
   Packages.update({ name: "example-paymentmethod" }, {
     $set: {
@@ -129,6 +148,17 @@ methods.importProductImages = function () {
           workflow: "published"
         };
         Media.insert(fileObj);
+
+        // const topVariant = getTopVariant(productId);
+        // fileObj.metadata = {
+        //   productId: productId,
+        //   variantId: topVariant._id,
+        //   toGrid: 1,
+        //   shopId: shopId,
+        //   priority: 0,
+        //   workflow: "published"
+        // };
+        // Media.insert(fileObj);
       }
     }
   }
@@ -147,6 +177,7 @@ methods.resetData = function() {
   Logger.warn("::: Starting load data");
   methods.resetShops();
   core.loadPackages();
+  methods.initLayout();
   methods.loadProducts();
   methods.loadTags();
   methods.loadShipping();
