@@ -137,7 +137,7 @@
     "enabled" : true,
     "structure" : {
       "template" : "productDetailSimple",
-      "layoutHeader" : "NavBar",
+      "layoutHeader" : "SwagShopHeader",
       "notFound" : "productNotFound",
       "dashboardHeader" : "productDetailSimpleToolbar",
       "dashboardControls" : "productDetailDashboardControls",

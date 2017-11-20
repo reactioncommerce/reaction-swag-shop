@@ -164,7 +164,7 @@ methods.importProductImages = function () {
   }
 };
 
-methods.resetData = function() {
+methods.resetData = function () {
   // delete existing data
   Logger.warn("::: Starting to remove data");
   Shipping.remove({});

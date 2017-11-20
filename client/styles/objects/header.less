@@ -6,23 +6,34 @@
   margin-top: 0;
 }
 
-.rui.navbar {
+html .rui.navbar {
   background-color: inherit;
   height: 100%;
-}
-
-.rui.navbar .languages {
-  height: inherit;
-  .dropdown-toggle {
-    padding: 0;
-    .btn {
-      font-size: 12px;
-    }
-    .fa {
-      padding-left: 2px;
-      font-size: 9px;
+  letter-spacing: 0.6px;
+  .languages {
+    height: inherit;
+    .dropdown-toggle {
+      padding: 0;
+      .btn {
+        font-size: 12px;
+      }
+      .fa {
+        padding-left: 2px;
+        font-size: 9px;
+      }
     }
   }
+  .brand {
+    font-size: 20px;
+    font-weight: 900;
+    height: @navHeight;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+}
+
+html:not(.rtl) .rui.navbar .brand {
+  margin-left: 30px;
 }
 
 html .rui.navbar .accounts {
@@ -40,7 +51,6 @@ html .rui.navbar .accounts {
 
 .caret {
   border: none;
-  font-weight: lighter;
 
   padding: 0 16px 0 2px;
   vertical-align: inherit;
@@ -57,5 +67,54 @@ html .rui.navbar .accounts {
   font-family: "FontAwesome", "FontAwesomeFallback";
   &:before {
     content: "\f078";
+  }
+}
+
+.rui.tagnav {
+  height: 100%;
+  .navbar-item {
+    height: @navHeight;
+    & > .rui.tag.link {
+      font-size: 14px;
+      letter-spacing: 0.6px;
+      font-weight: bold;
+    }
+  }
+}
+
+.rui.navbar .search {
+  font-weight: bold;
+  height: @navHeight;
+  padding-right: 6px;
+  padding-left: 6px;
+  text-transform: uppercase;
+  .btn.flat {
+    font-size: 12px;
+    padding-right: 6px;
+    padding-left: 6px;
+    color: black;
+  }
+}
+
+.cart-container {
+  align-items: center;
+  display: flex;
+  height: @navHeight;
+  .cart-icon {
+    background: inherit;
+    color: black;
+    font-weight: bold;
+    height: inherit;
+    padding: 6px 45px 6px 6px;
+    text-transform: uppercase;
+    .cart-count {
+      color: #1d98d5;
+    }
+    &:hover {
+      background-color: initial;
+    }
+  }
+  &:hover {
+    background-color: #e6e6e6;
   }
 }

@@ -1,6 +1,6 @@
 import { Hooks, Logger } from "/server/api";
 import methods from "./methods";
-
+import "./i18n";
 
 /**
  * Hook to make additional configuration changes
