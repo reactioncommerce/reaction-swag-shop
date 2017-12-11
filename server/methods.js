@@ -29,10 +29,6 @@ function checkForMedia() {
 
 const methods = {};
 
-methods.cleanJobs = function () {
-    Jobs.remove({});
-};
-
 methods.loadShops = function () {
     Logger.info("Starting load Shops");
     if (!checkForShops()) {
