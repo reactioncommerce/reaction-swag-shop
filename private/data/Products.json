@@ -148,9 +148,10 @@
 			"weight": 1
 		}
 	},
-  "hashtags": [
-    "hZdSevCBP8dDc66Ba"
-  ]
+    "hashtags": [
+      "hZdSevCBP8dDc66Ba"
+    ],
+	"featuredProductLabel": "New!"
 },
 {
 	"_id": "oWNyqhaeyw9eKdZKv",
@@ -205,9 +206,10 @@
 	"isLowQuantity": false,
 	"isSoldOut": false,
 	"isBackorder": false,
-  "hashtags": [
-    "hZdSevCBP8dDc66Ba"
-  ]
+  	"hashtags": [
+  	  "hZdSevCBP8dDc66Ba"
+  	],
+	"featuredProductLabel": "Sale"
 },
 {
 	"_id": "zhXWhcsisSexE9bg8",
@@ -321,7 +323,8 @@
 	"isBackorder": true,
 	"hashtags": [
 		"dhqmJjXWotCNkTzxg"
-	]
+	],
+	"featuredProductLabel": "New!"
 },
 {
 	"_id": "78zu2u3in4rNrWtKt",

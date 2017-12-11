@@ -1,3 +1,6 @@
 import "./cartIcon";
 import "./languageDropdown";
 import "./navBar";
+import "./product-admin";
+import "./product-variant";
+

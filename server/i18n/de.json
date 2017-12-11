@@ -3,7 +3,8 @@
   "ns": "reaction-swag-shop",
   "translation": {
     "reaction-swag-shop": {
-      "myCart": "Warenkorb"
+      "myCart": "Warenkorb",
+      "productsWeLove": "Unsere Lieblingsprodukte"
     }
   }
 }]

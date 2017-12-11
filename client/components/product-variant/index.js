@@ -1,0 +1,2 @@
+import "./productGrid";
+import "./productGridItems";

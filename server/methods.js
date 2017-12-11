@@ -135,7 +135,7 @@ methods.importProductImages = function () {
       const productId = product._id;
       if (!Media.findOne({ "metadata.productId": productId })) {
         const shopId = product.shopId;
-        const filepath = "custom/images/" + productId + ".jpg";
+        const filepath = "plugins/reaction-swag-shop/images/" + productId + ".jpg";
         const binary = Assets.getBinary(filepath);
         const fileObj = new FS.File();
         const fileName = `${productId}.jpg`;
