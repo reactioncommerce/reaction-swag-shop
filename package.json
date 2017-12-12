@@ -1,0 +1,58 @@
+{
+  "name": "reaction-swag-shop",
+  "version": "0.0.1",
+  "description": "A Reaction Commerce plugin that creates swagshop.reactioncommerce.com",
+  "main": "register.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reactioncommerce/reaction-swag-shop.git"
+  },
+  "keywords": [
+    "reaction",
+    "commerce",
+    "examples",
+    "plugins"
+  ],
+  "author": "Reaction Commerce",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/reactioncommerce/reaction-swag-shop/issues"
+  },
+  "homepage": "https://github.com/reactioncommerce/reaction-swag-shop#readme",
+  "babel": {
+    "plugins": [
+      [
+        "lodash",
+        {
+          "id": [
+            "lodash",
+            "recompose"
+          ]
+        }
+      ],
+      [
+        "module-resolver",
+        {
+          "root": [
+            "./"
+          ],
+          "alias": {
+            "@reactioncommerce/reaction-collections": "./imports/plugins/core/collections",
+            "@reactioncommerce/reaction-components": "./imports/plugins/core/components/lib",
+            "@reactioncommerce/reaction-router": "./imports/plugins/core/router/lib",
+            "@reactioncommerce/reaction-ui": "./imports/plugins/core/ui/client/components",
+            "underscore": "lodash"
+          }
+        }
+      ]
+    ],
+    "presets": [
+      "env",
+      "react",
+      "stage-2"
+    ]
+  }
+}
