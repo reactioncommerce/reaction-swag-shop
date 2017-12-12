@@ -24,3 +24,16 @@
     padding: 5px 10px 15px;
   }
 }
+
+
+@media @mobile {
+  .product-grid-list {
+    .product-grid-item {
+      /* on mobile deviced, we're only showing the first featured product */
+      &:first-child {
+        display: block;
+      }
+      display: none;
+    }
+  }
+}

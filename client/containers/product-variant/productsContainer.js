@@ -67,9 +67,9 @@ function composer(props, onData) {
 
   // BOF: swag shop featuredProduct filter
   queryParams.featuredProductLabel = ""; // subscribe to all featured products, regardless of label
+  const swagShopScrollLimit = 3; // Only interested in first 3 products for "Products we love" section
+  const productsSubscription = Meteor.subscribe("Products", swagShopScrollLimit, queryParams, sort, editMode);
   // EOF: swag shop featuredProduct filter
-
-  const productsSubscription = Meteor.subscribe("Products", scrollLimit, queryParams, sort, editMode);
 
   if (productsSubscription.ready()) {
     window.prerenderReady = true;

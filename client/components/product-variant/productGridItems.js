@@ -11,13 +11,16 @@ class ProductGridItems extends ProductGridItemsCore {
 
   renderFeaturedProductLabel() {
     const featuredProductLabel = this.props.product.featuredProductLabel;
-    const hash = featuredProductLabel.split("").reduce((acc, value, i) => {
-      const code = featuredProductLabel.charCodeAt(i);
-      return code + acc;
-    }, 0);
-    const bgColor = ProductGridItems.labelColorPalette[hash % 3];
+    let bgColor;
+    if (featuredProductLabel) {
+      const hash = featuredProductLabel.split("").reduce((acc, value, i) => {
+        const code = featuredProductLabel.charCodeAt(i);
+        return code + acc;
+      }, 0);
+      bgColor = ProductGridItems.labelColorPalette[hash % 3];
+    }
     return (
-      <div className="grid-item__featured-product-label" style={{ backgroundColor: bgColor }}>
+      <div className="grid-item__featured-product-label" style={bgColor ? { backgroundColor: bgColor } : {}}>
         {featuredProductLabel}
       </div>
     );
