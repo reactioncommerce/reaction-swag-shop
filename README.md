@@ -30,13 +30,18 @@ Clone this shop repository into the custom plugin folder. In your project direct
 ```
 
 #### Step 3
-Copy asset files into your root application's /private folder
+Copy private asset files into your root application's /private folder
 ```
-$ cp -Rv <your-new-shop-directory-name>/imports/plugins/custom/<your-new-shop-directory-name> <your-new-shop-directory-name>/private/plugins/
+$ cp -Rv <your-new-shop-directory-name>/imports/plugins/custom/<your-new-shop-directory-name>/private/* <your-new-shop-directory-name>/private/plugins/<your-new-shop-directory-name>/
 ```
-
 
 #### Step 4
+Copy public files into your root application's /public folder
+```
+$ cp -Rv <your-new-shop-directory-name>/imports/plugins/custom/<your-new-shop-directory-name>/public/* <your-new-shop-directory-name>/public/plugins/<your-new-shop-directory-name>/
+```
+
+#### Step 5
 Start Reaction
 ```
 $ export SKIP_FIXTURES=1 && reaction run
