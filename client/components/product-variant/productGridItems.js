@@ -3,10 +3,22 @@ import ProductGridItemsCore from "/imports/plugins/included/product-variant/comp
 
 
 class ProductGridItems extends ProductGridItemsCore {
+  static labelColorPalette = [
+    "#2899D3", // blue
+    "#40e0d0", // turquoise
+    "#F2542F"  // orange
+  ];
+
   renderFeaturedProductLabel() {
+    const featuredProductLabel = this.props.product.featuredProductLabel;
+    const hash = featuredProductLabel.split("").reduce((acc, value, i) => {
+      const code = featuredProductLabel.charCodeAt(i);
+      return code + acc;
+    }, 0);
+    const bgColor = ProductGridItems.labelColorPalette[hash % 3];
     return (
-      <div className="grid-item__featured-product-label">
-        {this.props.product.featuredProductLabel}
+      <div className="grid-item__featured-product-label" style={{ backgroundColor: bgColor }}>
+        {featuredProductLabel}
       </div>
     );
   }
