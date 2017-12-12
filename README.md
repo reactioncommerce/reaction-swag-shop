@@ -1,6 +1,15 @@
 # Reaction Swag Shop
 
 
+---
+
+ **⚠ WIP NOTICE:** This Reaction plugin is under active development and is not completed yet. Things may have bugs or are still missing,
+ so please be aware of that and use it on your own risk.
+ You may want to follow our [Reaction Blog](https://blog.reactioncommerce.com/), where we're going to communicate the project's progress.  
+ 
+---
+
+
 This repository contains the reaction-swag-shop plugin that's intended as a learning resource for everybody
 who's facing the task of customizing Reaction for her/his own shop implementation. Additionally, this repository drives
 our real swag shop that's offering merchandising products at [swag.getreaction.io](swag.getreaction.io).
