@@ -5,7 +5,7 @@ import { ReactionProduct } from "/lib/api";
 import { applyProductRevision } from "/lib/api/products";
 import { Products, Tags, Shops } from "/lib/collections";
 import { replaceComponent, getHOCs, composeWithTracker } from "@reactioncommerce/reaction-components";
-import ProductsComponent from "/imports/plugins/included/product-variant/components/products";
+import ProductsComponent from "../../components/product-variant/products";
 
 /*
  * Customized version of imports/plugins/included/product-variant/containers/productsContainer.js
@@ -20,7 +20,9 @@ function composer(props, onData) {
   const shopIdOrSlug = Reaction.Router.getParam("shopSlug");
 
   const tag = Tags.findOne({ slug }) || Tags.findOne(slug);
-  const scrollLimit = Session.get("productScrollLimit");
+  // BOF: swag shop featuredProduct filter
+  //  const scrollLimit = Session.get("productScrollLimit");
+  // EOF: swag shop featuredProduct filter
   let tags = {}; // this could be shop default implementation needed
   let shopIds = {};
 
