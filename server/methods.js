@@ -1,5 +1,5 @@
 import { Shops, Products, Tags, Shipping, Media, Packages } from "/lib/collections";
-import { Logger } from "/server/api";
+import { Logger, Reaction } from "/server/api";
 
 function checkForShops() {
   const numShops = Shops.find().count();
@@ -88,6 +88,17 @@ methods.enableShipping = function () {
   Logger.info("Flat Rates shipping enabled");
 };
 
+methods.initLayout = function () {
+  // TODO: Everytime the packages are inserted into registry, the packages layout will
+  // be cloned, regardless if the shop's layout is already there. This is the reason, we need
+  // to set the layout again in this method.
+  const layout = require("/imports/plugins/custom/reaction-swag-shop/private/data/Layout.json");
+  const shopId = Reaction.getShopId();
+  return Shops.update(shopId, {
+    $set: { layout: layout }
+  });
+};
+
 methods.enablePayment = function () {
   Packages.update({ name: "example-paymentmethod" }, {
     $set: {
@@ -113,7 +124,7 @@ methods.importProductImages = function () {
       const productId = product._id;
       if (!Media.findOne({ "metadata.productId": productId })) {
         const shopId = product.shopId;
-        const filepath = "custom/images/" + productId + ".jpg";
+        const filepath = "plugins/reaction-swag-shop/images/" + productId + ".jpg";
         const binary = Assets.getBinary(filepath);
         const fileObj = new FS.File();
         const fileName = `${productId}.jpg`;

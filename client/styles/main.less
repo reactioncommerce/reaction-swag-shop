@@ -1,0 +1,57 @@
+/*
+ * The ITCSS ("Inverted Triangle CSS) model
+ *
+ * http://www.hongkiat.stfi.re/blog/inverted-triangle-css-web-development/?sf=yrroxpk&utm_content=buffere3cce&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer#ab
+ */
+
+/*
+ * #SETTINGS - Global variables, site-wide settings, config switches, etc.
+ *
+ * No actual CSS output
+ */
+@import "variables"; // no actual CSS output
+
+/*
+ * #TOOLS - site-wide mixins and functions
+ *
+ * No actual CSS output
+ */
+// @import "mixins";
+
+/*
+ * #GENERIC - Low-specificity, far-reaching rulesets, 3rd party (e.g. resets)
+ */
+// @import "reset";
+
+/*
+ * #ELEMENTS - Single HTML elements without classes (e.g. a {}, blockquote {}).
+ */
+@import "elements.less";
+
+
+/*
+ * #OBJECTS - Very broad and far reaching class rules.
+ *
+ * Most of the ReactionCommerce's core style to override will probably be class rules and therefore go here..
+ */
+@import "objects/button.less";
+@import "objects/header.less";
+@import "objects/landing.less";
+
+/*
+ * #COMPONENTS - UI Classes: discrete, complete chunks of UI (e.g. SwagShopHeader)
+ *
+ * a.k.a BLOCKS in BEM terminology.
+ *
+ * What is it about? See: https://en.bem.info/methodology/quick-start/
+ * and http://csswizardry.com/2014/10/the-specificity-graph/
+ * TLDR;  Avoid nesting selectors in CSS to keep specificity constant accross many components.
+ */
+@import "blocks/header.less";
+@import "blocks/landing.less";
+@import "blocks/footer.less";
+
+/*
+ * #TRUMPS - High-specificity, very explicit selectors. Overrides & helpers.
+ */
+// @import "trumps";
