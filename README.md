@@ -16,7 +16,7 @@ our real swag shop that's offering merchandising products at [swag.getreaction.i
 
 
 ### Getting started
-If you like to use this shop plugin as a starting point for your own project, please follow the steps outlined below:
+If you would like to use this shop plugin as a starting point for your own project, please follow the steps outlined below:
 
 #### Step 1
 Create a new Reaction project for your new shop: https://docs.reactioncommerce.com/reaction-docs/master/installation
@@ -46,3 +46,8 @@ Start Reaction
 ```
 $ export SKIP_FIXTURES=1 && reaction run
 ```
+
+
+### How the final swag shop will look like
+
+![Swag shop screenshot](https://raw.githubusercontent.com/reactioncommerce/reaction-docs/master/assets/reaction-swag-shop.png)
