@@ -4,7 +4,9 @@
   "translation": {
     "reaction-swag-shop": {
       "myCart": "Warenkorb",
-      "productsWeLove": "Unsere Lieblingsprodukte"
+      "productsWeLove": "Unsere Lieblingsprodukte",
+      "weHeardYouLikeSwag": "Wir hörten, Du magst Krimskrams.",
+      "youAreInTheRightPlace": "Dann bist Du hier richtig!"
     }
   }
 }]

@@ -31,6 +31,19 @@ class Products extends ProductsCore {
     );
   }
 
+  renderWordOfTheDay() {
+    return (
+      <div className={"word-of-the-day"}>
+        <div className={"word-of-the-day__header"}>
+          <Components.Translation defaultValue={"#MADEINTHESUNSHINE"} i18nKey={"wordOfTheDayHeader"} />
+        </div>
+        <div className={"word-of-the-day__text"}>
+          <Components.Translation defaultValue={"Lorem ipsum dolore ununoctium sed posuere consectetur est"} i18nKey={"wordOfTheDayText"} />
+        </div>
+      </div>
+    );
+  }
+
   render() {
     // Force show the not-found view.
     if (this.props.showNotFound) {
@@ -44,6 +57,7 @@ class Products extends ProductsCore {
             {this.renderProductGrid()}
             {this.renderLoadMoreProductsButton()}
             {this.renderSpinner()}
+            {this.renderWordOfTheDay()}
           </div>
         );
       }
