@@ -172,6 +172,7 @@
     "structure" : {
       "template" : "products",
       "layoutHeader" : "SwagShopHeader",
+      "layoutFooter" : "SwagShopFooter",
       "notFound" : "productNotFound",
       "dashboardHeader" : "gridPublishControls",
       "dashboardControls" : "productDetailDashboardControls",
