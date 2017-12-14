@@ -1,0 +1,114 @@
+.footer {
+  width: 100%;
+
+  .footer-main {
+    color: #fff;
+    min-height: 450px;
+    background-image: url("/plugins/reaction-swag-shop/footer-bg.png");
+    background-position: 0% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-origin: padding-box;
+    background-color: transparent;
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .rui.tagnav {
+      background-color: inherit;
+      &.vertical .navbar-item {
+        &:hover > .rui.tag.link,
+        & > .rui.tag.link {
+          background-color: transparent;
+          color: white;
+          font-size: inherit;
+          padding: 5px 0;
+        }
+      }
+    }
+
+    a {
+      color: white;
+      display: inline-block;
+      padding: 5px 0;
+
+    }
+
+    @media screen and (max-width: @screen-xs-max) {
+      .col-xs-12 {
+        margin: 0 20px;
+      }
+    }
+
+    .get-in-contact {
+      max-width: 380px;
+      @media screen and (min-width: @screen-sm-min) {
+        margin-left: 120px;
+      }
+    }
+
+    .email-form {
+      color: black;
+      position: relative;
+      margin-top: 25px;
+      .rui.textfield input {
+        border-radius: 0;
+        border: 0;
+        padding: 20px 45px 20px 20px;
+        text-transform: uppercase;
+      }
+    }
+
+    .field-arrow-right {
+      font-weight: 900;
+      font-size: 18px;
+      position: absolute;
+      top: 18px;
+      right: 15px;
+      color: #1d98d5;
+    }
+
+    .email-form-header {
+      font-size: 28px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin: 20px 0;
+    }
+
+    .email-form-subheader {
+      font-weight: bold;
+      font-size: 16px;
+      text-transform: uppercase;
+      margin: 10px 0;
+    }
+
+
+    .tagnav {
+      .rui.tagnav.vertical {
+        .navbar-header {
+          /* don't show the close cross icon for small screens*/
+          display: none;
+        }
+        .navbar-items {
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  .bottomline {
+    background-color: #0e94d7;
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
+  }
+}
+
+
+
+
+
+
+
+
