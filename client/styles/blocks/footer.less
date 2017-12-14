@@ -1,6 +1,5 @@
 .footer__main {
   color: #fff;
-  padding: 0 20px 0 120px;
   min-height: 450px;
   background-image: url("/plugins/reaction-swag-shop/footer-bg.png");
   background-position: 0% 0%;
@@ -11,10 +10,16 @@
   letter-spacing: 0.3px;
   display: flex;
   align-items: center;
+
 }
 
 .footer__get-in-contact {
+  margin-left: 120px;
   width: 380px;
+  @media screen and (max-width: @screen-xs-max) {
+    margin: 0 20px;
+    width: 100%;
+  }
 }
 
 .footer__email-form {
@@ -22,6 +27,7 @@
   position: relative;
   margin-top: 25px;
   .rui.textfield input {
+    border-radius: 0;
     border: 0;
     padding: 20px 45px 20px 20px;
     text-transform: uppercase;
@@ -56,4 +62,16 @@
   color: #fff;
   line-height: 50px;
   text-align: center;
+}
+
+.footer__tagnav {
+  .rui.tagnav.vertical {
+    .navbar-header {
+      /* don't show the close cross icon for small screens*/
+      display: none;
+    }
+    .navbar-items {
+      padding: 0;
+    }
+  }
 }

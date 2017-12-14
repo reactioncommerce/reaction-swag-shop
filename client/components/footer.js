@@ -1,5 +1,6 @@
 import React from "react";
 import { registerComponent, Components } from "@reactioncommerce/reaction-components";
+// import NavBar from "./navBar";
 
 class SwagShopFooter extends React.Component {
   constructor() {
@@ -21,7 +22,21 @@ class SwagShopFooter extends React.Component {
   }
 
   renderNavigation() {
-    return null;
+    return (
+      <div className={"footer__tagnav"}>
+        <Components.Brand logo={""} title={"Shop"} />
+
+        <div className="menu">
+          <Components.FooterTagNav
+            isVisible={false}
+            closeNavbar={function () {}}
+          >
+            <Components.Brand />
+          </Components.FooterTagNav>
+        </div>
+
+      </div>
+    );
   }
 
   renderSocialLinks() {
