@@ -3,6 +3,7 @@
 
   .footer-main {
     color: #fff;
+    font-size: 13px;
     min-height: 450px;
     background-image: url("/plugins/reaction-swag-shop/footer-bg.png");
     background-position: 0% 0%;
@@ -29,10 +30,38 @@
     .get-in-contact {
       padding: 60px 10px 0 10px;
       @media screen and (min-width: @screen-sm-min) {
-        padding: 180px 10px 0 40px;
+        padding: 140px 25px 0 40px;
       }
       @media screen and (min-width: @screen-lg-min) {
-        padding: 180px 10px 0 120px;
+        padding: 140px 10px 0 120px;
+      }
+    }
+
+    .social {
+      .heading {
+        font-size: 13px;
+        line-height: 1.1;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+      }
+      i {
+        display: none;
+      }
+      @media screen and (max-width: @screen-xs-max) {
+        i {
+          display: inline;
+        }
+        font-size: 18px;
+        padding: 10px 30%;
+        .heading {
+          display: none;
+        }
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .text {
+          display: none;
+        }
       }
     }
 
@@ -53,6 +82,7 @@
             background-color: transparent;
             color: white;
             font-size: inherit;
+            letter-spacing: 0.3px;
             padding: 5px 0;
           }
         }
@@ -63,7 +93,7 @@
       color: white;
       display: inline-block;
       font-weight: bold;
-      padding: 5px 0;
+      padding: 7px 0;
       text-transform: uppercase;
     }
 
@@ -80,6 +110,11 @@
         border: 0;
         padding: 20px 45px 20px 20px;
         text-transform: uppercase;
+      }
+      .help-block {
+        position: absolute;
+        bottom: -8px;
+        left: 19px;
       }
     }
 
@@ -114,28 +149,61 @@
     text-align: center;
   }
 
-
-
   .rui.card-header {
-    /* Need to use !important :(
-       Otherwise it would have to live without our less structure and we'd have to repeat the whole cascade,
-       e.g. html .footer .rui.card-header .content-view , which also feels hacky.
-    */
-    .content-view {
-      padding: 0 !important;
+    @media screen and (min-width: @screen-sm-min) {
+      height: inherit;
+      margin-bottom: 5px;
     }
-
+    .action-view {
+      display: none;
+    }
+    .content-view {
+      /* Need to use !important :(
+      Otherwise it would have to live without our less structure and we'd have to repeat the whole cascade,
+      e.g. html .footer .rui.card-header .panel-heading .content-view , which also feels hacky.
+      */
+      padding: 0 15px !important;
+      cursor: inherit;
+    }
     .expander {
-      left: 97%;
+      left: inherit;
+      right: 15px;
       bottom: 10px;
       @media screen and (min-width: @screen-sm-min) {
         display: none;
       }
+      button {
+        &:focus {
+          outline:0;
+        }
+        border: 0;
+        background-color: transparent;
+        color: white;
+        font-size: 22px;
+
+        line-height: 12px;
+        & > div {
+          display: none !important;
+        }
+        &:after {
+          content: "+";
+          cursor: pointer;
+          height: 12px;
+        }
+      }
+      &.open button:after {
+        content: '\2014';
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        height: 23px;
+      }
     }
   }
 
-  .panel-title {
-    color: white;
+  .panel {
+    border-top: 0;
+    margin-bottom: 0;
   }
 
   .panel-heading,
@@ -153,13 +221,19 @@
     border-bottom: 0;
   }
 
-  .panel-body,
-  .panel-heading {
-    padding: 0 10px !important;
+  .panel-title {
+    font-size: 13px;
+    color: white;
+    text-transform: uppercase;
   }
 
-  .panel {
-    border-top: 0;
-    margin-bottom: 0;
+  .panel-body {
+    /* Need to use !important :(
+       because padding is set via JavaScript
+     */
+    padding: 0px 15px !important;
+    @media screen and (max-width: @screen-xs-max) {
+      margin: 15px 0;
+    }
   }
 }

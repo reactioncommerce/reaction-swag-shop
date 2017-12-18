@@ -1,14 +1,29 @@
 import React from "react";
-import { registerComponent, Components } from "@reactioncommerce/reaction-components";
-import { Card, CardHeader, CardBody } from "/imports/plugins/core/ui/client/components";
+import {Meteor} from "meteor/meteor";
+import {SimpleSchema} from "meteor/aldeed:simple-schema";
+import Alert from "sweetalert2";
+import {i18next} from "/client/api";
+import {Validation} from "@reactioncommerce/reaction-collections";
+import {registerComponent, Components} from "@reactioncommerce/reaction-components";
+import {Card, CardHeader, CardBody} from "/imports/plugins/core/ui/client/components";
 
+
+const EmailFormSchema = new SimpleSchema({
+  email: {
+    type: String,
+    optional: true,
+    regEx: SimpleSchema.RegEx.Email
+  }
+});
 
 class SwagShopFooter extends React.Component {
   constructor() {
     super(...arguments);
+    this.validation = new Validation(EmailFormSchema);
     this.state = {
       email: "",
-      expandedCards: ["shop", "support", "company", "followus"]
+      expandedCards: ["shop", "support", "company", "followus"],
+      validationStatus: this.validation.validationStatus
     };
   }
 
@@ -18,8 +33,27 @@ class SwagShopFooter extends React.Component {
     });
   }
 
-  handleFieldBlur = () => {
-    console.log("blur field");
+  handleFieldBlur = (event) => {
+    const validationStatus = this.validation.validate({
+      email: event.currentTarget.value
+    });
+
+    this.setState({
+      validationStatus
+    });
+
+    if (validationStatus.isValid && event.currentTarget.value) {
+      Meteor.call("reaction-swag-shop/requestApproachFromStaff", event.currentTarget.value, (error) => {
+        if (!error) {
+          Alert({
+            title: i18next.t("app.success"),
+            text: i18next.t("emailSent"),
+            type: "success",
+            timer: 3200
+          }).catch(() => null);
+        }
+      });
+    }
   }
 
   componentDidMount() {
@@ -31,9 +65,13 @@ class SwagShopFooter extends React.Component {
     window.removeEventListener("resize", this.onWindowResize);
   }
 
-  onWindowResize = () => {
+  get isMobile() {
     const matchQuery = window.matchMedia("(max-width: 768px)");
-    if (matchQuery.matches) {
+    return matchQuery.matches;
+  }
+
+  onWindowResize = () => {
+    if (this.isMobile) {
       this.setState({
         expandedCards: []
       });
@@ -79,6 +117,7 @@ class SwagShopFooter extends React.Component {
               placeholder="email address"
               ref="emailInput"
               value={this.state.email}
+              validation={this.state.validationStatus}
             />
             <div className={"field-arrow-right"}>
               <i className="fa fa-long-arrow-right"></i>
@@ -98,14 +137,14 @@ class SwagShopFooter extends React.Component {
           expanded={this.isExpanded("shop")}
         >
           <CardHeader
-            actAsExpander={true}
+            actAsExpander={this.isMobile}
             title={"Shop"}
             i18nKeyTitle={"shop"}
           />
           <CardBody expandable={true} padded={false}>
-            <div className={"navbar-item"}>
+            {/* <div className={"navbar-item"}>
               <Components.Brand logo={""} title={"SHOP"}/>
-            </div>
+            </div> */}
             <Components.FooterTagNav
               isVisible={false}
               closeNavbar={function () {
@@ -129,7 +168,7 @@ class SwagShopFooter extends React.Component {
           expanded={this.isExpanded("support")}
         >
           <CardHeader
-            actAsExpander={true}
+            actAsExpander={this.isMobile}
             title={"Support"}
             i18nKeyTitle={"support"}
           />
@@ -169,7 +208,7 @@ class SwagShopFooter extends React.Component {
           expanded={this.isExpanded("company")}
         >
           <CardHeader
-            actAsExpander={true}
+            actAsExpander={this.isMobile}
             title={"Company"}
             i18nKeyTitle={"company"}
           />
@@ -201,11 +240,6 @@ class SwagShopFooter extends React.Component {
             </div>
           </CardBody>
         </Card>
-
-        {/*<div className={"links-section-header"}>
-          <Components.Translation defaultValue="Company" i18nKey="company"/>
-        </div>*/}
-
       </div>
     );
   }
@@ -213,43 +247,41 @@ class SwagShopFooter extends React.Component {
   renderSocialLinks() {
     return (
       <div className={"col-xs-12 col-sm-2 col-lg-1 social"}>
-        <Card
-          name={"followus"}
-          onExpand={this.onExpand}
-          expanded={this.isExpanded("followus")}
-        >
-          <CardHeader
-            actAsExpander={true}
-            title={"Follow us"}
-            i18nKeyTitle={"followus"}
-          />
-          <CardBody expandable={true} padded={false}>
-            <div>
-              <a href={""} title={""}>
-                Facebook
-              </a>
-            </div>
-            <div>
-              <a href={""} title={""}>
-                Twitter
-              </a>
-            </div>
-            <div>
-              <a href={""} title={""}>
-                Instagram
-              </a>
-            </div>
-            <div>
-              <a href={""} title={""}>
-                GitHub
-              </a>
-            </div>
-          </CardBody>
-        </Card>
-
-        {/*<div className={"links-section-header"}>
+        <div className={"heading"}>
           <Components.Translation defaultValue="Follow us" i18nKey="followUs"/>
-        </div>*/}
+        </div>
+        <div>
+          <a href={""} title={""}>
+            <i className="fa fa-twitter"></i>
+            <div className={"text"}>
+              Twitter
+            </div>
+          </a>
+        </div>
+        <div>
+          <a href={""} title={""}>
+            <i className="fa fa-facebook"></i>
+            <div className={"text"}>
+              Facebook
+            </div>
+          </a>
+        </div>
+        <div>
+          <a href={""} title={""}>
+            <i className="fa fa-instagram"></i>
+            <div className={"text"}>
+              Instagram
+            </div>
+          </a>
+        </div>
+        <div>
+          <a href={""} title={""}>
+            <i className="fa fa-github"></i>
+            <div className={"text"}>
+              GitHub
+            </div>
+          </a>
+        </div>
 
       </div>
     );
