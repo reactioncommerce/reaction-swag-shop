@@ -1,6 +1,4 @@
-import { Shops, Products, ProductSearch, Tags, Shipping, Media, Packages } from "/lib/collections";
-import core from "/server/api/core";
-
+import { Shops, Products, Tags, Shipping, Media, Packages } from "/lib/collections";
 import { Logger, Reaction } from "/server/api";
 
 function checkForShops() {
@@ -50,25 +48,15 @@ methods.loadShops = function () {
   }
 };
 
-methods.resetShops = function () {
-  const shops =   require("/imports/plugins/custom/reaction-swag-shop/private/data/Shops.json");
-  const shop = shops[0];
-  // Let's remove any shops that are not ours
-  Shops.remove({ _id: { $ne: shop._id } });
-  const rawShopCollection = Shops.rawCollection();
-  rawShopCollection.update({ _id: shop._id }, shop);
-  Logger.info("Shop reset to original values");
-};
-
 methods.loadProducts = function () {
   Logger.info("Starting load Products");
   if (!checkForProducts()) {
     const products = require("/imports/plugins/custom/reaction-swag-shop/private/data/Products.json");
     products.forEach((product) => {
-      product.workflow.workflow = ["imported"];
+      product.workflow.workflow = ["imported"]; // setting this bypasses revision control
       product.createdAt = new Date();
       product.updatedAt = new Date();
-      Products.insert(product, { publish: true });
+      Products.insert(product, {}, { publish: true });
     });
     Logger.info("Products loaded");
   } else {
@@ -128,7 +116,16 @@ methods.enablePayment = function () {
   Logger.info("Example payment method enabled");
 };
 
+function getTopVariant(productId) {
+  const topVariant = Products.findOne({
+    "ancestors": { $in: [productId] },
+    "ancestors.1": { $exists: false }
+  });
+  return topVariant;
+}
+
 methods.importProductImages = function () {
+  Logger.info("Started loading product images");
   if (!checkForMedia()) {
     const products = Products.find({ type: "simple" }).fetch();
     for (const product of products) {
@@ -140,8 +137,10 @@ methods.importProductImages = function () {
         const fileObj = new FS.File();
         const fileName = `${productId}.jpg`;
         fileObj.attachData(binary, { type: "image/jpeg", name: fileName });
+        const topVariant = getTopVariant(productId);
         fileObj.metadata = {
           productId: productId,
+          variantId: topVariant._id,
           toGrid: 1,
           shopId: shopId,
           priority: 0,
@@ -161,30 +160,10 @@ methods.importProductImages = function () {
         // Media.insert(fileObj);
       }
     }
+    Logger.info("loaded product images");
+  } else {
+    Logger.info("Skipped loading product images");
   }
-};
-
-methods.resetData = function () {
-  // delete existing data
-  Logger.warn("::: Starting to remove data");
-  Shipping.remove({});
-  Tags.remove({});
-  Products.direct.remove({});
-  ProductSearch.remove({});
-  Media.remove({});
-  Logger.warn("Removing data complete");
-  // add data back in
-  Logger.warn("::: Starting load data");
-  methods.resetShops();
-  core.loadPackages();
-  methods.initLayout();
-  methods.loadProducts();
-  methods.loadTags();
-  methods.loadShipping();
-  methods.importProductImages();
-  methods.enablePayment();
-  methods.enableShipping();
-  Logger.warn("::: Reload data complete");
 };
 
 export default methods;
