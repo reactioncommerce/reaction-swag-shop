@@ -44,6 +44,28 @@ class Products extends ProductsCore {
     );
   }
 
+  renderImageGallery() {
+    return (
+      <div className="row image-gallery">
+        <div className="col-xs-12 col-sm-5ths col-sm-push-2">
+          <img alt="Instagram" src={"/plugins/reaction-swag-shop/palms.png"} />
+        </div>
+        <div className="col-xs-6 col-sm-5ths col-sm-pull-1">
+          <img alt="Frames" src={"/plugins/reaction-swag-shop/frames.png"} />
+        </div>
+        <div className="col-xs-6 col-sm-5ths col-sm-pull-1">
+          <img alt="Box" src={"/plugins/reaction-swag-shop/box.png"} />
+        </div>
+        <div className="col-xs-6 col-sm-5ths">
+          <img alt="Sticker" src={"/plugins/reaction-swag-shop/sticker.png"} />
+        </div>
+        <div className="col-xs-6 col-sm-5ths">
+          <img alt="T-Shirt" src={"/plugins/reaction-swag-shop/t-shirt.png"} />
+        </div>
+      </div>
+    );
+  }
+
   render() {
     // Force show the not-found view.
     if (this.props.showNotFound) {
@@ -58,6 +80,7 @@ class Products extends ProductsCore {
             {this.renderLoadMoreProductsButton()}
             {this.renderSpinner()}
             {this.renderWordOfTheDay()}
+            {this.renderImageGallery()}
           </div>
         );
       }
