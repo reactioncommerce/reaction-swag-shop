@@ -31,7 +31,7 @@ const methods = {};
 methods.loadShops = function () {
   Logger.info("Starting load Shops");
   if (!checkForShops()) {
-    const shops = require("/imports/plugins/custom/reaction-swag-shop/private/data/Shops.json");
+    const shops = require("../private/data/Shops.json");
     shops.forEach((shop) => {
       Shops.insert(shop);
       Logger.info(`Inserted shop: ${shop.name}`);
@@ -43,7 +43,7 @@ methods.loadShops = function () {
 methods.loadProducts = function () {
   Logger.info("Starting load Products");
   if (!checkForProducts()) {
-    const products = require("/imports/plugins/custom/reaction-swag-shop/private/data/Products.json");
+    const products = require("../private/data/Products.json");
     products.forEach((product) => {
       product.workflow.workflow = ["imported"]; // setting this bypasses revision control
       product.createdAt = new Date();
@@ -59,7 +59,7 @@ methods.loadProducts = function () {
 methods.loadTags = function () {
   if (!checkForTags()) {
     Logger.info("Starting load Tags");
-    const tags = require("/imports/plugins/custom/reaction-swag-shop/private/data/Tags.json");
+    const tags = require("../private/data/Tags.json");
     tags.forEach((tag) => {
       tag.updatedAt = new Date();
       Tags.insert(tag);
@@ -71,7 +71,7 @@ methods.loadTags = function () {
 methods.loadShipping = function () {
   if (!checkForShipping()) {
     Logger.info("Starting load Shipping");
-    const shipping = require("/imports/plugins/custom/reaction-swag-shop/private/data/Shipping.json");
+    const shipping = require("../private/data/Shipping.json");
     shipping.forEach((shippingRecord) => {
       Shipping.insert(shippingRecord);
     });
@@ -92,7 +92,7 @@ methods.initLayout = function () {
   // TODO: Everytime the packages are inserted into registry, the packages layout will
   // be cloned, regardless if the shop's layout is already there. This is the reason, we need
   // to set the layout again in this method.
-  const layout = require("/imports/plugins/custom/reaction-swag-shop/private/data/Layout.json");
+  const layout = require("../private/data/Layout.json");
   const shopId = Reaction.getShopId();
   return Shops.update(shopId, {
     $set: { layout: layout }
@@ -124,7 +124,7 @@ methods.importProductImages = function () {
       const productId = product._id;
       if (!Media.findOne({ "metadata.productId": productId })) {
         const shopId = product.shopId;
-        const filepath = "plugins/reaction-swag-shop/images/" + productId + ".jpg";
+        const filepath = `plugins/reaction-swag-shop/images/${productId}.jpg`;
         const binary = Assets.getBinary(filepath);
         const fileObj = new FS.File();
         const fileName = `${productId}.jpg`;
