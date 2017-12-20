@@ -5,7 +5,7 @@
 
  **⚠ WIP NOTICE:** This Reaction plugin is under active development and is not completed yet. Things may have bugs or are still missing,
  so please be aware of that and use it on your own risk.
- You may want to follow our [Reaction Blog](https://blog.reactioncommerce.com/), where we're going to communicate the project's progress.  
+ You may want to follow our [Reaction Blog](https://blog.reactioncommerce.com/building-and-launching-a-store-on-reaction/), where we're going to communicate the project's progress.  
  
 ---
 
@@ -26,19 +26,19 @@ Clone this shop repository into the custom plugin folder. In your project direct
  commands (Windows commands will look a bit different):
 ```
  $ cd <your-new-shop-directory-name>/imports/plugins/custom
- $ git clone https://github.com/reactioncommerce/reaction-swag-shop.git <your-new-shop-directory-name>
+ $ git clone https://github.com/reactioncommerce/reaction-swag-shop.git
 ```
 
 #### Step 3
 Copy private asset files into your root application's /private folder
 ```
-$ cp -Rv <your-new-shop-directory-name>/imports/plugins/custom/<your-new-shop-directory-name>/private/* <your-new-shop-directory-name>/private/plugins/<your-new-shop-directory-name>/
+$ cp -Rv <your-new-shop-directory-name>/imports/plugins/custom/reaction-swag-shop/private/* <your-new-shop-directory-name>/private/plugins/reaction-swag-shop/
 ```
 
 #### Step 4
 Copy public files into your root application's /public folder
 ```
-$ cp -Rv <your-new-shop-directory-name>/imports/plugins/custom/<your-new-shop-directory-name>/public/* <your-new-shop-directory-name>/public/plugins/<your-new-shop-directory-name>/
+$ cp -Rv <your-new-shop-directory-name>/imports/plugins/custom/reaction-swag-shop/public/* <your-new-shop-directory-name>/public/plugins/reaction-swag-shop/
 ```
 
 #### Step 5
