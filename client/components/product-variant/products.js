@@ -48,7 +48,9 @@ class Products extends ProductsCore {
     return (
       <div className="row image-gallery">
         <div className="col-xs-12 col-sm-5ths col-sm-push-2">
-          <img alt="Instagram" src={"/plugins/reaction-swag-shop/palms.png"} />
+          <a href={"https://www.instagram.com/reactioncommerce/"} alt={"instagram"}>
+            <img alt="Instagram" src={"/plugins/reaction-swag-shop/palms.png"} />
+          </a>
         </div>
         <div className="col-xs-6 col-sm-5ths col-sm-pull-1">
           <img alt="Frames" src={"/plugins/reaction-swag-shop/frames.png"} />
