@@ -116,4 +116,4 @@ function composer(props, onData) {
 const higherOrderFuncs = getHOCs("Products");
 // We are interested in replacing the composer HOC only.
 higherOrderFuncs[0] = composeWithTracker(composer);
-replaceComponent("Products", ProductsComponent, higherOrderFuncs);
+replaceComponent("Products", ProductsComponent);
