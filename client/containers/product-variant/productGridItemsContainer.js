@@ -1,4 +1,4 @@
-import { replaceComponent, getHOCs } from "@reactioncommerce/reaction-components";
+import { replaceComponent } from "@reactioncommerce/reaction-components";
 import ProductGridItems from "../../components/product-variant/productGridItems";
 
-replaceComponent("ProductGridItems", ProductGridItems, getHOCs("ProductGridItems"));
+replaceComponent("ProductGridItems", ProductGridItems);
