@@ -1,7 +1,6 @@
 import { SimpleSchema } from "meteor/aldeed:simple-schema";
 import { Product } from "/lib/collections/schemas";
 import { Products } from "/lib/collections";
-import { Logger } from "/server/api";
 import { getSchemas, registerSchema } from "@reactioncommerce/reaction-collections";
 
 
