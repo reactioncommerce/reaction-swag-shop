@@ -1,7 +1,6 @@
 import React from "react";
 import { registerComponent, Components } from "@reactioncommerce/reaction-components";
 import UtilityBar from "./utilityBar";
-// import NavBar from "../containers/navBar";
 
 
 class SwagShopHeader extends React.Component {

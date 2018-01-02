@@ -16,7 +16,7 @@ const filters = Schemas.filters;
  * featured products as well.
  */
 Meteor.startup(() => {
-  Meteor.default_server.publish_handlers["Products"] = publishFeaturedSwagProducts;
+  Meteor.default_server.publish_handlers.Products = publishFeaturedSwagProducts;
 });
 
 /**
@@ -470,11 +470,11 @@ function publishFeaturedSwagProducts(productScrollLimit = 24, productFilters, so
             $in: productIds
           }
         },
-          {
-            _id: {
-              $in: productIds
-            }
-          }]
+        {
+          _id: {
+            $in: productIds
+          }
+        }]
       });
     }
   } else {
@@ -517,4 +517,4 @@ function publishFeaturedSwagProducts(productScrollLimit = 24, productFilters, so
     productCursor,
     mediaCursor
   ];
-};
+}

@@ -1,11 +1,11 @@
 import React from "react";
-import {Meteor} from "meteor/meteor";
-import {SimpleSchema} from "meteor/aldeed:simple-schema";
+import { Meteor } from "meteor/meteor";
+import { SimpleSchema } from "meteor/aldeed:simple-schema";
 import Alert from "sweetalert2";
-import {i18next} from "/client/api";
-import {Validation} from "@reactioncommerce/reaction-collections";
-import {registerComponent, Components} from "@reactioncommerce/reaction-components";
-import {Card, CardHeader, CardBody} from "/imports/plugins/core/ui/client/components";
+import { i18next } from "/client/api";
+import { Validation } from "@reactioncommerce/reaction-collections";
+import { registerComponent, Components } from "@reactioncommerce/reaction-components";
+import { Card, CardHeader, CardBody } from "/imports/plugins/core/ui/client/components";
 
 
 const EmailFormSchema = new SimpleSchema({
@@ -25,6 +25,15 @@ class SwagShopFooter extends React.Component {
       expandedCards: ["shop", "support", "company", "followus"],
       validationStatus: this.validation.validationStatus
     };
+  }
+
+  componentDidMount() {
+    window.addEventListener("resize", this.onWindowResize);
+    this.onWindowResize();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.onWindowResize);
   }
 
   handleChange = (event) => {
@@ -54,15 +63,6 @@ class SwagShopFooter extends React.Component {
         }
       });
     }
-  }
-
-  componentDidMount() {
-    window.addEventListener("resize", this.onWindowResize);
-    this.onWindowResize();
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.onWindowResize);
   }
 
   get isMobile() {
@@ -120,7 +120,7 @@ class SwagShopFooter extends React.Component {
               validation={this.state.validationStatus}
             />
             <div className={"field-arrow-right"}>
-              <i className="fa fa-long-arrow-right"></i>
+              <i className="fa fa-long-arrow-right" />
             </div>
           </div>
         </div>
@@ -252,7 +252,7 @@ class SwagShopFooter extends React.Component {
         </div>
         <div>
           <a href={""} title={""}>
-            <i className="fa fa-twitter"></i>
+            <i className="fa fa-twitter" />
             <div className={"text"}>
               Twitter
             </div>
@@ -260,7 +260,7 @@ class SwagShopFooter extends React.Component {
         </div>
         <div>
           <a href={""} title={""}>
-            <i className="fa fa-facebook"></i>
+            <i className="fa fa-facebook" />
             <div className={"text"}>
               Facebook
             </div>
@@ -268,7 +268,7 @@ class SwagShopFooter extends React.Component {
         </div>
         <div>
           <a href={""} title={""}>
-            <i className="fa fa-instagram"></i>
+            <i className="fa fa-instagram" />
             <div className={"text"}>
               Instagram
             </div>
@@ -276,7 +276,7 @@ class SwagShopFooter extends React.Component {
         </div>
         <div>
           <a href={""} title={""}>
-            <i className="fa fa-github"></i>
+            <i className="fa fa-github" />
             <div className={"text"}>
               GitHub
             </div>
