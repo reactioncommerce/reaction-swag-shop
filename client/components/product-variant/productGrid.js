@@ -10,6 +10,7 @@ class ProductGrid extends ProductGridCore {
     products: PropTypes.array
   }
 
+  // eslint-disable-next-line react/display-name
   renderProductGridItems = (products) => {
     if (Array.isArray(products)) {
       return products.map((product, index) => {

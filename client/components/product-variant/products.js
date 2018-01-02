@@ -1,10 +1,11 @@
 import React from "react";
 import ProductsCore from "/imports/plugins/included/product-variant/components/products";
 import { Components } from "@reactioncommerce/reaction-components";
+import { Logger } from "/client/api";
 
 class Products extends ProductsCore {
   heroClicked = () => {
-    alert("clicked");
+    Logger.info("clicked");
   }
 
   renderHero() {
