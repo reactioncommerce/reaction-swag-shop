@@ -1,0 +1,239 @@
+.footer {
+  width: 100%;
+
+  .footer-main {
+    color: #fff;
+    font-size: 13px;
+    min-height: 450px;
+    background-image: url("/plugins/reaction-swag-shop/footer-bg.png");
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    background-origin: padding-box;
+    background-color: #289AD3;
+    letter-spacing: 0.3px;
+    display: block;
+
+    .navigation,
+    .support,
+    .company,
+    .social {
+      padding-top: 180px;
+    }
+
+    @media screen and (max-width: @screen-xs-max) {
+      .col-xs-12 {
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    .get-in-contact {
+      padding: 60px 10px 0 10px;
+      @media screen and (min-width: @screen-sm-min) {
+        padding: 140px 25px 0 40px;
+      }
+      @media screen and (min-width: @screen-lg-min) {
+        padding: 140px 10px 0 120px;
+      }
+    }
+
+    .social {
+      .heading {
+        font-size: 13px;
+        line-height: 1.1;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+      }
+      i {
+        display: none;
+      }
+      @media screen and (max-width: @screen-xs-max) {
+        i {
+          display: inline;
+        }
+        font-size: 18px;
+        padding: 10px 30%;
+        .heading {
+          display: none;
+        }
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .text {
+          display: none;
+        }
+      }
+    }
+
+    .rui.tagnav {
+      background-color: inherit;
+      .navbar-items {
+        padding: 0;
+      }
+
+      &.vertical {
+        .navbar-header {
+          /* don't show the close cross icon for small screens*/
+          display: none;
+        }
+        .navbar-item {
+          &:hover > .rui.tag.link,
+          & > .rui.tag.link {
+            background-color: transparent;
+            color: white;
+            font-size: inherit;
+            letter-spacing: 0.3px;
+            padding: 5px 0;
+          }
+        }
+      }
+    }
+
+    a {
+      color: white;
+      display: inline-block;
+      font-weight: bold;
+      padding: 7px 0;
+      text-transform: uppercase;
+    }
+
+    .email-form {
+      max-width: 450px;
+    }
+
+    .email-form-field {
+      color: black;
+      position: relative;
+      margin-top: 25px;
+      .rui.textfield input {
+        border-radius: 0;
+        border: 0;
+        padding: 20px 45px 20px 20px;
+        text-transform: uppercase;
+      }
+      .help-block {
+        position: absolute;
+        bottom: -8px;
+        left: 19px;
+      }
+    }
+
+    .field-arrow-right {
+      font-weight: 900;
+      font-size: 18px;
+      position: absolute;
+      top: 18px;
+      right: 15px;
+      color: #1d98d5;
+    }
+
+    .email-form-header {
+      font-size: 28px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin: 20px 0;
+    }
+
+    .email-form-subheader {
+      font-weight: bold;
+      font-size: 16px;
+      text-transform: uppercase;
+      margin: 10px 0;
+    }
+  }
+
+  .bottomline {
+    background-color: #0e94d7;
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
+  }
+
+  .rui.card-header {
+    @media screen and (min-width: @screen-sm-min) {
+      height: inherit;
+      margin-bottom: 5px;
+    }
+    .action-view {
+      display: none;
+    }
+    .content-view {
+      /* Need to use !important :(
+      Otherwise it would have to live without our less structure and we'd have to repeat the whole cascade,
+      e.g. html .footer .rui.card-header .panel-heading .content-view , which also feels hacky.
+      */
+      padding: 0 15px !important;
+      cursor: inherit;
+    }
+    .expander {
+      left: inherit;
+      right: 15px;
+      bottom: 10px;
+      @media screen and (min-width: @screen-sm-min) {
+        display: none;
+      }
+      button {
+        &:focus {
+          outline:0;
+        }
+        border: 0;
+        background-color: transparent;
+        color: white;
+        font-size: 22px;
+
+        line-height: 12px;
+        & > div {
+          display: none !important;
+        }
+        &:after {
+          content: "+";
+          cursor: pointer;
+          height: 12px;
+        }
+      }
+      &.open button:after {
+        content: '\2014';
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        height: 23px;
+      }
+    }
+  }
+
+  .panel {
+    border-top: 0;
+    margin-bottom: 0;
+  }
+
+  .panel-heading,
+  .panel {
+    background-color: transparent;
+    border-left: 0;
+    border-right: 0;
+    border-color: #73c3e8;
+    @media screen and (min-width: @screen-sm-min) {
+      border: 0;
+    }
+  }
+
+  .panel.closed .panel-heading {
+    border-bottom: 0;
+  }
+
+  .panel-title {
+    font-size: 13px;
+    color: white;
+    text-transform: uppercase;
+  }
+
+  .panel-body {
+    /* Need to use !important :(
+       because padding is set via JavaScript
+     */
+    padding: 0px 15px !important;
+    @media screen and (max-width: @screen-xs-max) {
+      margin: 15px 0;
+    }
+  }
+}

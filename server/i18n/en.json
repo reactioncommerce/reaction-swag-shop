@@ -6,7 +6,9 @@
       "myCart": "My cart",
       "productsWeLove": "Products We Love",
       "weHeardYouLikeSwag": "We heard you like swag.",
-      "youAreInTheRightPlace": "You’re in the right place."
+      "youAreInTheRightPlace": "You’re in the right place.",
+      "emailAddress": "email address",
+      "emailSent": "Thank you for your message. We'll contact you as soon as possible."
     }
   }
 }]
