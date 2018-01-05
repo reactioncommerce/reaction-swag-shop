@@ -1,0 +1,12 @@
+[{
+  "i18n": "de",
+  "ns": "reaction-swag-shop",
+  "translation": {
+    "reaction-swag-shop": {
+      "myCart": "Warenkorb",
+      "productsWeLove": "Unsere Lieblingsprodukte",
+      "weHeardYouLikeSwag": "Wir hörten, Du magst Krimskrams.",
+      "youAreInTheRightPlace": "Dann bist Du hier richtig!"
+    }
+  }
+}]
