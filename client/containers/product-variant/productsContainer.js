@@ -68,8 +68,17 @@ function composer(props, onData) {
   const queryParams = Object.assign({}, tags, Reaction.Router.current().queryParams, shopIds);
 
   // BOF: swag shop featuredProduct filter
-  queryParams.featuredProductLabel = ""; // subscribe to all featured products, regardless of label
-  const swagShopScrollLimit = 3; // Only interested in first 3 products for "Products we love" section
+  let swagShopScrollLimit;
+  if (slug) {
+    // e.g. route /tag/:slug?
+    swagShopScrollLimit = Session.get("productScrollLimit");
+  } else {
+    // e.g. index route /
+    // Only interested in first 3 products for "Products we love" section
+    swagShopScrollLimit = 3;
+    queryParams.featuredProductLabel = ""; // subscribe to all featured products, regardless of label
+  }
+
   const productsSubscription = Meteor.subscribe("Products", swagShopScrollLimit, queryParams, sort, editMode);
   // EOF: swag shop featuredProduct filter
 

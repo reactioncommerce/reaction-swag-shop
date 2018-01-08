@@ -1,4 +1,4 @@
+import "../lib/collections/schemas";
 import "./init";
-import "./collections";
 import "./publications";
 import "./requestApproachFromStaff";
