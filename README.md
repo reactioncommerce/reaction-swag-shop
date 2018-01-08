@@ -30,13 +30,13 @@ Clone this shop repository into the custom plugin folder. In your project direct
 ```
 
 #### Step 3
-Create /private/plugins/reaction-swag-shop/ folder in the root application and copy private asset files into it.
+Create /private/plugins/reaction-swag-shop/ folder in the root application and copy all items in folder /imports/plugins/custom/reaction-swag-shop/private recursively into it.
 ```
 $ cp -Rv <your-new-shop-directory-name>/imports/plugins/custom/reaction-swag-shop/private/* <your-new-shop-directory-name>/private/plugins/reaction-swag-shop/
 ```
 
 #### Step 4
-Create /public/plugins/reaction-swag-shop/ folder in the root application and copy public resource files into it.
+Create /public/plugins/reaction-swag-shop/ folder in the root application and copy all items in folder /imports/plugins/custom/reaction-swag-shop/public recursively into it.
 ```
 $ cp -Rv <your-new-shop-directory-name>/imports/plugins/custom/reaction-swag-shop/public/* <your-new-shop-directory-name>/public/plugins/reaction-swag-shop/
 ```
