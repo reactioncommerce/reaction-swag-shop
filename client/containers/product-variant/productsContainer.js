@@ -1,3 +1,6 @@
+import _ from "lodash";
+import React, { Component } from "react";
+import { PropTypes } from "prop-types";
 import { Meteor } from "meteor/meteor";
 import { Session } from "meteor/session";
 import { Reaction } from "/client/api";
@@ -6,11 +9,105 @@ import { applyProductRevision } from "/lib/api/products";
 import { Products, Tags, Shops } from "/lib/collections";
 import { replaceComponent, getHOCs, composeWithTracker } from "@reactioncommerce/reaction-components";
 import ProductsComponent from "../../components/product-variant/products";
+import { ITEMS_INCREMENT } from "/client/config/defaults";
 
 /*
  * Customized version of imports/plugins/included/product-variant/containers/productsContainer.js
  * It subscribes to featured products only for landing page section "Products we love"
  */
+
+// The following two functions are copied almost verbatim and should not be necessary, if wrapComponent would
+// allow to pass general properties
+function loadMoreProducts() {
+  let threshold;
+  const target = document.querySelectorAll("#productScrollLimitLoader");
+  let scrollContainer = document.querySelectorAll("#container-main");
+  if (scrollContainer.length === 0) {
+    scrollContainer = window;
+  }
+
+  if (target.length) {
+    threshold = scrollContainer[0].scrollHeight - scrollContainer[0].scrollTop === scrollContainer[0].clientHeight;
+
+    if (threshold) {
+      if (!target[0].getAttribute("visible")) {
+        target[0].setAttribute("productScrollLimit", true);
+        Session.set("productScrollLimit", Session.get("productScrollLimit") + ITEMS_INCREMENT || 24);
+      }
+    } else {
+      if (target[0].getAttribute("visible")) {
+        target[0].setAttribute("visible", false);
+      }
+    }
+  }
+}
+
+const wrapComponent = (Comp) => (
+  class ProductsContainer extends Component {
+    static propTypes = {
+      canLoadMoreProducts: PropTypes.bool,
+      products: PropTypes.array,
+      productsSubscription: PropTypes.object,
+      showNotFound: PropTypes.bool
+    };
+
+    constructor(props) {
+      super(props);
+      this.state = {
+        initialLoad: true
+      };
+
+      this.ready = this.ready.bind(this);
+      this.loadMoreProducts = this.loadMoreProducts.bind(this);
+    }
+
+    ready = () => {
+      if (this.props.showNotFound === true) {
+        return false;
+      }
+
+      const isInitialLoad = this.state.initialLoad === true;
+      const isReady = this.props.productsSubscription.ready();
+
+      if (isInitialLoad === false) {
+        return true;
+      }
+
+      if (isReady) {
+        return true;
+      }
+
+      return false;
+    }
+
+    loadMoreProducts = () => {
+      return this.props.canLoadMoreProducts === true;
+    }
+
+    loadProducts = (event) => {
+      event.preventDefault();
+      this.setState({
+        initialLoad: false
+      });
+      loadMoreProducts();
+    }
+
+    render() {
+      return (
+        <Comp
+          ready={this.ready}
+          tags={this.props.tags}
+          products={this.props.products}
+          productsSubscription={this.props.productsSubscription}
+          loadMoreProducts={this.loadMoreProducts}
+          loadProducts={this.loadProducts}
+          showNotFound={this.props.showNotFound}
+        />
+      );
+    }
+  }
+);
+
 function composer(props, onData) {
   window.prerenderReady = false;
 
@@ -115,14 +212,29 @@ function composer(props, onData) {
     Session.set("productGrid/selectedProducts", []);
   }
 
+  // BOF: swag shop tags for category tiles
+  tags = Tags.find({ isTopLevel: true }, { sort: { position: 1 } }).fetch();
+  tags = _.sortBy(tags, "position"); // puts tags without position at end of array
+
+  const tagsByKey = {};
+
+  if (Array.isArray(tags)) {
+    for (const tag of tags) {
+      tagsByKey[tag._id] = tag;
+    }
+  }
+  // EOF: swag shop tags for category tiles
+
   onData(null, {
     productsSubscription,
     products: stateProducts,
-    canLoadMoreProducts
+    canLoadMoreProducts,
+    tags
   });
 }
 
 const higherOrderFuncs = getHOCs("Products");
 // We are interested in replacing the composer HOC only.
 higherOrderFuncs[0] = composeWithTracker(composer);
+higherOrderFuncs[1] = wrapComponent;
 replaceComponent("Products", ProductsComponent);

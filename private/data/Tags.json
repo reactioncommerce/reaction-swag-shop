@@ -1,12 +1,24 @@
 [{
 	"_id": "dhqmJjXWotCNkTzxg",
-	"name": "Apparel",
-	"slug": "apparel",
+	"name": "Men",
+	"slug": "men",
 	"isTopLevel": true,
 	"isDeleted": false,
 	"isVisible": true,
 	"groups": [],
-	"shopId": "J8Bhq3uTtdgwZx3rz"
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"imageUrl": "cat-men.jpg"
+},
+{
+	"_id": "dbqmJjXW0tCNk3zaa",
+	"name": "Women",
+	"slug": "women",
+	"isTopLevel": true,
+	"isDeleted": false,
+	"isVisible": true,
+	"groups": [],
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"imageUrl": "cat-women.jpg"
 },
 {
 	"_id": "hZdSevCBP8dDc66Ba",
@@ -16,6 +28,18 @@
 	"isDeleted": false,
 	"isVisible": true,
 	"groups": [],
-	"shopId": "J8Bhq3uTtdgwZx3rz"
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"imageUrl": "cat-gifts.jpg"
+},
+{
+	"_id": "3adSeBCBP4dDcz6Bi",
+	"name": "Everyday",
+	"slug": "everyday",
+	"isTopLevel": true,
+	"isDeleted": false,
+	"isVisible": true,
+	"groups": [],
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"imageUrl": "cat-everyday.jpg"
 }]
 

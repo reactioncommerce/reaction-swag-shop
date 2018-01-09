@@ -49,7 +49,46 @@
   }
 }
 
-.tag-image-form {
-  background: white;
-  padding: 10px;
+/* BOF category tiles */
+.categories {
+  @media screen and (min-width: @screen-sm-min) {
+    display: flex; /* to have each floated child have height: 100% working */
+  }
 }
+
+.pic-essentials {
+  background-image: url('/plugins/reaction-swag-shop/essentials.jpg');
+  background-position: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  @media screen and (max-width: @screen-xs-max) {
+    height: 500px;
+    margin: 0 5px;
+  }
+}
+
+.cat-tile {
+  padding: 10px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.category {
+  color: white;
+  font-size: 26px;
+  position: absolute;
+  bottom: 10%;
+  left: 20px;
+}
+
+.btn-essentials {
+  position: absolute;
+  bottom: 10%;
+  text-align: center;
+  width: 100%;
+}
+/* EOF category tiles */
+
