@@ -12,7 +12,7 @@
 
 This repository contains the reaction-swag-shop plugin that's intended as a learning resource for everybody
 who's facing the task of customizing Reaction for her/his own shop implementation. Additionally, this repository drives
-our real swag shop that's offering merchandising products at [swag.getreaction.io](swag.getreaction.io).
+our real swag shop that's offering merchandising products at [swag.getreaction.io](http://swag.getreaction.io).
 
 
 ### Getting started
@@ -30,21 +30,29 @@ Clone this shop repository into the custom plugin folder. In your project direct
 ```
 
 #### Step 3
-Create /private/plugins/reaction-swag-shop/ folder in the root application and copy all items in folder /imports/plugins/custom/reaction-swag-shop/private recursively into it.
 ```
-$ cp -Rv <your-new-shop-directory-name>/imports/plugins/custom/reaction-swag-shop/private/* <your-new-shop-directory-name>/private/plugins/reaction-swag-shop/
+$ cd <your-new-shop-directory-name>
+$ mkdir -p private/plugins/reaction-swag-shop
+$ mkdir -p public/plugins/reaction-swag-shop
 ```
 
 #### Step 4
-Create /public/plugins/reaction-swag-shop/ folder in the root application and copy all items in folder /imports/plugins/custom/reaction-swag-shop/public recursively into it.
+Copy all items in folder /imports/plugins/custom/reaction-swag-shop/private recursively into it.
 ```
-$ cp -Rv <your-new-shop-directory-name>/imports/plugins/custom/reaction-swag-shop/public/* <your-new-shop-directory-name>/public/plugins/reaction-swag-shop/
+$ cp -Rv imports/plugins/custom/reaction-swag-shop/private/* private/plugins/reaction-swag-shop/
 ```
 
 #### Step 5
-Start Reaction
+Copy all items in folder /imports/plugins/custom/reaction-swag-shop/public recursively into it.
 ```
-$ export SKIP_FIXTURES=1 && reaction run
+$ cp -Rv imports/plugins/custom/reaction-swag-shop/public/* public/plugins/reaction-swag-shop/
+```
+
+#### Step 6
+Install dependencies and start Reaction
+```
+$ meteor npm install
+$ export SKIP_FIXTURES=1 && reaction
 ```
 
 
