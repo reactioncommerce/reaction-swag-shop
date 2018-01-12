@@ -5,14 +5,14 @@
 
  **⚠ WIP NOTICE:** This Reaction plugin is under active development and is not completed yet. Things may have bugs or are still missing,
  so please be aware of that and use it on your own risk.
- You may want to follow our [Reaction Blog](https://blog.reactioncommerce.com/building-and-launching-a-store-on-reaction/), where we're going to communicate the project's progress.  
- 
+ You may want to follow our [Reaction Blog](https://blog.reactioncommerce.com/building-and-launching-a-store-on-reaction/), where we're going to communicate the project's progress. If case you're interested in a sneak preview: The project's current state is deployed [here](https://dkjyyaycmpxzbfqnx.getreaction.io/) and will evolve over time.
+
 ---
 
 
 This repository contains the reaction-swag-shop plugin that's intended as a learning resource for everybody
 who's facing the task of customizing Reaction for her/his own shop implementation. Additionally, this repository drives
-our real swag shop that's offering merchandising products at [swag.getreaction.io](swag.getreaction.io).
+our real swag shop that's offering merchandising products at [swag.getreaction.io](http://swag.getreaction.io).
 
 
 ### Getting started
@@ -30,21 +30,29 @@ Clone this shop repository into the custom plugin folder. In your project direct
 ```
 
 #### Step 3
-Copy private asset files into your root application's /private folder
 ```
-$ cp -Rv <your-new-shop-directory-name>/imports/plugins/custom/reaction-swag-shop/private/* <your-new-shop-directory-name>/private/plugins/reaction-swag-shop/
+$ cd <your-new-shop-directory-name>
+$ mkdir -p private/plugins/reaction-swag-shop
+$ mkdir -p public/plugins/reaction-swag-shop
 ```
 
 #### Step 4
-Copy public files into your root application's /public folder
+Copy all items in folder /imports/plugins/custom/reaction-swag-shop/private recursively into it.
 ```
-$ cp -Rv <your-new-shop-directory-name>/imports/plugins/custom/reaction-swag-shop/public/* <your-new-shop-directory-name>/public/plugins/reaction-swag-shop/
+$ cp -Rv imports/plugins/custom/reaction-swag-shop/private/* private/plugins/reaction-swag-shop/
 ```
 
 #### Step 5
-Start Reaction
+Copy all items in folder /imports/plugins/custom/reaction-swag-shop/public recursively into it.
 ```
-$ export SKIP_FIXTURES=1 && reaction run
+$ cp -Rv imports/plugins/custom/reaction-swag-shop/public/* public/plugins/reaction-swag-shop/
+```
+
+#### Step 6
+Install dependencies and start Reaction
+```
+$ meteor npm install
+$ export SKIP_FIXTURES=1 && reaction
 ```
 
 
