@@ -9,7 +9,7 @@ import { Tags } from "/lib/collections";
  displays a popover when clicked
 
  Notice: For class extension we use the internal structure ComponentsTable, because
- the exported React componente is already wrapped with a HOC. We need the rawComponent here to extend.
+ the exported React component is already wrapped with a HOC. We need the rawComponent here to extend.
  */
 class TagItem extends ComponentsTable.TagItem.rawComponent {
   constructor() {

@@ -1,6 +1,6 @@
 import React from "react";
+import { replaceComponent } from "@reactioncommerce/reaction-components";
 import ProductGridItemsCore from "/imports/plugins/included/product-variant/components/productGridItems";
-
 
 class ProductGridItems extends ProductGridItemsCore {
   static labelColorPalette = [
@@ -72,3 +72,6 @@ class ProductGridItems extends ProductGridItemsCore {
 }
 
 export default ProductGridItems;
+
+
+replaceComponent("ProductGridItems", ProductGridItems);
