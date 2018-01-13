@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Components } from "@reactioncommerce/reaction-components";
+import { Components, replaceComponent } from "@reactioncommerce/reaction-components";
 
 import { default as ProductGridCore } from "/imports/plugins/included/product-variant/components/productGrid";
 
@@ -54,5 +54,7 @@ class ProductGrid extends ProductGridCore {
     );
   }
 }
+
+replaceComponent("ProductGrid", ProductGrid);
 
 export default ProductGrid;
