@@ -7,42 +7,25 @@ import { default as ProductGridCore } from "/imports/plugins/included/product-va
 
 class ProductGrid extends ProductGridCore {
   static propTypes = {
-    products: PropTypes.array
+    products: PropTypes.array,
+    shouldRenderSectionHeader: PropTypes.bool
   }
 
-  // eslint-disable-next-line react/display-name
-  renderProductGridItems = (products) => {
-    if (Array.isArray(products)) {
-      return products.map((product, index) => {
-        return (
-          <Components.ProductGridItems
-            {...this.props}
-            product={product} key={index} index={index}
-          />
-        );
-      });
-    }
-    return (
-      <div className="row">
-        <div className="text-center">
-          <h3>
-            <Components.Translation defaultValue="No Products Found" i18nKey="app.noProductsFound" />
-          </h3>
-        </div>
-      </div>
-    );
+  static defaultProps = {
+    shouldRenderSectionHeader: true
   }
 
   render() {
     return (
       <div className="container-main">
-        <div className="row">
-          <div className="text-center">
-            <h3 className="products-we-love-header">
-              <Components.Translation defaultValue="Products We Love" i18nKey="productsWeLove" />
-            </h3>
-          </div>
-        </div>
+        {this.props.shouldRenderSectionHeader &&
+          <div className="row">
+            <div className="text-center">
+              <h3 className="products-we-love-header">
+                <Components.Translation defaultValue="Products We Love" i18nKey="productsWeLove" />
+              </h3>
+            </div>
+          </div>}
         <div className="product-grid">
           <Components.DragDropProvider>
             <ul className="product-grid-list list-unstyled" id="product-grid-list">
