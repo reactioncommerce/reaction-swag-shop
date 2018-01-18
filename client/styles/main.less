@@ -9,7 +9,7 @@
  *
  * No actual CSS output
  */
-@import "variables"; // no actual CSS output
+@import "variables";
 
 /*
  * #TOOLS - site-wide mixins and functions
@@ -30,27 +30,16 @@
 
 
 /*
- * #OBJECTS - Very broad and far reaching class rules.
- *
- * Most of the ReactionCommerce's core style to override will probably be class rules and therefore go here..
+ * #CLASSES - Very broad and far reaching class rules.
  */
-@import "objects/grid.less";
-@import "objects/button.less";
-@import "objects/header.less";
-@import "objects/landing.less";
-@import "objects/footer.less";
+@import "classes/admin.less";
+@import "classes/grid.less";
+@import "classes/button.less";
+@import "classes/header.less";
+@import "classes/landing.less";
+@import "classes/categories.less";
+@import "classes/footer.less";
 
-/*
- * #COMPONENTS - UI Classes: discrete, complete chunks of UI (e.g. SwagShopHeader)
- *
- * a.k.a BLOCKS in BEM terminology.
- *
- * What is it about? See: https://en.bem.info/methodology/quick-start/
- * and http://csswizardry.com/2014/10/the-specificity-graph/
- * TLDR;  Avoid nesting selectors in CSS to keep specificity constant accross many components.
- */
-@import "blocks/header.less";
-@import "blocks/landing.less";
 
 /*
  * #TRUMPS - High-specificity, very explicit selectors. Overrides & helpers.

@@ -6,3 +6,4 @@ import "./navBar";
 import "./utilityBar";
 import "./product-admin";
 import "./product-variant";
+import "./ui";
