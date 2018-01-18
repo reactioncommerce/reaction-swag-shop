@@ -112,7 +112,8 @@ class TagItem extends ComponentsTable.TagItem.rawComponent {
                     name="catTileImageUrl"
                     value={this.state.catTileImageUrl}
                     onBlur={this.handleBlur}
-                    onChange={this.handleImageUrlChange} />
+                    onChange={this.handleImageUrlChange}
+                  />
                   <Components.TextField
                     label="Category Hero Image URL"
                     i18nKeyLabel="catHeroImageUrl"
@@ -120,7 +121,8 @@ class TagItem extends ComponentsTable.TagItem.rawComponent {
                     name="catHeroImageUrl"
                     value={this.state.catHeroImageUrl}
                     onBlur={this.handleBlur}
-                    onChange={this.handleImageUrlChange} />
+                    onChange={this.handleImageUrlChange}
+                  />
                 </div>
               </Components.Popover>
               <Handle onClick={this.handleHandleClick} connectDragSource={this.props.connectDragSource} />

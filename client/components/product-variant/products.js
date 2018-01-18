@@ -44,10 +44,10 @@ class Products extends ProductsCore {
   }
 
   renderCategoryChunks(tags) {
-    const chunk = 2;
-    let chunks = [];
-    for (let i = 0; i < tags.length; i += chunk) {
-      const temp = tags.slice(i, i + chunk);
+    const chunkSize = 2;
+    const chunks = [];
+    for (let i = 0; i < tags.length; i += chunkSize) {
+      const temp = tags.slice(i, i + chunkSize);
       let className = "col-sm-4";
       if (i === 0) {
         className += " col-sm-pull-4";

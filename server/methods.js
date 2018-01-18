@@ -1,5 +1,5 @@
-import {Shops, Products, Tags, Shipping, Media, Packages} from "/lib/collections";
-import {Logger, Reaction} from "/server/api";
+import { Shops, Products, Tags, Shipping, Media, Packages } from "/lib/collections";
+import { Logger, Reaction } from "/server/api";
 
 function checkForShops() {
   const numShops = Shops.find().count();
@@ -48,7 +48,7 @@ methods.loadProducts = function () {
       product.workflow.workflow = ["imported"]; // setting this bypasses revision control
       product.createdAt = new Date();
       product.updatedAt = new Date();
-      Products.insert(product, {}, {publish: true});
+      Products.insert(product, {}, { publish: true });
     });
     Logger.info("Products loaded");
   } else {
@@ -80,7 +80,7 @@ methods.loadShipping = function () {
 };
 
 methods.enableShipping = function () {
-  Packages.update({name: "reaction-shipping-rates"}, {
+  Packages.update({ name: "reaction-shipping-rates" }, {
     $set: {
       "settings.flatRates.enabled": true
     }
@@ -95,12 +95,12 @@ methods.initLayout = function () {
   const layout = require("../private/data/Layout.json");
   const shopId = Reaction.getShopId();
   return Shops.update(shopId, {
-    $set: {layout: layout}
+    $set: { layout: layout }
   });
 };
 
 methods.enablePayment = function () {
-  Packages.update({name: "example-paymentmethod"}, {
+  Packages.update({ name: "example-paymentmethod" }, {
     $set: {
       "settings.example-paymentmethod.enabled": true
     }
@@ -110,8 +110,8 @@ methods.enablePayment = function () {
 
 function getTopVariant(productId) {
   const topVariant = Products.findOne({
-    "ancestors": {$in: [productId]},
-    "ancestors.1": {$exists: false}
+    "ancestors": { $in: [productId] },
+    "ancestors.1": { $exists: false }
   });
   return topVariant;
 }
@@ -119,16 +119,16 @@ function getTopVariant(productId) {
 methods.importProductImages = function () {
   Logger.info("Started loading product images");
   if (!checkForMedia()) {
-    const products = Products.find({type: "simple"}).fetch();
+    const products = Products.find({ type: "simple" }).fetch();
     for (const product of products) {
       const productId = product._id;
-      if (!Media.findOne({"metadata.productId": productId})) {
+      if (!Media.findOne({ "metadata.productId": productId })) {
         const shopId = product.shopId;
         const filepath = `plugins/reaction-swag-shop/images/${productId}.jpg`;
         const binary = Assets.getBinary(filepath);
         const fileObj = new FS.File();
         const fileName = `${productId}.jpg`;
-        fileObj.attachData(binary, {type: "image/jpeg", name: fileName});
+        fileObj.attachData(binary, { type: "image/jpeg", name: fileName });
         const topVariant = getTopVariant(productId);
         fileObj.metadata = {
           productId: productId,

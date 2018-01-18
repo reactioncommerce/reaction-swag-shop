@@ -48,7 +48,8 @@ const wrapComponent = (Comp) => (
       canLoadMoreProducts: PropTypes.bool,
       products: PropTypes.array,
       productsSubscription: PropTypes.object,
-      showNotFound: PropTypes.bool
+      showNotFound: PropTypes.bool,
+      tags: PropTypes.object
     };
 
     constructor(props) {
@@ -216,13 +217,6 @@ function composer(props, onData) {
   tags = Tags.find({ isTopLevel: true }, { sort: { position: 1 } }).fetch();
   tags = _.sortBy(tags, "position"); // puts tags without position at end of array
 
-  const tagsByKey = {};
-
-  if (Array.isArray(tags)) {
-    for (const tag of tags) {
-      tagsByKey[tag._id] = tag;
-    }
-  }
   // EOF: swag shop tags for category tiles
 
   onData(null, {
