@@ -5,4 +5,5 @@ import "./footer";
 import "./navBar";
 import "./utilityBar";
 import "./product-admin";
+import "./product-detail";
 import "./product-variant";
