@@ -11,11 +11,11 @@ class Products extends ProductsCore {
   renderHero() {
     return (
       <div className="hero">
-        <div className="hero__wrapper">
-          <div className="hero__slogan">
+        <div className="hero-wrapper">
+          <div className="hero-slogan">
             <Components.Translation defaultValue={"We heard you like swag."} i18nKey={"weHeardYouLikeSwag"} />
           </div>
-          <div className="hero__huge-text">
+          <div className="hero-huge-text">
             <Components.Translation defaultValue={"You’re in the right place."} i18nKey={"youAreInTheRightPlace"} />
           </div>
           <Components.Button
@@ -36,7 +36,7 @@ class Products extends ProductsCore {
     return (
       <div className={"cat-tile col-xs-12"} key={tag._id}>
         <a href={`/tag/${tag.slug}`}>
-          <img alt={tag.name} src={`/plugins/reaction-swag-shop/${tag.imageUrl}`} />
+          <img alt={tag.name} src={`/plugins/reaction-swag-shop/${tag.catTileImageUrl}`} />
           <span className={"category"}>{tag.name}</span>
         </a>
       </div>
@@ -92,10 +92,10 @@ class Products extends ProductsCore {
   renderWordOfTheDay() {
     return (
       <div className={"word-of-the-day"}>
-        <div className={"word-of-the-day__header"}>
+        <div className={"word-of-the-day-header"}>
           <Components.Translation defaultValue={"#MADEINTHESUNSHINE"} i18nKey={"wordOfTheDayHeader"} />
         </div>
-        <div className={"word-of-the-day__text"}>
+        <div className={"word-of-the-day-text"}>
           <Components.Translation defaultValue={"Lorem ipsum dolore ununoctium sed posuere consectetur est"} i18nKey={"wordOfTheDayText"} />
         </div>
       </div>

@@ -9,8 +9,10 @@
       "youAreInTheRightPlace": "Dann bist Du hier richtig!",
       "emailAddress": "Email Adresse",
       "emailSent": "Vielen Dank für Ihre Nachricht. Wir werden Sie zeitnah kontaktieren.",
-      "imageUrl": "Kategoriebild (URL)",
-      "shopAllProducts": "Alle Produkte anzeigen"
+      "catTileImageUrl": "Kategoriebild (URL)",
+      "shopAllProducts": "Alle Produkte anzeigen",
+      "codeInStyle": "Code in style.",
+      "yourEverydayEssentials": "Your everyday essentials."
     }
   }
 }]

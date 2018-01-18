@@ -16,7 +16,10 @@ class TagItem extends ComponentsTable.TagItem.rawComponent {
     super(...arguments);
     this.state = {
       popOverIsOpen: false,
-      imageUrl: this.tag.imageUrl
+      catTileImageUrl: this.tag.catTileImageUrl,
+      catHeroImageUrl: this.tag.catHeroImageUrl,
+      catHeroTitle: this.tag.catHeroTitle,
+      catHeroSubtitle: this.tag.catHeroSubtitle
     };
   }
 
@@ -28,7 +31,7 @@ class TagItem extends ComponentsTable.TagItem.rawComponent {
 
   handleImageUrlChange = (event, value) => {
     this.setState({
-      imageUrl: value
+      [event.currentTarget.name]: value
     });
   }
 
@@ -40,11 +43,8 @@ class TagItem extends ComponentsTable.TagItem.rawComponent {
     value = value.trim();
     Tags.update(this.tag._id, {
       $set: {
-        imageUrl: value
+        [event.currentTarget.name]: value
       }
-    });
-    this.setState({
-      popOverIsOpen: false
     });
   }
 
@@ -106,11 +106,19 @@ class TagItem extends ComponentsTable.TagItem.rawComponent {
               >
                 <div ref="popoverContent" onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} className={"tag-image-form"}>
                   <Components.TextField
-                    label="Image URL"
-                    i18nKeyLabel="imageUrl"
+                    label="Category Tile Image URL"
+                    i18nKeyLabel="catTileImageUrl"
                     type="text"
-                    name="imageUrl"
-                    value={this.state.imageUrl}
+                    name="catTileImageUrl"
+                    value={this.state.catTileImageUrl}
+                    onBlur={this.handleBlur}
+                    onChange={this.handleImageUrlChange} />
+                  <Components.TextField
+                    label="Category Hero Image URL"
+                    i18nKeyLabel="catHeroImageUrl"
+                    type="text"
+                    name="catHeroImageUrl"
+                    value={this.state.catHeroImageUrl}
                     onBlur={this.handleBlur}
                     onChange={this.handleImageUrlChange} />
                 </div>

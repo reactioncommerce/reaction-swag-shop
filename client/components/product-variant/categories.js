@@ -11,14 +11,16 @@ class Categories extends ProductsCore {
   }
 
   renderHero() {
+    const slug = Reaction.Router.getParam("slug");
+    const tag = this.props.tags.find(x => x.slug === slug);
     return (
-      <div className="cat-hero">
-        <div className="cat-hero__wrapper">
-          <div className="cat-hero__slogan">
-            <Components.Translation defaultValue={"Code in style."} i18nKey={"codeInStyle"} />
+      <div className="cat-hero" style={{ backgroundImage: `url('/plugins/reaction-swag-shop/${tag.catHeroImageUrl}')` }} >
+        <div className="cat-hero-wrapper">
+          <div className="cat-hero-slogan">
+            <Components.Translation defaultValue={"Lorem ipsum"} i18nKey={tag.catHeroSloganI18nKey} />
           </div>
-          <div className="cat-hero__huge-text">
-            <Components.Translation defaultValue={"Your everyday essentials."} i18nKey={"yourEverydayEssentials"} />
+          <div className="cat-hero-huge-text">
+            <Components.Translation defaultValue={"Nuro laudio vid pastum"} i18nKey={tag.catHeroTitleI18nKey} />
           </div>
         </div>
       </div>

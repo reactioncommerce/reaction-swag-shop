@@ -7,7 +7,10 @@
 	"isVisible": true,
 	"groups": [],
 	"shopId": "J8Bhq3uTtdgwZx3rz",
-	"imageUrl": "cat-men.jpg"
+	"catTileImageUrl": "cat-tile-men.jpg",
+	"catHeroImageUrl": "cat-hero-men.jpg",
+	"catHeroSloganI18nKey": "codeInStyle",
+	"catHeroTitleI18nKey": "yourEverydayEssentials"
 },
 {
 	"_id": "dbqmJjXW0tCNk3zaa",
@@ -18,7 +21,10 @@
 	"isVisible": true,
 	"groups": [],
 	"shopId": "J8Bhq3uTtdgwZx3rz",
-	"imageUrl": "cat-women.jpg"
+	"catTileImageUrl": "cat-tile-women.jpg",
+	"catHeroImageUrl": "cat-hero-women.jpg",
+	"catHeroSloganI18nKey": "codeInStyle",
+	"catHeroTitleI18nKey": "yourEverydayEssentials"
 },
 {
 	"_id": "hZdSevCBP8dDc66Ba",
@@ -29,7 +35,10 @@
 	"isVisible": true,
 	"groups": [],
 	"shopId": "J8Bhq3uTtdgwZx3rz",
-	"imageUrl": "cat-gifts.jpg"
+	"catTileImageUrl": "cat-tile-gifts.jpg",
+	"catHeroImageUrl": "cat-hero-gifts.jpg",
+	"catHeroSloganI18nKey": "codeInStyle",
+	"catHeroTitleI18nKey": "yourEverydayEssentials"
 },
 {
 	"_id": "3adSeBCBP4dDcz6Bi",
@@ -40,6 +49,9 @@
 	"isVisible": true,
 	"groups": [],
 	"shopId": "J8Bhq3uTtdgwZx3rz",
-	"imageUrl": "cat-everyday.jpg"
+	"catTileImageUrl": "cat-tile-everyday.jpg",
+	"catHeroImageUrl": "cat-hero-everyday.jpg",
+	"catHeroSloganI18nKey": "codeInStyle",
+	"catHeroTitleI18nKey": "yourEverydayEssentials"
 }]
 
