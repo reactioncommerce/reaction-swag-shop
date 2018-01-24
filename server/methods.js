@@ -148,16 +148,20 @@ methods.importProductImages = function () {
 };
 
 methods.createTag = function (name, type) {
-  const tag = {
-    name,
-    slug: Reaction.getSlug(name),
-    isTopLevel: false,
-    type,
-    updatedAt: new Date(),
-    createdAt: new Date()
-  };
+  const existingTag = Tags.findOne({ name });
+  // keep the tag names unique
+  if (!existingTag) {
+    const tag = {
+      name,
+      slug: Reaction.getSlug(name),
+      isTopLevel: false,
+      type,
+      updatedAt: new Date(),
+      createdAt: new Date()
+    };
 
-  return Tags.insert(tag);
+    return Tags.insert(tag);
+  }
 };
 
 export default methods;
