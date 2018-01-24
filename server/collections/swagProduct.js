@@ -17,12 +17,13 @@ const ExtendedSchema = new SimpleSchema([
       optional: true,
       type: String,
       autoValue: function () {
-        const productTitle = this.siblingField("title").value;
+        const productHandle = this.siblingField("handle").value;
         const ancestors = this.siblingField("ancestors").value;
-        if (!this.value && (productTitle && productTitle !== this.siblingField("_id").value) && ancestors && ancestors.length === 0) {
+        const hasNoAncestor = !ancestors || ancestors.length === 0;
+        if (!this.value && (productHandle && productHandle !== this.siblingField("_id").value) && hasNoAncestor) {
           // Can't use Meteor.call("shop/createTag") as we have to add `type` field.
-          methods.createTag(getSlug(`${productTitle} related`), "related");
-          return getSlug(`${productTitle} realted`);
+          methods.createTag(getSlug(`${productHandle} related`), "related");
+          return getSlug(`${productHandle} related`);
         }
       }
     }

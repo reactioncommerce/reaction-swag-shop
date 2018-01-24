@@ -2,10 +2,14 @@ import { getComponent, replaceComponent } from "@reactioncommerce/reaction-compo
 
 class ProductTags extends getComponent("ProductTags") {
   get tags() {
-    // Returning only those tags that are not "related" tags
-    return this.props.tags.filter(tag => {
-      return tag.type !== "related";
-    });
+    const tags = this.props.tags;
+    if (tags && Array.isArray(tags)) {
+      // Returning only those tags that are not "related" tags
+      return tags.filter(tag => {
+        return tag.type !== "related";
+      });
+    }
+    return tags;
   }
 }
 

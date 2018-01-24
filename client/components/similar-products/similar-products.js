@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Components } from "@reactioncommerce/reaction-components";
 import { Reaction } from "/client/api";
 import { Media } from "/lib/collections";
@@ -6,8 +7,8 @@ import { Media } from "/lib/collections";
 
 // Create your component
 class SimilarProducts extends Component {
-  constructor(props) {
-    super(props);
+  static propTypes = {
+    products: PropTypes.arrayOf(PropTypes.object)
   }
 
   handleClick = (event) => {
