@@ -2,6 +2,7 @@
 	"_id": "dhqmJjXWotCNkTzxg",
 	"name": "Apparel",
 	"slug": "apparel",
+	"type": "tag",
 	"isTopLevel": true,
 	"isDeleted": false,
 	"isVisible": true,
@@ -12,10 +13,89 @@
 	"_id": "hZdSevCBP8dDc66Ba",
 	"name": "Gifts",
 	"slug": "gifts",
+	"type": "tag",
 	"isTopLevel": true,
 	"isDeleted": false,
 	"isVisible": true,
 	"groups": [],
 	"shopId": "J8Bhq3uTtdgwZx3rz"
-}]
+},
+{
+	"_id": "hZdSevCBP8dDc66Bb",
+	"name": "reaction-bag-of-beans-related",
+	"slug": "reaction-bag-of-beans-related",
+	"type": "related",
+	"isTopLevel": false,
+	"isDeleted": false,
+	"isVisible": true,
+	"groups": [],
+	"shopId": "J8Bhq3uTtdgwZx3rz"
+},
+{
+	"_id": "hZdSevCBP8dDc66Bc",
+	"name": "reaction-mug-related",
+	"slug": "reaction-mug-related",
+	"type": "related",
+	"isTopLevel": false,
+	"isDeleted": false,
+	"isVisible": true,
+	"groups": [],
+	"shopId": "J8Bhq3uTtdgwZx3rz"
+},
+{
+	"_id": "hZdSevCBP8dDc66Bd",
+	"name": "reaction-commerce-pouch-related",
+	"slug": "reaction-commerce-pouch-related",
+	"type": "related",
+	"isTopLevel": false,
+	"isDeleted": false,
+	"isVisible": true,
+	"groups": [],
+	"shopId": "J8Bhq3uTtdgwZx3rz"
+},
+{
+	"_id": "hZdSevCBP8dDc66Be",
+	"name": "reaction-scout-book-related",
+	"slug": "reaction-scout-book-related",
+	"type": "related",
+	"isTopLevel": false,
+	"isDeleted": false,
+	"isVisible": true,
+	"groups": [],
+	"shopId": "J8Bhq3uTtdgwZx3rz"
+},
+{
+	"_id": "hZdSevCBP8dDc66Bf",
+	"name": "reaction-ladies-shirt-related",
+	"slug": "reaction-ladies-shirt-related",
+	"type": "related",
+	"isTopLevel": false,
+	"isDeleted": false,
+	"isVisible": true,
+	"groups": [],
+	"shopId": "J8Bhq3uTtdgwZx3rz"
+},
+{
+	"_id": "hZdSevCBP8dDc66Bg",
+	"name": "reaction-mens-shirt-related",
+	"slug": "reaction-mens-shirt-related",
+	"type": "related",
+	"isTopLevel": false,
+	"isDeleted": false,
+	"isVisible": true,
+	"groups": [],
+	"shopId": "J8Bhq3uTtdgwZx3rz"
+},
+{
+	"_id": "hZdSevCBP8dDc66Bh",
+	"name": "reaction-sticker-related",
+	"slug": "reaction-sticker-related",
+	"type": "related",
+	"isTopLevel": false,
+	"isDeleted": false,
+	"isVisible": true,
+	"groups": [],
+	"shopId": "J8Bhq3uTtdgwZx3rz"
+}
+]
 

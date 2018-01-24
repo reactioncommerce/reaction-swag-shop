@@ -3,6 +3,8 @@ import "./languageDropdown";
 import "./header";
 import "./footer";
 import "./navBar";
+import "./tags";
 import "./utilityBar";
 import "./product-admin";
 import "./product-variant";
+import "./similar-products";
