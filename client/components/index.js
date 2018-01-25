@@ -6,5 +6,6 @@ import "./navBar";
 import "./tags";
 import "./utilityBar";
 import "./product-admin";
+import "./product-detail";
 import "./product-variant";
 import "./similar-products";
