@@ -102,9 +102,9 @@ class SwagShopFooter extends React.Component {
     return (
       <div className="col-xs-12 col-sm-4 col-lg-6 get-in-contact">
         <div className="email-form">
-          <div className="email-form-header">REACTION COMMERCE</div>
-          <div className="email-form-subheader">GET A DEMO</div>
-          <Components.Translation defaultValue="Want to see what you can do with Reaction? Submit your email." i18nKey="submitYourEmail"/>
+          <div className="email-form-header">Built on Reaction Commerce</div>
+          <div className="email-form-subheader">Feeling inspired?</div>
+          <Components.Translation defaultValue="See what you can do with our open source platform." i18nKey="seeWhatYouCanDo"/>
           <div className="email-form-field">
             <Components.TextField
               i18nKeyPlaceholder="emailAddress"
