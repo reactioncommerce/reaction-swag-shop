@@ -30,31 +30,24 @@ Clone this shop repository into the custom plugin folder. In your project direct
 ```
 
 #### Step 3
+Ensure latest version of reaction-cli is installed
 ```
-$ cd <your-new-shop-directory-name>
-$ mkdir -p private/plugins/reaction-swag-shop
-$ mkdir -p public/plugins/reaction-swag-shop
+$ npm i -g reaction-cli
 ```
 
 #### Step 4
-Copy all items in folder /imports/plugins/custom/reaction-swag-shop/private recursively into it.
-```
-$ cp -Rv imports/plugins/custom/reaction-swag-shop/private/* private/plugins/reaction-swag-shop/
-```
-
-#### Step 5
-Copy all items in folder /imports/plugins/custom/reaction-swag-shop/public recursively into it.
-```
-$ cp -Rv imports/plugins/custom/reaction-swag-shop/public/* public/plugins/reaction-swag-shop/
-```
-
-#### Step 6
 Install dependencies and start Reaction
 ```
+$ cd <your-new-shop-directory-name>
 $ meteor npm install
 $ export SKIP_FIXTURES=1 && reaction
 ```
 
+
+### Troubleshooting
+In case you experience the error `Unknown asset: plugins/reaction-swag-shop/images/BCTMZ6HTxFSppJESk.jpg`, it's very
+likely that the SKIP_FIXTURES environment variable is not set correctly. In that case, reset the database via
+`reaction reset -n` and ensure SKIP_FIXTURES is set properly before running `reaction` 
 
 ### How the final swag shop will look like
 
