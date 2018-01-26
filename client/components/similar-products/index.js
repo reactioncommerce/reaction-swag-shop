@@ -1,1 +1,0 @@
-import "./similar-products";

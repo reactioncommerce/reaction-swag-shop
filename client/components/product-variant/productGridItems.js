@@ -1,8 +1,18 @@
 import React from "react";
+import { PropTypes } from "prop-types";
 import { replaceComponent } from "@reactioncommerce/reaction-components";
 import ProductGridItemsCore from "/imports/plugins/included/product-variant/components/productGridItems";
 
 class ProductGridItems extends ProductGridItemsCore {
+  static propTypes = {
+    showFeaturedLabel: PropTypes.boolean,
+    ...ProductGridItemsCore.propTypes
+  };
+
+  static defaultProps = {
+    showFeaturedLabel: true
+  };
+
   static labelColorPalette = [
     "#2899D3", // blue
     "#40e0d0", // turquoise
@@ -45,7 +55,7 @@ class ProductGridItems extends ProductGridItemsCore {
             onClick={this.handleClick}
           >
             <div className={`product-primary-images ${this.renderVisible()}`}>
-              {this.renderFeaturedProductLabel()}
+              {this.props.showFeaturedLabel && this.renderFeaturedProductLabel()}
               {this.renderMedia()}
               {this.renderOverlay()}
             </div>

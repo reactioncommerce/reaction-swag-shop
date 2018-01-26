@@ -8,12 +8,37 @@ function changeProductDetailPageLayout() {
   customPdpLayout.forEach((item) => {
     if (item.children) {
       for (const child of item.children) {
-        if (child.component === "ProductMetadata") {
-          child.component = "SimilarProducts";
+        if (child.component === "ProductTags") {
+          child.component = "";
         }
       }
     }
   });
+  customPdpLayout.push(
+    {
+      type: "block",
+      columns: 12,
+      size: "full",
+      permissions: [
+        "admin"
+      ],
+      audience: [
+        "guest",
+        "anonymous"
+      ],
+      style: {
+        ["@media  only screen and (max-width: 921px)"]: {
+          minWidth: "100%",
+          maxWidth: "100%"
+        }
+      },
+      children: [
+        {
+          component: "SimilarProducts"
+        }
+      ]
+    }
+  );
   Reaction.registerTemplate({
     name: "productDetailSimple",
     title: "Product Detail Simple Layout",
