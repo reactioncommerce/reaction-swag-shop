@@ -9,7 +9,6 @@ function changeProductDetailPageLayout() {
     if (item.children) {
       for (const child of item.children) {
         if (child.component === "ProductMetadata") {
-          // Replace product metadata with our Google Maps component
           child.component = "SimilarProducts";
         }
       }
