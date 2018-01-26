@@ -96,7 +96,9 @@ class Products extends ProductsCore {
           <Components.Translation defaultValue={"#MADEINTHESUNSHINE"} i18nKey={"wordOfTheDayHeader"} />
         </div>
         <div className={"word-of-the-day-text"}>
-          <Components.Translation defaultValue={"Lorem ipsum dolore ununoctium sed posuere consectetur est"} i18nKey={"wordOfTheDayText"} />
+          <a href="https://www.instagram.com/reactioncommerce/" title="Instagram">
+            <Components.Translation defaultValue={"Shop your favorites on our Instagram feed."} i18nKey={"wordOfTheDayText"} />
+          </a>
         </div>
       </div>
     );

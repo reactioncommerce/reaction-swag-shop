@@ -7,12 +7,19 @@
       "productsWeLove": "Products We Love",
       "weHeardYouLikeSwag": "We heard you like swag.",
       "youAreInTheRightPlace": "You’re in the right place.",
+      "wordOfTheDayText": "Shop your favorites on our Instagram feed.",
       "emailAddress": "email address",
       "emailSent": "Thank you for your message. We'll contact you as soon as possible.",
       "catTileImageUrl": "Image URL",
       "shopAllProducts": "Shop all products",
       "codeInStyle": "Code in style.",
-      "yourEverydayEssentials": "Your everyday essentials."
+      "yourEverydayEssentials": "Your everyday essentials.",
+      "seeWhatYouCanDo": "See what you can do with our open source platform.",
+      "about": "About",
+      "blog": "Blog",
+      "contact": "Contact",
+      "careers": "Careers",
+      "press": "Press"
     }
   }
 }]
