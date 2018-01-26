@@ -1,3 +1,4 @@
+// Use custom schemas
 import "../lib/collections/schemas";
 import "./init";
 import "./publications";

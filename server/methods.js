@@ -1,3 +1,5 @@
+import { Meteor } from "meteor/meteor";
+import { check } from "meteor/check";
 import { Shops, Products, Tags, Shipping, Media, Packages } from "/lib/collections";
 import { Logger, Reaction } from "/server/api";
 
@@ -163,6 +165,8 @@ methods.setupRoutes = function () {
 };
 
 methods.createTag = function (name, type) {
+  check(name, String);
+  check(type, String);
   const existingTag = Tags.findOne({ name });
   // keep the tag names unique
   if (!existingTag) {
@@ -178,5 +182,7 @@ methods.createTag = function (name, type) {
     return Tags.insert(tag);
   }
 };
+
+Meteor.methods({ createTag: methods.createTag });
 
 export default methods;
