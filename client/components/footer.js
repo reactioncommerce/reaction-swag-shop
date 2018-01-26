@@ -22,7 +22,7 @@ class SwagShopFooter extends React.Component {
     this.validation = new Validation(EmailFormSchema);
     this.state = {
       email: "",
-      expandedCards: ["shop", "support", "company", "followus"],
+      expandedCards: ["shop", "company", "followus"],
       validationStatus: this.validation.validationStatus
     };
   }
@@ -77,7 +77,7 @@ class SwagShopFooter extends React.Component {
       });
     } else {
       this.setState({
-        expandedCards: ["shop", "support", "company", "followus"]
+        expandedCards: ["shop", "company", "followus"]
       });
     }
   }
@@ -100,14 +100,12 @@ class SwagShopFooter extends React.Component {
 
   renderEmailForm() {
     return (
-      <div className={"col-xs-12 col-sm-4 col-lg-6 get-in-contact"}>
-        <div className={"email-form"}>
-          <div className={"email-form-header"}>REACTION COMMERCE</div>
-          <div className={"email-form-subheader"}>GET A DEMO</div>
-          <div>Create a premiere ecommerce experience
-            by partnering with Reaction. Contact us for more information!
-          </div>
-          <div className={"email-form-field"}>
+      <div className="col-xs-12 col-sm-4 col-lg-6 get-in-contact">
+        <div className="email-form">
+          <div className="email-form-header">Built on Reaction Commerce</div>
+          <div className="email-form-subheader">Feeling inspired?</div>
+          <Components.Translation defaultValue="See what you can do with our open source platform." i18nKey="seeWhatYouCanDo"/>
+          <div className="email-form-field">
             <Components.TextField
               i18nKeyPlaceholder="emailAddress"
               name="email"
@@ -119,7 +117,7 @@ class SwagShopFooter extends React.Component {
               value={this.state.email}
               validation={this.state.validationStatus}
             />
-            <div className={"field-arrow-right"}>
+            <div className="field-arrow-right">
               <i className="fa fa-long-arrow-right" />
             </div>
           </div>
@@ -130,21 +128,18 @@ class SwagShopFooter extends React.Component {
 
   renderNavigation() {
     return (
-      <div className={"col-xs-12 col-sm-2 col-lg-offset-1 col-lg-1 navigation"}>
+      <div className="col-xs-12 col-sm-2 col-sm-offset-2 col-lg-offset-1 col-lg-1 navigation">
         <Card
-          name={"shop"}
+          name="shop"
           onExpand={this.onExpand}
           expanded={this.isExpanded("shop")}
         >
           <CardHeader
             actAsExpander={this.isMobile}
-            title={"Shop"}
-            i18nKeyTitle={"shop"}
+            title="Shop"
+            i18nKeyTitle="shop"
           />
-          <CardBody expandable={true} padded={false}>
-            {/* <div className={"navbar-item"}>
-              <Components.Brand logo={""} title={"SHOP"}/>
-            </div> */}
+          <CardBody expandable>
             <Components.FooterTagNav
               isVisible={false}
               closeNavbar={function () {
@@ -158,83 +153,42 @@ class SwagShopFooter extends React.Component {
     );
   }
 
-
-  renderSupportLinks() {
-    return (
-      <div className={"col-xs-12 col-sm-2 col-lg-1 support"}>
-        <Card
-          name={"support"}
-          onExpand={this.onExpand}
-          expanded={this.isExpanded("support")}
-        >
-          <CardHeader
-            actAsExpander={this.isMobile}
-            title={"Support"}
-            i18nKeyTitle={"support"}
-          />
-          <CardBody expandable={true} padded={false}>
-            <div>
-              <a href={""} title={""}>
-                <Components.Translation defaultValue="Shipping" i18nKey="shipping"/>
-              </a>
-            </div>
-            <div>
-              <a href={""} title={""}>
-                <Components.Translation defaultValue="Returns" i18nKey="returns"/>
-              </a>
-            </div>
-            <div>
-              <a href={""} title={""}>
-                <Components.Translation defaultValue="FAQs" i18nKey="faqs"/>
-              </a>
-            </div>
-            <div>
-              <a href={""} title={""}>
-                <Components.Translation defaultValue="Size & Fit" i18nKey="sizeAndFit"/>
-              </a>
-            </div>
-          </CardBody>
-        </Card>
-      </div>
-    );
-  }
-
   renderCompanyLinks() {
     return (
-      <div className={"col-xs-12 col-sm-2 col-lg-1 company"}>
+      <div className="col-xs-12 col-sm-2 col-lg-1 company">
         <Card
-          name={"company"}
+          name="company"
           onExpand={this.onExpand}
           expanded={this.isExpanded("company")}
         >
           <CardHeader
             actAsExpander={this.isMobile}
-            title={"Company"}
-            i18nKeyTitle={"company"}
+            title="Company"
+            i18nKeyTitle="company"
           />
-          <CardBody expandable={true} padded={false}>
+          <CardBody expandable>
             <div>
-              <a href={""} title={""}>
+              <a href="https://reactioncommerce.com/about" title="about">
                 <Components.Translation defaultValue="About" i18nKey="about"/>
               </a>
             </div>
             <div>
-              <a href={""} title={""}>
+              <a href="https://blog.reactioncommerce.com" title="blog">
                 <Components.Translation defaultValue="Blog" i18nKey="blog"/>
               </a>
             </div>
             <div>
-              <a href={""} title={""}>
+              <a href="https://www.reactioncommerce.com/about#contact" title="contact">
                 <Components.Translation defaultValue="Contact" i18nKey="contact"/>
               </a>
             </div>
             <div>
-              <a href={""} title={""}>
+              <a href="https://www.reactioncommerce.com/careers" title="careers">
                 <Components.Translation defaultValue="Careers" i18nKey="careers"/>
               </a>
             </div>
             <div>
-              <a href={""} title={""}>
+              <a href="https://www.reactioncommerce.com/press" title="press">
                 <Components.Translation defaultValue="Press" i18nKey="press"/>
               </a>
             </div>
@@ -246,38 +200,38 @@ class SwagShopFooter extends React.Component {
 
   renderSocialLinks() {
     return (
-      <div className={"col-xs-12 col-sm-2 col-lg-1 social"}>
-        <div className={"heading"}>
+      <div className="col-xs-12 col-sm-2 col-lg-1 social">
+        <div className="heading">
           <Components.Translation defaultValue="Follow us" i18nKey="followUs"/>
         </div>
         <div>
-          <a href={""} title={""}>
+          <a href="https://twitter.com/getreaction" title="Twitter">
             <i className="fa fa-twitter" />
-            <div className={"text"}>
+            <div className="text">
               Twitter
             </div>
           </a>
         </div>
         <div>
-          <a href={""} title={""}>
+          <a href="https://facebook.com/reactioncommerce" title="Facebook">
             <i className="fa fa-facebook" />
-            <div className={"text"}>
+            <div className="text">
               Facebook
             </div>
           </a>
         </div>
         <div>
-          <a href={""} title={""}>
+          <a href="https://instagram.com/reactioncommerce" title="Instagram">
             <i className="fa fa-instagram" />
-            <div className={"text"}>
+            <div className="text">
               Instagram
             </div>
           </a>
         </div>
         <div>
-          <a href={""} title={""}>
+          <a href="https://github.com/reactioncommerce/reaction" title="GitHub">
             <i className="fa fa-github" />
-            <div className={"text"}>
+            <div className="text">
               GitHub
             </div>
           </a>
@@ -289,7 +243,7 @@ class SwagShopFooter extends React.Component {
 
   renderBottomLine() {
     return (
-      <div className={"bottomline row"}>
+      <div className="bottomline row">
         &copy;{"2017 REACTION COMMERCE, INC. Privacy & Terms"}
       </div>
     );
@@ -297,14 +251,12 @@ class SwagShopFooter extends React.Component {
 
   render() {
     return (
-      <div className={"footer container-fluid"}>
-        <div className={"footer-main row"}>
+      <div className="footer container-fluid">
+        <div className="footer-main row">
           {this.renderEmailForm()}
           {this.renderNavigation()}
-          {this.renderSupportLinks()}
           {this.renderCompanyLinks()}
           {this.renderSocialLinks()}
-
         </div>
         {this.renderBottomLine()}
       </div>
