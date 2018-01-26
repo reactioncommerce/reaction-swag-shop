@@ -1,12 +1,30 @@
 [{
 	"_id": "dhqmJjXWotCNkTzxg",
-	"name": "Apparel",
-	"slug": "apparel",
+	"name": "Men",
+	"slug": "men",
 	"isTopLevel": true,
 	"isDeleted": false,
 	"isVisible": true,
 	"groups": [],
-	"shopId": "J8Bhq3uTtdgwZx3rz"
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"catTileImageUrl": "cat-tile-men.jpg",
+	"catHeroImageUrl": "cat-hero-men.jpg",
+	"catHeroSloganI18nKey": "codeInStyle",
+	"catHeroTitleI18nKey": "yourEverydayEssentials"
+},
+{
+	"_id": "dbqmJjXW0tCNk3zaa",
+	"name": "Women",
+	"slug": "women",
+	"isTopLevel": true,
+	"isDeleted": false,
+	"isVisible": true,
+	"groups": [],
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"catTileImageUrl": "cat-tile-women.jpg",
+	"catHeroImageUrl": "cat-hero-women.jpg",
+	"catHeroSloganI18nKey": "codeInStyle",
+	"catHeroTitleI18nKey": "yourEverydayEssentials"
 },
 {
 	"_id": "hZdSevCBP8dDc66Ba",
@@ -16,6 +34,24 @@
 	"isDeleted": false,
 	"isVisible": true,
 	"groups": [],
-	"shopId": "J8Bhq3uTtdgwZx3rz"
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"catTileImageUrl": "cat-tile-gifts.jpg",
+	"catHeroImageUrl": "cat-hero-gifts.jpg",
+	"catHeroSloganI18nKey": "codeInStyle",
+	"catHeroTitleI18nKey": "yourEverydayEssentials"
+},
+{
+	"_id": "3adSeBCBP4dDcz6Bi",
+	"name": "Everyday",
+	"slug": "everyday",
+	"isTopLevel": true,
+	"isDeleted": false,
+	"isVisible": true,
+	"groups": [],
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"catTileImageUrl": "cat-tile-everyday.jpg",
+	"catHeroImageUrl": "cat-hero-everyday.jpg",
+	"catHeroSloganI18nKey": "codeInStyle",
+	"catHeroTitleI18nKey": "yourEverydayEssentials"
 }]
 

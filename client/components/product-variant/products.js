@@ -11,11 +11,11 @@ class Products extends ProductsCore {
   renderHero() {
     return (
       <div className="hero">
-        <div className="hero__wrapper">
-          <div className="hero__slogan">
+        <div className="hero-wrapper">
+          <div className="hero-slogan">
             <Components.Translation defaultValue={"We heard you like swag."} i18nKey={"weHeardYouLikeSwag"} />
           </div>
-          <div className="hero__huge-text">
+          <div className="hero-huge-text">
             <Components.Translation defaultValue={"You’re in the right place."} i18nKey={"youAreInTheRightPlace"} />
           </div>
           <Components.Button
@@ -32,13 +32,70 @@ class Products extends ProductsCore {
     );
   }
 
+  renderCategory(tag) {
+    return (
+      <div className={"cat-tile col-xs-12"} key={tag._id}>
+        <a href={`/tag/${tag.slug}`}>
+          <img alt={tag.name} src={`/plugins/reaction-swag-shop/${tag.catTileImageUrl}`} />
+          <span className={"category"}>{tag.name}</span>
+        </a>
+      </div>
+    );
+  }
+
+  renderCategoryChunks(tags) {
+    const chunkSize = 2;
+    const chunks = [];
+    for (let i = 0; i < tags.length; i += chunkSize) {
+      const temp = tags.slice(i, i + chunkSize);
+      let className = "col-sm-4";
+      if (i === 0) {
+        className += " col-sm-pull-4";
+      }
+      chunks.push(
+        <div className={className} key={i}>
+          {temp.map((element, index) => this.renderCategory(element, index))}
+        </div>
+      );
+    }
+    return chunks;
+  }
+
+  shopAllLabel() {
+    return (
+      <span><Components.Translation defaultValue={"Shop all products"} i18nKey={"shopAllProducts"} />&nbsp;<i className="fa fa-long-arrow-right" /></span>
+    );
+  }
+
+  renderCategories() {
+    return (
+      <div className={"categories row"}>
+        <div className={"cat-tile col-xs-12 col-sm-push-4 col-sm-4"}>
+          <div className={"pic-essentials"}>
+            <div className={"btn-essentials"}>
+              <Components.Button
+                className={"btn-blue"}
+                label={this.shopAllLabel()}
+                bezelStyle={"solid"}
+                primary={false}
+                type="button"
+                onClick={this.heroClicked}
+              />
+            </div>
+          </div>
+        </div>
+        {this.renderCategoryChunks(this.props.tags)}
+      </div>
+    );
+  }
+
   renderWordOfTheDay() {
     return (
       <div className={"word-of-the-day"}>
-        <div className={"word-of-the-day__header"}>
+        <div className={"word-of-the-day-header"}>
           <Components.Translation defaultValue={"#MADEINTHESUNSHINE"} i18nKey={"wordOfTheDayHeader"} />
         </div>
-        <div className={"word-of-the-day__text"}>
+        <div className={"word-of-the-day-text"}>
           <Components.Translation defaultValue={"Lorem ipsum dolore ununoctium sed posuere consectetur est"} i18nKey={"wordOfTheDayText"} />
         </div>
       </div>
@@ -79,6 +136,7 @@ class Products extends ProductsCore {
         return (
           <div id="container-main">
             {this.renderHero()}
+            {this.props.tags && this.renderCategories()}
             {this.renderProductGrid()}
             {this.renderLoadMoreProductsButton()}
             {this.renderSpinner()}

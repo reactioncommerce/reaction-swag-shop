@@ -7,3 +7,4 @@ import "./utilityBar";
 import "./product-admin";
 import "./product-detail";
 import "./product-variant";
+import "./ui";

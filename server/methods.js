@@ -147,4 +147,19 @@ methods.importProductImages = function () {
   }
 };
 
+methods.setupRoutes = function () {
+  Packages.update(
+    {
+      "name": "reaction-product-variant",
+      "registry.name": "tag"
+    },
+    {
+      $set:
+        {
+          "registry.$.template": "categoryGrid"
+        }
+    }
+  );
+};
+
 export default methods;

@@ -20,7 +20,7 @@ class ProductGridItems extends ProductGridItemsCore {
       bgColor = ProductGridItems.labelColorPalette[hash % 3];
     }
     return (
-      <div className="grid-item__featured-product-label" style={bgColor ? { backgroundColor: bgColor } : {}}>
+      <div className="grid-item-featured-product-label" style={bgColor ? { backgroundColor: bgColor } : {}}>
         {featuredProductLabel}
       </div>
     );

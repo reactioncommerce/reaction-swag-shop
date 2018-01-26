@@ -118,3 +118,31 @@ html .rui.navbar .accounts {
     background-color: #e6e6e6;
   }
 }
+
+.utility-bar {
+  background-color: #f7f5f6;
+  display: flex;
+  height: 35px;
+  justify-content: space-between;
+  letter-spacing: 0.5px;
+
+  @media screen and (max-width: @screen-xs-max) {
+    display: none;
+  }
+}
+
+.utility-bar-hashtag {
+  font-size: 12px;
+  font-weight: bold;
+  padding: 10px 0 0 29px;
+  text-transform: uppercase;
+}
+
+.utility-bar-news {
+  font-size: 12px;
+  font-weight: 600;
+  height: 16px;
+  padding-top: 9px;
+  text-align: center;
+  width: 286px;
+}

@@ -18,5 +18,6 @@ Hooks.Events.add("afterCoreInit", () => {
   methods.enableShipping();
   methods.enablePayment();
   methods.importProductImages();
+  methods.setupRoutes();
   Logger.info("Finished loading the rest of the Demo data");
 });

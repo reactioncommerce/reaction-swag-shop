@@ -1,0 +1,158 @@
+
+.product-grid-item {
+  margin-bottom: 40px;
+  .overlay {
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    border-top: 0;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+  }
+  .overlay-title {
+    font-size: 16px;
+    letter-spacing: 0.3px;
+    min-width: 0; /* By default, flex items won't shrink below their minimum content size (the length of the longest word or fixed-size element). To change this, set the ‘min-width’ or ‘min-height’ property */
+    overflow:hidden;
+    padding: 5px 15px 15px 10px;
+    text-overflow: ellipsis;
+    text-transform: inherit;
+    white-space: nowrap;
+  }
+  .currency-symbol {
+    font-size: 16px;
+    letter-spacing: 0.3px;
+    padding: 5px 10px 15px;
+  }
+}
+
+
+@media @mobile {
+  .product-grid-list {
+    .product-grid-item {
+      /* on mobile deviced, we're only showing the first featured product */
+      &:first-child {
+        display: block;
+      }
+      display: none;
+    }
+  }
+}
+
+.image-gallery {
+  .col-sm-5ths {
+    padding: 0;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+/* BOF category tiles */
+.categories {
+  @media screen and (min-width: @screen-sm-min) {
+    display: flex; /* to have each floated child have height: 100% working */
+  }
+}
+
+.pic-essentials {
+  background-image: url('/plugins/reaction-swag-shop/essentials.jpg');
+  background-position: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  @media screen and (max-width: @screen-xs-max) {
+    height: 500px;
+    margin: 0 5px;
+  }
+}
+
+.cat-tile {
+  padding: 10px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.category {
+  color: white;
+  font-size: 26px;
+  position: absolute;
+  bottom: 10%;
+  left: 20px;
+}
+
+.btn-essentials {
+  position: absolute;
+  bottom: 10%;
+  text-align: center;
+  width: 100%;
+}
+/* EOF category tiles */
+
+.products-we-love-header {
+  font-size: 36px;
+  font-weight: 300;
+  letter-spacing: 0.3px;
+}
+
+.grid-item-featured-product-label {
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 10px;
+  position: absolute;
+  text-transform: uppercase;
+}
+
+.hero {
+  background-image: url("/plugins/reaction-swag-shop/landing-hero.jpg");
+  background-position: 85% 0%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-origin: padding-box;
+  background-color: transparent;
+  height: 538px;
+}
+
+.hero-wrapper {
+  color: #fff;
+  left: 20%;
+  position: relative;
+  top: 50%;
+  letter-spacing: 0.3px;
+}
+
+.hero-slogan {
+  font-size: 18px;
+}
+
+.hero-huge-text {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 0.96;
+  margin: 15px 0;
+  max-width: 300px;
+}
+
+.word-of-the-day {
+  letter-spacing: 0.3px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.word-of-the-day-header {
+  font-size: 14px;
+  font-weight: 800;
+  margin-top: 15px;
+}
+
+.word-of-the-day-text {
+  font-size: 24px;
+  font-weight: 300;
+  display: inline-block;
+  margin-top: 12px;
+  max-width: 555px;
+}
