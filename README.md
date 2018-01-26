@@ -5,7 +5,7 @@
 
  **⚠ WIP NOTICE:** This Reaction plugin is under active development and is not completed yet. Things may have bugs or are still missing,
  so please be aware of that and use it on your own risk.
- You may want to follow our [Reaction Blog](https://blog.reactioncommerce.com/building-and-launching-a-store-on-reaction/), where we're going to communicate the project's progress. If case you're interested in a sneak preview: The project's current state is deployed [here](https://dkjyyaycmpxzbfqnx.getreaction.io/) and will evolve over time.
+ You may want to follow our [Reaction Blog](https://blog.reactioncommerce.com/building-and-launching-a-store-on-reaction/), where we're going to communicate the project's progress. If case you're interested in a sneak preview: The project's current state is deployed [here](https://won68aum3fjxpcom9.onreaction.com) and will evolve over time.
 
 ---
 
