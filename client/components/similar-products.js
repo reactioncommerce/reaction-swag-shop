@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Components } from "@reactioncommerce/reaction-components";
-import { Reaction } from "/client/api";
-import { Media } from "/lib/collections";
+import { Reaction } from "/client/api/index";
+import { Media } from "/lib/collections/index";
 // import ProductsGallery from "./products-gallery";
 
 // Create your component
 class SimilarProducts extends Component {
   static propTypes = {
-    products: PropTypes.arrayOf(PropTypes.object)
+    products: PropTypes.arrayOf(PropTypes.object),
+    productMedia: PropTypes.func
   }
 
   handleClick = (event) => {
@@ -36,16 +37,17 @@ class SimilarProducts extends Component {
         <div className="similar-block">
           <div>
             <h3 className="similar-heading">
-              <Components.Translation defaultValue="You may also like" i18nKey="productDetail.similar" />
+              <Components.Translation defaultValue="You might also like" i18nKey="productDetail.similar" />
             </h3>
           </div>
           <div className="products-scroll">
-            {products.map((product) =>
-              <div className="similar-product" key={product._id} data-id={product.handle} onClick={this.handleClick}>
-                <Components.MediaItem
-                  source={mediaMap[product._id]}
-                />
-              </div>
+            {products.map((product, index) =>
+              <Components.ProductGridItems
+                {...this.props}
+                showFeaturedLabel={false}
+                product={product} index={index}
+                media={() => this.props.productMedia(index)}
+              />
             )}
           </div>
         </div>
