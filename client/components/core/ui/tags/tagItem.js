@@ -1,8 +1,8 @@
 import React from "react";
 import { Components, ComponentsTable, replaceComponent } from "@reactioncommerce/reaction-components";
 import classnames from "classnames";
-import { Button, Handle } from "/imports/plugins/core/ui/client/components";
-import { Tags } from "/lib/collections";
+import { Button, Handle } from "/imports/plugins/core/ui/client/components/index";
+import { Tags } from "/lib/collections/index";
 
 /**
  A customized version of TagItem that does attach a onClick handler to the Handle icon and

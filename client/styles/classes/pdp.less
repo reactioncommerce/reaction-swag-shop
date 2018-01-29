@@ -1,0 +1,86 @@
+.pdp-container {
+  background-color: #F6f3f5;
+
+  .rui.item.variable {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .pdp.price-range,
+    .pdp.field.title {
+      margin: 0;
+      line-height: inherit;
+      font-size: 24px;
+      font-weight: 300;
+    }
+
+    .pdp.field.vendor {
+      margin-top: 15px;
+    }
+  }
+
+  .rui.social-buttons {
+    margin-top: 20px;
+    a {
+      color: #a09e9f;
+    }
+  }
+
+  .pdp.add-to-cart input[type=number] {
+    background-color: #34AFEC;
+    border-color: #34AFEC;
+    padding-left: 0;
+    padding-right: 0;
+    -moz-appearance: textfield;
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  .spin-buttons {
+    color: white;
+    background-color: #34AFEC;
+    border-color: #34AFEC;
+    display: flex;
+    flex-direction: column;
+    padding-right: 5px;
+    i {
+      font-size: 22px;
+      line-height: 2rem;
+      height: 50%;
+      &:hover {
+        cursor: hand;
+      }
+    }
+  }
+
+  .pdp.add-to-cart button {
+    border: solid 3px #1d98d5;
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-bottomright: 3px;
+    background-color: #1d98d5;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  .variant-detail:hover {
+    border: 1px solid #2899D3;
+    box-shadow: 0 0 0 1px #2899D3;
+  }
+
+  .variant-detail-selected {
+    border: 1px solid #2899D3;
+    box-shadow: 0 0 0 1px #2899D3;
+    color: #4AAAD9;
+  }
+
+  .variant-select-option {
+    max-width: 62px;
+  }
+}
+
+html:not(.rtl) .pdp .currency-symbol {
+  margin-right: 0;
+}

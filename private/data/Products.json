@@ -177,7 +177,7 @@
 	"taxable": true,
 	"taxCode": "0000",
 	"title": "One Size",
-	"optionTitle": "Untitled Option",
+	"optionTitle": "One Size",
 	"originCountry": "US",
 	"workflow": {
 		"status": "new"
@@ -236,7 +236,7 @@
 	"taxable": true,
 	"taxCode": "0000",
 	"title": "One Size",
-	"optionTitle": "Untitled Option",
+	"optionTitle": "One Size",
 	"originCountry": "US",
 	"workflow": {
 		"status": "new"
@@ -294,7 +294,7 @@
 	"taxable": true,
 	"taxCode": "0000",
 	"title": "One Size",
-	"optionTitle": "Untitled Option",
+	"optionTitle": "One Size",
 	"originCountry": "US",
 	"workflow": {
 		"status": "new"
@@ -354,7 +354,7 @@
 	"taxable": true,
 	"taxCode": "0000",
 	"title": "Blue",
-	"optionTitle": "Untitled Option",
+	"optionTitle": "Blue",
 	"originCountry": "US",
 	"workflow": {
 		"status": "new"
@@ -367,7 +367,7 @@
 		"78zu2u3in4rNrWtKt"
 	],
 	"type": "variant",
-	"title": "SM",
+	"title": "S",
 	"price": 18,
 	"isVisible": true,
 	"isDeleted": false,
@@ -383,7 +383,7 @@
 	"shopId": "J8Bhq3uTtdgwZx3rz",
 	"taxable": true,
 	"taxCode": "0000",
-	"optionTitle": "Small",
+	"optionTitle": "S",
 	"originCountry": "US",
 	"workflow": {
 		"status": "new"
@@ -412,7 +412,7 @@
 	"shopId": "J8Bhq3uTtdgwZx3rz",
 	"taxable": true,
 	"taxCode": "0000",
-	"optionTitle": "Medium",
+	"optionTitle": "M",
 	"originCountry": "US",
 	"workflow": {
 		"status": "new"
@@ -441,7 +441,7 @@
 	"shopId": "J8Bhq3uTtdgwZx3rz",
 	"taxable": true,
 	"taxCode": "0000",
-	"optionTitle": "Large",
+	"optionTitle": "L",
 	"originCountry": "US",
 	"workflow": {
 		"status": "new"
@@ -470,7 +470,7 @@
 	"shopId": "J8Bhq3uTtdgwZx3rz",
 	"taxable": true,
 	"taxCode": "0000",
-	"optionTitle": "Extra-Large",
+	"optionTitle": "XL",
 	"originCountry": "US",
 	"workflow": {
 		"status": "new"
@@ -529,7 +529,7 @@
 	"taxable": true,
 	"taxCode": "0000",
 	"title": "Blue",
-	"optionTitle": "Untitled Option",
+	"optionTitle": "Blue",
 	"originCountry": "US",
 	"workflow": {
 		"status": "new"
@@ -560,9 +560,9 @@
 	"isDeleted": false,
 	"inventoryQuantity": 200,
 	"isVisible": true,
-	"optionTitle": "Small",
+	"optionTitle": "S",
 	"width": 1,
-	"title": "SM"
+	"title": "S"
 },
 {
 	"_id": "u7BcWyqS9WHc4zDfJ",
@@ -589,7 +589,7 @@
 	"isDeleted": false,
 	"inventoryQuantity": 1000,
 	"isVisible": true,
-	"optionTitle": "Medium",
+	"optionTitle": "M",
 	"width": 2,
 	"title": "M"
 },
@@ -618,7 +618,7 @@
 	"isDeleted": false,
 	"inventoryQuantity": 1000,
 	"isVisible": true,
-	"optionTitle": "Large",
+	"optionTitle": "L",
 	"width": 1,
 	"title": "L"
 },
@@ -647,7 +647,7 @@
 	"isDeleted": false,
 	"inventoryQuantity": 1000,
 	"isVisible": true,
-	"optionTitle": "Extra-Large",
+	"optionTitle": "XL",
 	"width": 1,
 	"title": "XL"
 },
@@ -704,7 +704,7 @@
 	"taxable": true,
 	"taxCode": "0000",
 	"title": "One Size",
-	"optionTitle": "Untitled Option",
+	"optionTitle": "One Size",
 	"originCountry": "US",
 	"workflow": {
 		"status": "new"

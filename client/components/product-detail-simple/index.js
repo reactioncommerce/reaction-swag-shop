@@ -1,0 +1,2 @@
+import "./addToCartButton";
+import "./variant";

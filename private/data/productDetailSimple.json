@@ -1,0 +1,173 @@
+[
+    {
+      "type" : "block",
+      "columns" : 12,
+      "size" : "half",
+      "permissions" : [
+        "admin"
+      ],
+      "audience" : [
+        "guest",
+        "anonymous"
+      ],
+      "style" : {
+        "padding": "40px",
+        "@media  only screen and (max-width: 921px)" : {
+          "minWidth" : "100%",
+          "maxWidth" : "100%"
+        }
+      },
+      "children" : [
+        {
+          "component" : "MediaGalleryContainer"
+        },
+        {
+          "component" : ""
+        },
+        {
+          "component" : "ProductMetadata"
+        }
+      ]
+    },
+    {
+      "type" : "block",
+      "columns" : 6,
+      "size" : "half",
+      "permissions" : [
+        "admin"
+      ],
+      "audience" : [
+        "guest",
+        "anonymous"
+      ],
+      "style" : {
+        "margin": "0 auto",
+        "maxWidth": "460px",
+        "paddingTop": "70px",
+        "@media  only screen and (max-width: 921px)" : {
+          "minWidth" : "100%",
+          "maxWidth" : "100%"
+        }
+      },
+      "children" : [
+        {
+          "axis" : "horizontal",
+          "align" : "center",
+          "type" : "block",
+          "size" : "static variable",
+          "permissions" : [
+            "createProduct"
+          ],
+          "audience" : [
+            "guest",
+            "anonymous"
+          ],
+          "style" : {
+            "padding" : 0
+          },
+          "children" : [
+            {
+              "type" : "block",
+              "size" : "variable",
+              "style" : {
+                "padding" : 0
+              },
+              "children" : [
+                {
+                  "component" : "ProductField",
+                  "permissions" : [
+                    "admin"
+                  ],
+                  "audience" : [
+                    "guest",
+                    "anonymous"
+                  ],
+                  "props" : {
+                    "fieldName" : "title",
+                    "fieldTitle" : "Title",
+                    "element" : "h1",
+                    "textFieldProps" : {
+                      "i18nKeyPlaceholder" : "productDetailEdit.title",
+                      "placeholder" : "Title"
+                    }
+                  }
+                },
+                {
+                  "component" : "PriceRange"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "component" : "ProductField",
+          "props" : {
+            "fieldName" : "vendor",
+            "fieldTitle" : "Vendor",
+            "textFieldProps" : {
+              "i18nKeyPlaceholder" : "productDetailEdit.vendor",
+              "placeholder" : "Vendor"
+            }
+          }
+        },
+        {
+          "component" : "ProductField",
+          "props" : {
+            "fieldName" : "description",
+            "fieldTitle" : "Description",
+            "multiline" : true,
+            "textFieldProps" : {
+              "i18nKeyPlaceholder" : "productDetailEdit.description",
+              "placeholder" : "Description"
+            }
+          }
+        },
+        {
+          "component" : "VariantListContainer"
+        },
+        {
+          "component" : "Divider"
+        },
+        {
+          "component" : "AlertContainer",
+          "props" : {
+            "placement" : "productDetail"
+          }
+        },
+        {
+          "component" : "AddToCartButton",
+          "props" : {
+            "style" : {
+              "paddingTop" : 20
+            }
+          }
+        },
+        {
+          "component" : "SocialContainer"
+        }
+      ]
+    },
+    {
+      "type" : "block",
+      "columns" : 12,
+      "size" : "full",
+      "permissions" : [
+        "admin"
+      ],
+      "audience" : [
+        "guest",
+        "anonymous"
+      ],
+      "style" : {
+        "@media  only screen and (max-width: 921px)" : {
+          "minWidth" : "100%",
+          "maxWidth" : "100%"
+        }
+      },
+      "children" : [
+        {
+          "component" : "SimilarProducts"
+        }
+      ]
+    }
+]
