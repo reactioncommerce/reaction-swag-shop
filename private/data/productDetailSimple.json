@@ -166,6 +166,29 @@
       },
       "children" : [
         {
+          "component" : "ProductDetailPageFiller"
+        }
+      ]
+    },
+    {
+      "type" : "block",
+      "columns" : 12,
+      "size" : "full",
+      "permissions" : [
+        "admin"
+      ],
+      "audience" : [
+        "guest",
+        "anonymous"
+      ],
+      "style" : {
+        "@media  only screen and (max-width: 921px)" : {
+          "minWidth" : "100%",
+          "maxWidth" : "100%"
+        }
+      },
+      "children" : [
+        {
           "component" : "SimilarProducts"
         }
       ]

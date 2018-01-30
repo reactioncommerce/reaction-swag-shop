@@ -1,4 +1,7 @@
 .similar-block {
+  padding: 20px 60px;
+  background-color: #F6F3F5;
+
   .similar-heading {
     font-family: inherit;
     color: inherit;
@@ -8,15 +11,16 @@
     letter-spacing: 0.3px;
   }
 
-  .product-grid-item {
-    list-style-type: none;
-    width: 33.33%;
-    max-width: 33.33%;
-  }
-
   .products-scroll {
+    max-width: 1440px;
     overflow: auto;
     white-space: nowrap;
     display: flex;
+
+    .product-grid-item {
+      list-style-type: none;
+      width: 33.33%;
+      max-width: 33.33%;
+    }
   }
 }
