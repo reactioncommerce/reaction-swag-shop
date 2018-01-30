@@ -13,7 +13,7 @@ class MainDropdown extends getRawComponent("MainDropdown") {
           className="accounts-dialog accounts-layout dropdown-menu pull-right"
           style={{ padding: "10px 20px" }}
         >
-          <Login />
+          <Components.Login />
         </div>
       </div>
     );

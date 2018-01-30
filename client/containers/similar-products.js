@@ -31,7 +31,7 @@ function composer(props, onData) {
 
     onData(null, {
       ...props,
-      productMedia: productMedia,
+      productMedia,
       products: similarProducts
     });
   }

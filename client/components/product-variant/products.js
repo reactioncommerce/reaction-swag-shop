@@ -52,10 +52,12 @@ class Products extends ProductsCore {
       if (i === 0) {
         className += " col-sm-pull-4";
       }
+      // eslint-disable-next-line function-paren-newline
       chunks.push(
         <div className={className} key={i}>
           {temp.map((element, index) => this.renderCategory(element, index))}
         </div>
+        // eslint-disable-next-line function-paren-newline
       );
     }
     return chunks;

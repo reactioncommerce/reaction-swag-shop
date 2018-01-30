@@ -1,6 +1,6 @@
 import React from "react";
 import { Components } from "@reactioncommerce/reaction-components";
-import { default as NavBarCore } from "/imports/plugins/core/ui-navbar/client/components/navbar";
+import NavBarCore from "/imports/plugins/core/ui-navbar/client/components/navbar";
 
 
 class NavBar extends NavBarCore {

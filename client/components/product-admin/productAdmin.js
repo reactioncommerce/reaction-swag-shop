@@ -1,7 +1,6 @@
 import React from "react";
-import { Components } from "@reactioncommerce/reaction-components";
-import { default as CoreProductAdmin } from "/imports/plugins/included/product-admin/client/components/productAdmin";
-import { replaceComponent } from "@reactioncommerce/reaction-components";
+import { Components, replaceComponent } from "@reactioncommerce/reaction-components";
+import CoreProductAdmin from "/imports/plugins/included/product-admin/client/components/productAdmin";
 
 class ProductAdmin extends CoreProductAdmin {
   render() {

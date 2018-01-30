@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Components, replaceComponent } from "@reactioncommerce/reaction-components";
 
-import { default as ProductGridCore } from "/imports/plugins/included/product-variant/components/productGrid";
+import ProductGridCore from "/imports/plugins/included/product-variant/components/productGrid";
 import { Reaction } from "/client/api";
 
 
@@ -16,7 +16,7 @@ class ProductGrid extends ProductGridCore {
     shouldRenderSectionHeader: true
   }
 
-  renderProductGridItems = (products) => {
+  renderProductGridItems(products) {
     if (Array.isArray(products)) {
       const slug = Reaction.Router.getParam("slug");
       if (slug) {
@@ -75,5 +75,3 @@ class ProductGrid extends ProductGridCore {
 }
 
 replaceComponent("ProductGrid", ProductGrid);
-
-export default ProductGrid;

@@ -8,8 +8,8 @@ import { Media } from "/lib/collections/index";
 // Create your component
 class SimilarProducts extends Component {
   static propTypes = {
-    products: PropTypes.arrayOf(PropTypes.object),
-    productMedia: PropTypes.func
+    productMedia: PropTypes.func,
+    products: PropTypes.arrayOf(PropTypes.object)
   }
 
   handleClick = (event) => {
@@ -47,8 +47,8 @@ class SimilarProducts extends Component {
                 showFeaturedLabel={false}
                 product={product} index={index}
                 media={() => this.props.productMedia(index)}
-              />
-            )}
+              />)
+            }
           </div>
         </div>
       );

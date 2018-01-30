@@ -1,8 +1,7 @@
 import React from "react";
 import ProductsCore from "/imports/plugins/included/product-variant/components/products";
 import { Components, registerComponent, getHOCs } from "@reactioncommerce/reaction-components";
-import { Logger } from "/client/api";
-import { Reaction } from "/client/api";
+import { Logger, Reaction } from "/client/api";
 import { getTagIds as getIds } from "/lib/selectors/tags";
 
 class Categories extends ProductsCore {
