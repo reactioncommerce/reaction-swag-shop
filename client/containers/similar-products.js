@@ -1,5 +1,5 @@
 import { Meteor } from "meteor/meteor";
-import { registerComponent, getHOCs } from "@reactioncommerce/reaction-components";
+import { registerComponent } from "@reactioncommerce/reaction-components";
 import { composeWithTracker } from "/imports/plugins/core/components/lib";
 import { Tags, Products } from "/lib/collections";
 import SimilarProducts from "../components/similar-products";
@@ -37,6 +37,4 @@ function composer(props, onData) {
   }
 }
 
-registerComponent("SimilarProducts", SimilarProducts, [...getHOCs("ProductDetail"), composeWithTracker(composer)]);
-
-export default composeWithTracker(composer)(SimilarProducts);
+registerComponent("SimilarProducts", SimilarProducts, composeWithTracker(composer));

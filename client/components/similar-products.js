@@ -3,17 +3,20 @@ import PropTypes from "prop-types";
 import { Components } from "@reactioncommerce/reaction-components";
 import { Reaction } from "/client/api/index";
 import { Media } from "/lib/collections/index";
-// import ProductsGallery from "./products-gallery";
+import { ReactionProduct } from "/lib/api";
 
-// Create your component
+
 class SimilarProducts extends Component {
   static propTypes = {
     productMedia: PropTypes.func,
     products: PropTypes.arrayOf(PropTypes.object)
   }
 
-  handleClick = (event) => {
-    const handle = event.currentTarget.dataset.id;
+  handleClick = (event, handle) => {
+    event.preventDefault();
+    ReactionProduct.setProduct(handle);
+    // set scrollTop for <html>
+    document.children[0].scrollTop = 0;
     Reaction.Router.go("product", { handle });
   }
 
@@ -47,6 +50,7 @@ class SimilarProducts extends Component {
                 showFeaturedLabel={false}
                 product={product} index={index}
                 media={() => this.props.productMedia(index)}
+                onClick={(event) => this.handleClick(event, product.handle)}
               />)
             }
           </div>
