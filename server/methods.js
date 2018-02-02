@@ -164,9 +164,8 @@ methods.setupRoutes = function () {
   );
 };
 
-methods.createTag = function (name, type) {
+methods.createTag = function (name) {
   check(name, String);
-  check(type, String);
   const existingTag = Tags.findOne({ name });
   // keep the tag names unique
   if (!existingTag) {
@@ -174,7 +173,6 @@ methods.createTag = function (name, type) {
       name,
       slug: Reaction.getSlug(name),
       isTopLevel: false,
-      type,
       updatedAt: new Date(),
       createdAt: new Date()
     };
