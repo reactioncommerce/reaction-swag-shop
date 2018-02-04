@@ -9,4 +9,3 @@ import "./product-detail-simple";
 import "./product-variant";
 import "./similar-products";
 import "./core";
-import "./productDetailPageFiller";
