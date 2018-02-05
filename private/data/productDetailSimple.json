@@ -22,9 +22,6 @@
           "component" : "MediaGalleryContainer"
         },
         {
-          "component" : ""
-        },
-        {
           "component" : "ProductMetadata"
         }
       ]
