@@ -9,11 +9,13 @@ const CartIcon = ({ handleClick, cart }) => (
       <Components.Translation
         className="cart-label"
         defaultValue="My cart"
-        i18nKey="myCart" />
+        i18nKey="myCart"
+      />
       <Components.FlatButton
         className="shopping-icon"
         icon="fa fa-shopping-cart"
-        kind="flat" />
+        kind="flat"
+      />
       &nbsp;
       <span className="cart-count">
         {cart ? `(${cart.getCount()})` : "(0)"}
