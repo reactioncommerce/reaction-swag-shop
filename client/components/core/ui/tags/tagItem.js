@@ -1,5 +1,5 @@
 import React from "react";
-import { Components, ComponentsTable, replaceComponent } from "@reactioncommerce/reaction-components";
+import { Components, replaceComponent, getRawComponent } from "@reactioncommerce/reaction-components";
 import classnames from "classnames";
 import { Button, Handle } from "/imports/plugins/core/ui/client/components/index";
 import { Tags } from "/lib/collections/index";
@@ -11,7 +11,7 @@ import { Tags } from "/lib/collections/index";
  Notice: For class extension we use the internal structure ComponentsTable, because
  the exported React component is already wrapped with a HOC. We need the rawComponent here to extend.
  */
-class TagItem extends ComponentsTable.TagItem.rawComponent {
+class TagItem extends getRawComponent("TagItem") {
   constructor() {
     super(...arguments);
     this.state = {

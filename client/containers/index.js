@@ -1,7 +1,6 @@
-import "./cartIcon";
 import "./languageDropdown";
 import "./navBar";
+import "./cartIcon";
 import "./similar-products";
 import "./product-variant";
-import "./product-detail";
 import "./ui-tagnav";

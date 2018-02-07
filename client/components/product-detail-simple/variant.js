@@ -1,5 +1,5 @@
 import React from "react";
-import { Components, getRawComponent } from "@reactioncommerce/reaction-components";
+import { Components, getRawComponent, replaceComponent } from "@reactioncommerce/reaction-components";
 import {  Media } from "/lib/collections";
 import classnames from "classnames";
 
@@ -53,5 +53,7 @@ class Variant extends getRawComponent("Variant") {
     return variantElement;
   }
 }
+
+replaceComponent("Variant", Variant);
 
 export default Variant;
