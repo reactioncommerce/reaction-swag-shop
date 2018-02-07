@@ -26,7 +26,7 @@ class NavBar extends NavBarCore {
             icon="fa fa-search"
             kind="flat"
           />
-          <Components.Translation defaultValue="search" i18nKey="admin.dashboard.searchLabel" />
+          <Components.Translation className="search-label" defaultValue="search" i18nKey="admin.dashboard.searchLabel" />
         </div>
       );
     }
