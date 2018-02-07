@@ -82,7 +82,7 @@ html .rui.navbar {
 
   .cart-label {
     @media screen and (max-width: 767px) {
-      display: none;
+      display: none !important;
     }
   }
 
@@ -132,6 +132,11 @@ html .rui.navbar {
             .cart-count {
               color: #1790D8;
             }
+          }
+        }
+        .cart-label {
+          @media screen and (max-width: 991px) {
+            display: none !important;
           }
         }
       }
