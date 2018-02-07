@@ -1,5 +1,5 @@
 import React from "react";
-import { getRawComponent, replaceComponent, Components } from "@reactioncommerce/reaction-components";
+import { getRawComponent, Components, replaceComponent } from "@reactioncommerce/reaction-components";
 import { DragDropProvider } from "/imports/plugins/core/ui/client/providers";
 
 
@@ -24,7 +24,7 @@ class TagNav extends getRawComponent("TagNav") {
             onClick={this.props.closeNavbar}
           />
           <Components.Brand
-            title={"reaction"}
+            title={this.props.shop.name}
           />
           <Components.FlatButton
             className="search-button"
