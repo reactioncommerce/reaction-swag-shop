@@ -13,14 +13,14 @@ class Products extends ProductsCore {
       <div className="hero">
         <div className="hero-wrapper">
           <div className="hero-slogan">
-            <Components.Translation defaultValue={"We heard you like swag."} i18nKey={"weHeardYouLikeSwag"} />
+            <Components.Translation defaultValue={"We heard you like saffron."} i18nKey={"weHeardYouLikeSwag"} />
           </div>
           <div className="hero-huge-text">
             <Components.Translation defaultValue={"You’re in the right place."} i18nKey={"youAreInTheRightPlace"} />
           </div>
           <Components.Button
             className="hero__button"
-            label={"Shop swag"}
+            label={"Shop saffron"}
             i18nKeyLabel={"shopSwag"}
             bezelStyle={"solid"}
             primary={true}
@@ -96,7 +96,7 @@ class Products extends ProductsCore {
           <Components.Translation defaultValue={"#MADEINTHESUNSHINE"} i18nKey={"wordOfTheDayHeader"} />
         </div>
         <div className={"word-of-the-day-text"}>
-          <a href="https://www.instagram.com/reactioncommerce/" title="Instagram">
+          <a href="https://www.instagram.com/podere.montachello/" title="Instagram">
             <Components.Translation defaultValue={"Shop your favorites on our Instagram feed."} i18nKey={"wordOfTheDayText"} />
           </a>
         </div>
@@ -108,7 +108,7 @@ class Products extends ProductsCore {
     return (
       <div className="row image-gallery">
         <div className="col-xs-12 col-sm-5ths col-sm-push-2">
-          <a href={"https://www.instagram.com/reactioncommerce/"} alt={"instagram"}>
+          <a href={"https://www.instagram.com/podere.montachello/"} alt={"instagram"}>
             <img alt="Instagram" src={"/plugins/reaction-swag-shop/palms.png"} />
           </a>
         </div>
