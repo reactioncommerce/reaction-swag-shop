@@ -574,7 +574,7 @@
 		{
 			"label": "Italiano",
 			"i18n": "it",
-			"enabled": false
+			"enabled": true
 		},
 		{
 			"label": "Nederlands",
@@ -3186,19 +3186,19 @@
 			}
 		}
 	},
-	"name": "Reaction Swag Shop",
-	"timezone": "US/Pacific",
-	"baseUOL": "in",
+	"name": "Podere Montachello",
+	"timezone": "Europe/Rome",
+	"baseUOL": "cm",
 	"unitsOfLength": [
 		{
 			"uol": "in",
 			"label": "Inches",
-			"default": true
+			"default": false
 		},
 		{
 			"uol": "cm",
 			"label": "Centimeters",
-			"default": false
+			"default": true
 		},
 		{
 			"uol": "ft",
@@ -3206,7 +3206,7 @@
 			"default": false
 		}
 	],
-	"baseUOM": "oz",
+	"baseUOM": "g",
 	"unitsOfMeasure": [
 		{
 			"uom": "oz",
@@ -3239,23 +3239,23 @@
 	],
 	"addressBook": [
 		{
-			"company": "Reaction Swag Shop",
-			"fullName": "Ongo Works",
-			"address1": "2110 Main Street",
-			"address2": "Suite 207",
-			"city": "Santa Monica",
-			"region": "CA",
-			"postal": "90405",
-			"country": "US",
+			"company": "Podere Montachello",
+			"fullName": "Azienda Agricola Podere Montachello",
+			"address1": "via Albiano, 8",
+			"address2": "",
+			"city": "Prato",
+			"region": "PO",
+			"postal": "59013",
+			"country": "IT",
 			"phone": "8885551212",
-			"isCommercial": true,
+			"isCommercial": false,
 			"isShippingDefault": true,
 			"isBillingDefault": true,
 			"_id": "ZA74NQdBQzoqFbN9n",
 			"failedValidation": false
 		}
 	],
-	"slug": "reaction-swag-shop",
+	"slug": "podere-montachello",
 	"status": "active",
 	"domains": [
 		"localhost"
@@ -3286,4 +3286,3 @@
 	},
 	"layout": []
 }]
-
