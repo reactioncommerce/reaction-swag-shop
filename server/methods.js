@@ -97,7 +97,7 @@ methods.initLayout = function () {
   const layout = require("../private/data/Layout.json");
   const shopId = Reaction.getShopId();
   return Shops.update(shopId, {
-    $set: { layout: layout }
+    $set: { layout }
   });
 };
 
@@ -133,10 +133,10 @@ methods.importProductImages = function () {
         fileObj.attachData(binary, { type: "image/jpeg", name: fileName });
         const topVariant = getTopVariant(productId);
         fileObj.metadata = {
-          productId: productId,
+          productId,
           variantId: topVariant._id,
           toGrid: 1,
-          shopId: shopId,
+          shopId,
           priority: 0,
           workflow: "published"
         };

@@ -70,11 +70,7 @@ class ProductGridItems extends ProductGridItemsCore {
     );
 
     if (this.props.canEdit) {
-      return (
-        this.props.connectDropTarget(
-          this.props.connectDragSource(productItem)
-        )
-      );
+      return this.props.connectDropTarget(this.props.connectDragSource(productItem));
     }
 
     return productItem;

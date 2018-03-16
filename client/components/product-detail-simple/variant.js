@@ -47,11 +47,7 @@ class Variant extends getRawComponent("Variant") {
     );
 
     if (this.props.editable) {
-      return this.props.connectDragSource(
-        this.props.connectDropTarget(
-          variantElement
-        )
-      );
+      return this.props.connectDragSource(this.props.connectDropTarget(variantElement));
     }
 
     return variantElement;

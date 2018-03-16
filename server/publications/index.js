@@ -1,1 +1,1 @@
-export * from "./collections/products";
+import "./collections/products";

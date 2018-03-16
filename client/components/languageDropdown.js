@@ -1,6 +1,6 @@
 import React from "react";
 import { Components } from "@reactioncommerce/reaction-components";
-import { default as LanguageDropdownCore } from "/imports/plugins/core/i18n/client/components/languageDropdown";
+import LanguageDropdownCore from "/imports/plugins/core/i18n/client/components/languageDropdown";
 
 
 class LanguageDropdown extends LanguageDropdownCore {

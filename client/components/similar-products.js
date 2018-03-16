@@ -8,8 +8,8 @@ import { ReactionProduct } from "/lib/api";
 
 class SimilarProducts extends Component {
   static propTypes = {
-    products: PropTypes.arrayOf(PropTypes.object),
-    productMedia: PropTypes.func
+    productMedia: PropTypes.func,
+    products: PropTypes.arrayOf(PropTypes.object)
   }
 
   handleClick = (event, handle) => {
@@ -51,8 +51,8 @@ class SimilarProducts extends Component {
                 product={product} index={index}
                 media={() => this.props.productMedia(index)}
                 onClick={(event) => this.handleClick(event, product.handle)}
-              />
-            )}
+              />)
+            }
           </div>
         </div>
       );
