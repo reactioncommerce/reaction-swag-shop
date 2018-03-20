@@ -13,11 +13,12 @@ Hooks.Events.add("beforeCoreInit", () => {
 Hooks.Events.add("afterCoreInit", () => {
   methods.initLayout();
   methods.loadProducts();
+  methods.importProductImages();
+  methods.publishProducts();
   methods.loadTags();
   methods.loadShipping();
   methods.enableShipping();
   methods.enablePayment();
-  methods.importProductImages();
   methods.setupRoutes();
   Logger.info("Finished loading the rest of the Demo data");
 });

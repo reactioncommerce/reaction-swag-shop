@@ -27,7 +27,7 @@ const Icon = ({ className, icon, style, onClick }) => {
   }, classes, className);
 
   return (
-    <i style={style} className={classes} onClick={onClick} />
+    <i style={style} className={classes} onClick={onClick} role={"presentation"}/>
   );
 };
 

@@ -1,12 +1,13 @@
 import React from "react";
 import { PropTypes } from "prop-types";
 import { replaceComponent } from "@reactioncommerce/reaction-components";
-import ProductGridItemsCore from "/imports/plugins/included/product-variant/components/productGridItems";
+import ProductGridItemCore from "/imports/plugins/included/product-variant/components/customer/productGridItem";
 
-class ProductGridItems extends ProductGridItemsCore {
+
+class ProductGridItem extends ProductGridItemCore {
   static propTypes = {
-    showFeaturedLabel: PropTypes.boolean,
-    ...ProductGridItemsCore.propTypes
+    showFeaturedLabel: PropTypes.bool,
+    ...ProductGridItemCore.propTypes
   };
 
   static defaultProps = {
@@ -16,18 +17,18 @@ class ProductGridItems extends ProductGridItemsCore {
   static labelColorPalette = [
     "#2899D3", // blue
     "#40e0d0", // turquoise
-    "#F2542F"  // orange
+    "#F2542F" // orange
   ];
 
   renderFeaturedProductLabel() {
-    const featuredProductLabel = this.props.product.featuredProductLabel;
+    const { featuredProductLabel } = this.props.product;
     let bgColor;
     if (featuredProductLabel) {
       const hash = featuredProductLabel.split("").reduce((acc, value, i) => {
         const code = featuredProductLabel.charCodeAt(i);
         return code + acc;
       }, 0);
-      bgColor = ProductGridItems.labelColorPalette[hash % 3];
+      bgColor = ProductGridItem.labelColorPalette[hash % 3];
     }
     return (
       <div className="grid-item-featured-product-label" style={bgColor ? { backgroundColor: bgColor } : {}}>
@@ -37,51 +38,38 @@ class ProductGridItems extends ProductGridItemsCore {
   }
 
   render() {
-    const productItem = (
+    const { product, isSearch } = this.props;
+    return (
       <li
-        className={`product-grid-item ${this.renderPinned()} ${this.props.weightClass()} ${this.props.isSelected()}`}
-        data-id={this.props.product._id}
-        id={this.props.product._id}
+        className={this.productClassNames}
+        data-id={product._id}
+        id={product._id}
       >
-        <div className={this.renderHoverClassName()}>
+        <div className={(isSearch) ? "item-content" : ""}>
           <span className="product-grid-item-alerts" />
 
           <a className="product-grid-item-images"
-            href={this.props.pdpPath()}
+            href={this.productURL}
             data-event-category="grid"
             data-event-label="grid product click"
-            data-event-value={this.props.product._id}
-            onDoubleClick={this.handleDoubleClick}
+            data-event-value={product._id}
             onClick={this.handleClick}
           >
-            <div className={`product-primary-images ${this.renderVisible()}`}>
+            <div className="product-primary-images">
               {this.props.showFeaturedLabel && this.renderFeaturedProductLabel()}
               {this.renderMedia()}
-              {this.renderOverlay()}
             </div>
-
             {this.renderAdditionalMedia()}
           </a>
 
-          {!this.props.isSearch && this.renderNotices()}
+          {!isSearch && this.renderNotices()}
           {this.renderGridContent()}
         </div>
       </li>
     );
-
-    if (this.props.canEdit) {
-      return (
-        this.props.connectDropTarget(
-          this.props.connectDragSource(productItem)
-        )
-      );
-    }
-
-    return productItem;
   }
 }
 
-export default ProductGridItems;
+replaceComponent("ProductGridItemCustomer", ProductGridItem);
 
-
-replaceComponent("ProductGridItems", ProductGridItems);
+export default ProductGridItem;

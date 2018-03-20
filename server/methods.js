@@ -1,6 +1,9 @@
 import { Meteor } from "meteor/meteor";
 import { check } from "meteor/check";
-import { Shops, Products, Tags, Shipping, Media, Packages } from "/lib/collections";
+import bufferStreamReader from "buffer-stream-reader";
+import { FileRecord } from "@reactioncommerce/file-collections";
+import { Shops, Products, Tags, Shipping, MediaRecords, Packages, Catalog } from "/lib/collections";
+import { Media } from "/imports/plugins/core/files/server";
 import { Logger, Reaction } from "/server/api";
 
 function checkForShops() {
@@ -24,8 +27,39 @@ function checkForShipping() {
 }
 
 function checkForMedia() {
-  const numMedia = Media.find().count();
+  const numMedia = MediaRecords.find().count();
   return numMedia !== 0;
+}
+
+function checkForCatalog() {
+  const numCatalog = Catalog.find().count();
+  return numCatalog !== 0;
+}
+
+async function storeFromAttachedBuffer(fileRecord) {
+  const { stores } = fileRecord.collection.options;
+  const bufferData = fileRecord.data;
+
+  // We do these in series to avoid issues with multiple streams reading
+  // from the temp store at the same time.
+  try {
+    for (const store of stores) {
+      if (fileRecord.hasStored(store.name)) {
+        return Promise.resolve();
+      }
+
+      // Make a new read stream in each loop because you can only read once
+      const readStream = new bufferStreamReader(bufferData);
+      const writeStream = await store.createWriteStream(fileRecord); // eslint-disable-line no-await-in-loop
+      await new Promise((resolve, reject) => { // eslint-disable-line no-await-in-loop
+        fileRecord.once("error", reject);
+        fileRecord.once("stored", resolve);
+        readStream.pipe(writeStream);
+      });
+    }
+  } catch (error) {
+    throw new Error("Error in storeFromAttachedBuffer:", error);
+  }
 }
 
 const methods = {};
@@ -55,6 +89,16 @@ methods.loadProducts = function () {
     Logger.info("Products loaded");
   } else {
     Logger.info("Products skipped. Already exists");
+  }
+};
+
+methods.publishProducts = function () {
+  if (!checkForCatalog()) {
+    const userId = Meteor.users.findOne({ name: "Admin" })._id;
+    const productIds = Products.find({ type: "simple" }).map((doc) => doc._id);
+    Meteor.runAsUser(userId, () => {
+      Meteor.call("catalog/publish/products", productIds);
+    });
   }
 };
 
@@ -97,7 +141,7 @@ methods.initLayout = function () {
   const layout = require("../private/data/Layout.json");
   const shopId = Reaction.getShopId();
   return Shops.update(shopId, {
-    $set: { layout: layout }
+    $set: { layout }
   });
 };
 
@@ -124,23 +168,31 @@ methods.importProductImages = function () {
     const products = Products.find({ type: "simple" }).fetch();
     for (const product of products) {
       const productId = product._id;
-      if (!Media.findOne({ "metadata.productId": productId })) {
-        const shopId = product.shopId;
+      if (!MediaRecords.findOne({ "metadata.productId": productId })) {
+        const { shopId } = product;
         const filepath = `plugins/reaction-swag-shop/images/${productId}.jpg`;
-        const binary = Assets.getBinary(filepath);
-        const fileObj = new FS.File();
-        const fileName = `${productId}.jpg`;
-        fileObj.attachData(binary, { type: "image/jpeg", name: fileName });
+        const uint8array = Assets.getBinary(filepath);
         const topVariant = getTopVariant(productId);
-        fileObj.metadata = {
-          productId: productId,
+
+        const metadata = {
+          productId,
           variantId: topVariant._id,
           toGrid: 1,
-          shopId: shopId,
+          shopId,
           priority: 0,
           workflow: "published"
         };
-        Media.insert(fileObj);
+        const fileRecord = new FileRecord({
+          original: {
+            size: uint8array.length,
+            name: `${productId}.jpg`,
+            type: "image/jpeg"
+          }
+        });
+        fileRecord.attachData(new Buffer(uint8array));
+        fileRecord.metadata = metadata;
+        Media.insert(fileRecord);
+        Promise.await(storeFromAttachedBuffer(fileRecord));
       }
     }
     Logger.info("loaded product images");
@@ -158,7 +210,7 @@ methods.setupRoutes = function () {
     {
       $set:
         {
-          "registry.$.template": "categoryGrid"
+          "registry.$.template": "ProductsCustomer"
         }
     }
   );

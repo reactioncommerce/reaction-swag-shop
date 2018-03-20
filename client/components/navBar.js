@@ -1,6 +1,6 @@
 import React from "react";
 import { Components } from "@reactioncommerce/reaction-components";
-import { default as NavBarCore } from "/imports/plugins/core/ui-navbar/client/components/navbar";
+import NavBarCore from "/imports/plugins/core/ui-navbar/client/components/navbar";
 
 
 class NavBar extends NavBarCore {
@@ -21,7 +21,7 @@ class NavBar extends NavBarCore {
   renderSearchButton() {
     if (this.props.searchEnabled) {
       return (
-        <div onClick={this.handleOpenSearchModal} className="search">
+        <div onClick={this.handleOpenSearchModal} className="search" role="presentation">
           <Components.FlatButton
             icon="fa fa-search"
             kind="flat"

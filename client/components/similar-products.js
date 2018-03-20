@@ -2,14 +2,13 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Components } from "@reactioncommerce/reaction-components";
 import { Reaction } from "/client/api/index";
-import { Media } from "/lib/collections/index";
 import { ReactionProduct } from "/lib/api";
 
 
 class SimilarProducts extends Component {
   static propTypes = {
-    products: PropTypes.arrayOf(PropTypes.object),
-    productMedia: PropTypes.func
+    productMedia: PropTypes.func,
+    products: PropTypes.arrayOf(PropTypes.object)
   }
 
   handleClick = (event, handle) => {
@@ -23,19 +22,7 @@ class SimilarProducts extends Component {
   render() {
     const { products } = this.props;
     if (products && products.length > 0) {
-      const mediaMap = {};
-      products.map((product) => {
-        const media = Media.find({
-          "metadata.productId": product._id
-        }, {
-          sort: {
-            "metadata.priority": 1
-          }
-        }, { limit: 1 }).fetch();
-        if (media && media[0]) {
-          mediaMap[product._id] = media[0];
-        }
-      });
+      const currentTag = ReactionProduct.getTag();
       return (
         <div className="similar-block">
           <div>
@@ -44,18 +31,15 @@ class SimilarProducts extends Component {
             </h3>
           </div>
           <div className="products-scroll">
-            {products.map((product, index) =>
-              <Components.ProductGridItems
-                {...this.props}
+            {products.map((product) =>
+              <Components.ProductGridItemCustomer
+                key={product._id}
+                product={product}
+                position={(product.positions && product.positions[currentTag]) || {}}
                 showFeaturedLabel={false}
-                product={product} index={index}
-                media={() => this.props.productMedia(index)}
-                onClick={(event) => this.handleClick(event, product.handle)}
-              />
-            )}
+              />)}
           </div>
-        </div>
-      );
+        </div>);
     }
     return null;
   }

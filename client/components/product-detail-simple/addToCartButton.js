@@ -4,7 +4,7 @@ import { Components, replaceComponent, getRawComponent } from "@reactioncommerce
 
 class AddToCartButton extends getRawComponent("AddToCartButton") {
   constructor(props) {
-    super(...arguments);
+    super(props);
     this.state = {
       value: props.cartQuantity,
       ...this.state
@@ -44,8 +44,8 @@ class AddToCartButton extends getRawComponent("AddToCartButton") {
             value={this.state.value}
           />
           <div className="spin-buttons">
-            <i onClick={() => this.add(1)} className="fa fa-angle-up "/>
-            <i onClick={() => this.add(-1)} className="fa fa-angle-down "/>
+            <i onClick={() => this.add(1)} className="fa fa-angle-up" role="presentation"/>
+            <i onClick={() => this.add(-1)} className="fa fa-angle-down" role="presentation"/>
           </div>
           <button
             className="input-group-addon add-to-cart-text js-add-to-cart"
