@@ -1,7 +1,7 @@
-import { getSchemas, registerSchema } from "@reactioncommerce/reaction-collections";
+import { getSchemas } from "@reactioncommerce/reaction-collections";
 
 const Schemas = getSchemas();
-const ExtendedFilters = Schemas.filters.clone().extend({
+const ExtendedFilters = Schemas.filters.extend({
   featuredProductLabel: {
     type: String,
     optional: true
@@ -11,5 +11,3 @@ const ExtendedFilters = Schemas.filters.clone().extend({
     optional: true
   }
 });
-
-registerSchema("filters", ExtendedFilters);

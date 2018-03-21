@@ -48,15 +48,19 @@ async function storeFromAttachedBuffer(fileRecord) {
         return Promise.resolve();
       }
 
-      // Make a new read stream in each loop because you can only read once
-      const readStream = new bufferStreamReader(bufferData);
-      const writeStream = await store.createWriteStream(fileRecord); // eslint-disable-line no-await-in-loop
-      await new Promise((resolve, reject) => { // eslint-disable-line no-await-in-loop
-        fileRecord.once("error", reject);
-        fileRecord.once("stored", resolve);
-        readStream.pipe(writeStream);
-      });
-    }
+      store.createWriteStream(fileRecord)
+        .then((writeStream) => {
+          // Make a new read stream in each loop because you can only read once
+          const readStream = new bufferStreamReader(bufferData);
+          return new Promise((resolve, reject) => {
+            fileRecord.once("error", reject);
+            fileRecord.once("stored", resolve);
+            readStream.pipe(writeStream);
+          });
+        }).catch((error) => {
+          Logger.error("Error in createWriteStream:", error);
+        });
+    };
   } catch (error) {
     throw new Error("Error in storeFromAttachedBuffer:", error);
   }
