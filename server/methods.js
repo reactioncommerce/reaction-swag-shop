@@ -60,7 +60,7 @@ async function storeFromAttachedBuffer(fileRecord) {
         }).catch((error) => {
           Logger.error("Error in createWriteStream:", error);
         });
-    };
+    }
   } catch (error) {
     throw new Error("Error in storeFromAttachedBuffer:", error);
   }

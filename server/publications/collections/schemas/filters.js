@@ -1,7 +1,7 @@
 import { getSchemas } from "@reactioncommerce/reaction-collections";
 
 const Schemas = getSchemas();
-const ExtendedFilters = Schemas.filters.extend({
+Schemas.filters.extend({
   featuredProductLabel: {
     type: String,
     optional: true
