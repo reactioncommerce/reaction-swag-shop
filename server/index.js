@@ -1,6 +1,5 @@
-// Use custom schemas
 import "../lib/collections/schemas";
-import "./init";
 import "./publications";
+import "./init";
 import "./requestApproachFromStaff";
 import "./register.js";

@@ -1,65 +1,23 @@
 import _ from "lodash";
 import { Meteor } from "meteor/meteor";
 import { check, Match } from "meteor/check";
-import { Products, Shops, Revisions } from "/lib/collections";
-import { Reaction, Logger } from "/server/api";
-import { RevisionApi } from "/imports/plugins/core/revisions/lib/api/revisions";
-import { findProductMedia } from "/server/publications/collections/product";
+import { Shops, Tags, Catalog } from "/lib/collections";
+import { Logger } from "/server/api";
 import { getSchemas } from "@reactioncommerce/reaction-collections";
 
 
 // Validate the subscription filter against our extended filter schema.
 const Schemas = getSchemas();
-const filters = Schemas.filters;
+const { filters } = Schemas;
 
-/* Replace stock publication with our custom publication that knows how to filter
- * featured products as well.
- */
-Meteor.startup(() => {
-  Meteor.default_server.publish_handlers.Products = publishFeaturedSwagProducts;
-});
-
-/**
- * Swag shop products publication. Knows how to filter for featured products.
- * @param {Number} [productScrollLimit] - optional, defaults to 24
- * @param {Array} shops - array of shopId to retrieve product from.
- * @return {Object} return product cursor
- */
-function publishFeaturedSwagProducts(productScrollLimit = 24, productFilters, sort = {}, editMode = true) {
-  check(productScrollLimit, Number);
-  check(productFilters, Match.OneOf(undefined, Object));
-  check(sort, Match.OneOf(undefined, Object));
-  check(editMode, Match.Maybe(Boolean));
-
-  // TODO: Consider publishing the non-admin publication if a user is not in "edit mode" to see what is published
-
-  // Active shop
-  const shopId = Reaction.getShopId();
-  const primaryShopId = Reaction.getPrimaryShopId();
-
-  // Get a list of shopIds that this user has "createProduct" permissions for (owner permission is checked by default)
-  const userAdminShopIds = Reaction.getShopsWithRoles(["createProduct"], this.userId);
-
-  // Don't publish if we're missing an active or primary shopId
-  if (!shopId || !primaryShopId) {
-    return this.ready();
-  }
-
-  // Get active shop id's to use for filtering
-  const activeShopsIds = Shops.find({
-    $or: [
-      { "workflow.status": "active" },
-      { _id: Reaction.getPrimaryShopId() }
-    ]
-  }).fetch().map(activeShop => activeShop._id);
-
+function filterProducts(productFilters) {
   // if there are filter/params that don't match the schema
   // validate, catch except but return no results
   try {
-    check(productFilters, Match.OneOf(undefined, filters));
+    if (productFilters) filters.validate(productFilters);
   } catch (e) {
     Logger.debug(e, "Invalid Product Filters");
-    return this.ready();
+    return false;
   }
 
   const shopIdsOrSlugs = productFilters && productFilters.shops;
@@ -67,14 +25,11 @@ function publishFeaturedSwagProducts(productScrollLimit = 24, productFilters, so
   if (shopIdsOrSlugs) {
     // Get all shopIds associated with the slug or Id
     const shopIds = Shops.find({
-      $or: [{
-        _id: {
-          $in: shopIdsOrSlugs
-        }
+      "workflow.status": "active",
+      "$or": [{
+        _id: { $in: shopIdsOrSlugs }
       }, {
-        slug: {
-          $in: shopIdsOrSlugs
-        }
+        slug: { $in: shopIdsOrSlugs }
       }]
     }).map((shop) => shop._id);
 
@@ -82,7 +37,7 @@ function publishFeaturedSwagProducts(productScrollLimit = 24, productFilters, so
     if (shopIds) {
       productFilters.shops = shopIds;
     } else {
-      return this.ready();
+      return false;
     }
   }
 
@@ -97,15 +52,9 @@ function publishFeaturedSwagProducts(productScrollLimit = 24, productFilters, so
     // handle multiple shops
     if (productFilters.shops) {
       _.extend(selector, {
-        $or: [{
-          shopId: {
-            $in: productFilters.shops
-          }
-        }, {
-          slug: {
-            $in: productFilters.shops
-          }
-        }]
+        shopId: {
+          $in: productFilters.shops
+        }
       });
     }
 
@@ -224,9 +173,8 @@ function publishFeaturedSwagProducts(productScrollLimit = 24, productFilters, so
         }
       });
     }
-
     // BOF: swag shop featuredProduct filter
-    if (productFilters.hasOwnProperty("featuredProductLabel")) {
+    if (Object.prototype.hasOwnProperty.call(productFilters, "featuredProductLabel")) {
       if (productFilters.featuredProductLabel !== "") {
         _.extend(selector, {
           // Return only featured products that match the label exactly
@@ -241,280 +189,56 @@ function publishFeaturedSwagProducts(productScrollLimit = 24, productFilters, so
         });
       }
     }
+
+    if (Object.prototype.hasOwnProperty.call(productFilters, "relatedTag")) {
+      if (productFilters.relatedTag !== "") {
+        const tag = Tags.findOne({ name: productFilters.relatedTag });
+        if (tag) {
+          _.extend(selector, {
+            hashtags: tag._id,
+            ancestors: { $size: 0 }
+          });
+        }
+      }
+    }
     // EOF: swag shop featuredProduct filter
   } // end if productFilters
 
+  return selector;
+}
 
-  // We publish an admin version of this publication to admins of products who are in "Edit Mode"
-  // Authorized content curators for shops get special publication of the product
-  // with all relevant revisions all is one package
-  // userAdminShopIds is a list of shopIds that the user has createProduct or owner access for
-  if (editMode && userAdminShopIds && Array.isArray(userAdminShopIds) && userAdminShopIds.length > 0) {
-    selector.isVisible = {
-      $in: [true, false, null, undefined]
-    };
-    selector.shopId = {
-      $in: activeShopsIds
-    };
-
-    // Get _ids of top-level products
-    const productIds = Products.find(selector, {
-      sort: sort,
-      limit: productScrollLimit
-    }).map(product => product._id);
-
-    let newSelector = selector;
-
-    // Remove hashtag filter from selector (hashtags are not applied to variants, we need to get variants)
-    if (productFilters && productFilters.tags) {
-      newSelector = _.omit(selector, ["hashtags", "ancestors"]);
-
-      // Re-configure selector to pick either Variants of one of the top-level products, or the top-level products in the filter
-      _.extend(newSelector, {
-        $or: [{
-          ancestors: {
-            $in: productIds
-          }
-        }, {
-          $and: [{
-            hashtags: {
-              $in: productFilters.tags
-            }
-          }, {
-            _id: {
-              $in: productIds
-            }
-          }]
-        }]
-      });
-    } else {
-      newSelector = _.omit(selector, ["hashtags", "ancestors"]);
-      _.extend(newSelector, {
-        $or: [{
-          ancestors: {
-            $in: productIds
-          }
-        }, {
-          _id: {
-            $in: productIds
-          }
-        }]
-      });
-    }
-
-    if (RevisionApi.isRevisionControlEnabled()) {
-      const productCursor = Products.find(newSelector);
-      const handle = productCursor.observeChanges({
-        added: (id, fields) => {
-          const revisions = Revisions.find({
-            "$or": [
-              { documentId: id },
-              { parentDocument: id }
-            ],
-            "workflow.status": {
-              $nin: [
-                "revision/published"
-              ]
-            }
-          }).fetch();
-          fields.__revisions = revisions;
-
-          this.added("Products", id, fields);
-        },
-        changed: (id, fields) => {
-          const revisions = Revisions.find({
-            "$or": [
-              { documentId: id },
-              { parentDocument: id }
-            ],
-            "workflow.status": {
-              $nin: [
-                "revision/published"
-              ]
-            }
-          }).fetch();
-
-          fields.__revisions = revisions;
-          this.changed("Products", id, fields);
-        },
-        removed: (id) => {
-          this.removed("Products", id);
-        }
-      });
-
-      const handle2 = Revisions.find({
-        "workflow.status": {
-          $nin: [
-            "revision/published"
-          ]
-        }
-      }).observe({
-        added: (revision) => {
-          let product;
-          if (!revision.documentType || revision.documentType === "product") {
-            product = Products.findOne(revision.documentId);
-          } else if (revision.documentType === "image" || revision.documentType === "tag") {
-            product = Products.findOne(revision.parentDocument);
-          }
-
-          if (product) {
-            this.added("Products", product._id, product);
-            this.added("Revisions", revision._id, revision);
-          }
-        },
-        changed: (revision) => {
-          let product;
-          if (!revision.documentType || revision.documentType === "product") {
-            product = Products.findOne(revision.documentId);
-          } else if (revision.documentType === "image" || revision.documentType === "tag") {
-            product = Products.findOne(revision.parentDocument);
-          }
-          if (product) {
-            product.__revisions = [revision];
-            this.changed("Products", product._id, product);
-            this.changed("Revisions", revision._id, revision);
-          }
-        },
-        removed: (revision) => {
-          let product;
-
-          if (!revision.documentType || revision.documentType === "product") {
-            product = Products.findOne(revision.documentId);
-          } else if (revision.docuentType === "image" || revision.documentType === "tag") {
-            product = Products.findOne(revision.parentDocument);
-          }
-          if (product) {
-            product.__revisions = [];
-            this.changed("Products", product._id, product);
-            this.removed("Revisions", revision._id, revision);
-          }
-        }
-      });
+/* Replace stock publication with our custom publication that knows how to filter
+ * featured products as well.
+ */
+Meteor.startup(() => {
+  Meteor.default_server.publish_handlers["Products/grid"] = publishFeaturedSwagProducts;
+});
 
 
-      this.onStop(() => {
-        handle.stop();
-        handle2.stop();
-      });
+/**
+ * Swag shop products publication. Knows how to filter for featured products.
+ * @param {Number} [productScrollLimit] - optional, defaults to 24
+ * @param {Array} shops - array of shopId to retrieve product from.
+ * @return {Object} return product cursor
+ */
+function publishFeaturedSwagProducts(productScrollLimit = 24, productFilters, sort = {}) {
+  check(productScrollLimit, Number);
+  check(productFilters, Match.OneOf(undefined, Object));
+  check(sort, Match.OneOf(undefined, Object));
 
-      const mediaProductIds = productCursor.fetch().map((p) => p._id);
-      const mediaCursor = findProductMedia(this, mediaProductIds);
+  const newSelector = filterProducts(productFilters);
 
-      return [
-        mediaCursor
-      ];
-    }
-    // Revision control is disabled, but is admin
-    const productCursor = Products.find(newSelector, {
-      sort: sort,
-      limit: productScrollLimit
-    });
-    const mediaProductIds = productCursor.fetch().map((p) => p._id);
-    const mediaCursor = findProductMedia(this, mediaProductIds);
-
-    return [
-      productCursor,
-      mediaCursor
-    ];
+  if (newSelector === false) {
+    return this.ready();
   }
 
-  // This is where the publication begins for non-admin users
-  // Get _ids of top-level products
-  const productIds = Products.find(selector, {
-    sort: sort,
-    limit: productScrollLimit
-  }).map(product => product._id);
-
-  let newSelector = { ...selector };
-
-  // Remove hashtag filter from selector (hashtags are not applied to variants, we need to get variants)
-  if (productFilters && Object.keys(productFilters).length === 0 && productFilters.constructor === Object) {
-    newSelector = _.omit(selector, ["hashtags", "ancestors"]);
-
-    if (productFilters.tags) {
-      // Re-configure selector to pick either Variants of one of the top-level products,
-      // or the top-level products in the filter
-      _.extend(newSelector, {
-        $or: [{
-          ancestors: {
-            $in: productIds
-          }
-        }, {
-          $and: [{
-            hashtags: {
-              $in: productFilters.tags
-            }
-          }, {
-            _id: {
-              $in: productIds
-            }
-          }]
-        }]
-      });
+  const productCursor = Catalog.find(newSelector, {
+    sort,
+    limit: productScrollLimit,
+    fields: {
+      variants: 0
     }
-    // filter by query
-    if (productFilters.query) {
-      const cond = {
-        $regex: productFilters.query,
-        $options: "i"
-      };
-      _.extend(newSelector, {
-        $or: [{
-          title: cond
-        }, {
-          pageTitle: cond
-        }, {
-          description: cond
-        }, {
-          ancestors: {
-            $in: productIds
-          }
-        },
-        {
-          _id: {
-            $in: productIds
-          }
-        }]
-      });
-    }
-  } else {
-    newSelector = _.omit(selector, ["hashtags", "ancestors"]);
-
-    _.extend(newSelector, {
-      $or: [{
-        ancestors: {
-          $in: productIds
-        }
-      }, {
-        _id: {
-          $in: productIds
-        }
-      }]
-    });
-  }
-
-  // Adjust the selector to include only active shops
-  newSelector = {
-    ...newSelector,
-    shopId: {
-      $in: activeShopsIds
-    }
-  };
-
-  // Returning Complete product tree for top level products to avoid sold out warning.
-  const productCursor = Products.find(newSelector, {
-    sort: sort
-    // TODO: REVIEW Limiting final products publication for non-admins
-    // I think we shouldn't limit here, otherwise we are limited to 24 total products which
-    // could be far less than 24 top-level products
-    // limit: productScrollLimit
   });
 
-  const mediaProductIds = productCursor.fetch().map((p) => p._id);
-  const mediaCursor = findProductMedia(this, mediaProductIds);
-
-  return [
-    productCursor,
-    mediaCursor
-  ];
+  return productCursor;
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { Meteor } from "meteor/meteor";
-import { SimpleSchema } from "meteor/aldeed:simple-schema";
+import SimpleSchema from "simpl-schema";
 import Alert from "sweetalert2";
 import { i18next } from "/client/api";
 import { Validation } from "@reactioncommerce/reaction-collections";
@@ -17,8 +17,8 @@ const EmailFormSchema = new SimpleSchema({
 });
 
 class SwagShopFooter extends React.Component {
-  constructor() {
-    super(...arguments);
+  constructor(...args) {
+    super(...args);
     this.validation = new Validation(EmailFormSchema);
     this.state = {
       email: "",
@@ -94,9 +94,7 @@ class SwagShopFooter extends React.Component {
     }
   }
 
-  isExpanded = (groupName) => {
-    return this.state.expandedCards.includes(groupName);
-  }
+  isExpanded = (groupName) => this.state.expandedCards.includes(groupName);
 
   renderEmailForm() {
     return (

@@ -1,1 +1,1 @@
-import "./productsContainer";
+import "./productsContainerCustomer";

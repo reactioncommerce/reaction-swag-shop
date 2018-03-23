@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Components  } from "@reactioncommerce/reaction-components";
+import { Components } from "@reactioncommerce/reaction-components";
 
 
 const CartIcon = ({ handleClick, cart }) => (
-  <div className="cart-icon" onClick={handleClick}>
+  <div className="cart-icon" onClick={handleClick} role={"presentation"}>
     <span data-event-category="cart">
       <Components.Translation
         className="cart-label"

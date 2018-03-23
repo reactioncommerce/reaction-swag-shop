@@ -12,8 +12,8 @@ import { Tags } from "/lib/collections/index";
  the exported React component is already wrapped with a HOC. We need the rawComponent here to extend.
  */
 class TagItem extends getRawComponent("TagItem") {
-  constructor() {
-    super(...arguments);
+  constructor(...args) {
+    super(...args);
     this.state = {
       popOverIsOpen: false,
       catTileImageUrl: this.tag.catTileImageUrl,
@@ -36,7 +36,7 @@ class TagItem extends getRawComponent("TagItem") {
   }
 
   handleBlur = (event) => {
-    let value = event.currentTarget.value;
+    let { value } = event.currentTarget;
     if (typeof value !== "string") {
       return;
     }
@@ -80,62 +80,62 @@ class TagItem extends getRawComponent("TagItem") {
       "full-width": this.props.fullWidth
     });
 
-    return (
-      this.props.connectDropTarget(
-        <div onMouseLeave={this.handleMouseLeave} className="rui item edit draggable">
-          <div
-            className={baseClassName}
-            data-id={this.props.tag._id}
-          >
-            <form onSubmit={this.handleTagFormSubmit}>
-              <Components.Popover
-                isOpen={this.state.popOverIsOpen}
-                attachment="top left"
-                targetAttachment="bottom left"
-                constraints={[
-                  {
-                    to: "scrollParent",
-                    pin: true
-                  },
-                  {
-                    to: "window",
-                    attachment: "together"
-                  }
-                ]}
-                showDropdownButton={false}
-              >
-                <div ref="popoverContent" onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} className={"tag-image-form"}>
-                  <Components.TextField
-                    label="Category Tile Image URL"
-                    i18nKeyLabel="catTileImageUrl"
-                    type="text"
-                    name="catTileImageUrl"
-                    value={this.state.catTileImageUrl}
-                    onBlur={this.handleBlur}
-                    onChange={this.handleImageUrlChange}
-                  />
-                  <Components.TextField
-                    label="Category Hero Image URL"
-                    i18nKeyLabel="catHeroImageUrl"
-                    type="text"
-                    name="catHeroImageUrl"
-                    value={this.state.catHeroImageUrl}
-                    onBlur={this.handleBlur}
-                    onChange={this.handleImageUrlChange}
-                  />
-                </div>
-              </Components.Popover>
-              <Handle onClick={this.handleHandleClick} connectDragSource={this.props.connectDragSource} />
-              {this.renderAutosuggestInput()}
-              <Button icon="times-circle" onClick={this.handleTagRemove} status="danger" />
-              {this.props.isTagNav &&
-              <Button icon="chevron-down" onClick={this.handleTagSelect} status="default" />
+    return this.props.connectDropTarget(<div onMouseLeave={this.handleMouseLeave} className="rui item edit draggable">
+      <div
+        className={baseClassName}
+        data-id={this.props.tag._id}
+      >
+        <form onSubmit={this.handleTagFormSubmit}>
+          <Components.Popover
+            isOpen={this.state.popOverIsOpen}
+            attachment="top left"
+            targetAttachment="bottom left"
+            constraints={[
+              {
+                to: "scrollParent",
+                pin: true
+              },
+              {
+                to: "window",
+                attachment: "together"
               }
-            </form>
-          </div>
-        </div>
-      )
-    );
+            ]}
+            showDropdownButton={false}
+          >
+            <div ref="popoverContent"
+              onMouseEnter={this.handleMouseEnter}
+              onMouseLeave={this.handleMouseLeave}
+              className={"tag-image-form"}
+            >
+              <Components.TextField
+                label="Category Tile Image URL"
+                i18nKeyLabel="catTileImageUrl"
+                type="text"
+                name="catTileImageUrl"
+                value={this.state.catTileImageUrl}
+                onBlur={this.handleBlur}
+                onChange={this.handleImageUrlChange}
+              />
+              <Components.TextField
+                label="Category Hero Image URL"
+                i18nKeyLabel="catHeroImageUrl"
+                type="text"
+                name="catHeroImageUrl"
+                value={this.state.catHeroImageUrl}
+                onBlur={this.handleBlur}
+                onChange={this.handleImageUrlChange}
+              />
+            </div>
+          </Components.Popover>
+          <Handle onClick={this.handleHandleClick} connectDragSource={this.props.connectDragSource} />
+          {this.renderAutosuggestInput()}
+          <Button icon="times-circle" onClick={this.handleTagRemove} status="danger" />
+          {this.props.isTagNav &&
+          <Button icon="chevron-down" onClick={this.handleTagSelect} status="default" />
+          }
+        </form>
+      </div>
+    </div>);
   }
 }
 

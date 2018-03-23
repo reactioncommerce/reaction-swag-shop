@@ -1,1 +1,2 @@
-export * from "./collections/products";
+import "./collections/schemas";
+import "./collections/products";

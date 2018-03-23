@@ -7,7 +7,7 @@ const methods = {
   "reaction-swag-shop/requestApproachFromStaff": (email) => {
     check(email, String);
 
-    Logger.info("contact person at " + email);
+    Logger.info(`Contact person at ${email}`);
   }
 };
 

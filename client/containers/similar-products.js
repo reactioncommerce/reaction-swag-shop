@@ -1,39 +1,30 @@
 import { Meteor } from "meteor/meteor";
+// import { ReactiveVar } from "meteor/reactive-var";
 import { registerComponent } from "@reactioncommerce/reaction-components";
 import { composeWithTracker } from "/imports/plugins/core/components/lib";
-import { Tags, Products } from "/lib/collections";
+import { Catalog } from "/lib/collections";
 import SimilarProducts from "../components/similar-products";
-import { Media } from "../../../../../../lib/collections";
 
+
+// const reactiveProductIds = new ReactiveVar([], (oldVal, newVal) => JSON.stringify(oldVal.sort()) === JSON.stringify(newVal.sort()));
 
 function composer(props, onData) {
   const { product } = props;
-  const ProductsSub = Meteor.subscribe("Products", 100);
-  if (ProductsSub.ready()) {
-    const tag = Tags.findOne({ name: product.relatedTag }, { _id: 1 });
-    let similarProducts = [];
-    if (tag) {
-      similarProducts = Products.find({
-        hashtags: tag._id,
-        ancestors: { $size: 0 }
-      }).fetch();
-    }
-
-    const productMedia = (index) => {
-      const media = Media.findOne({
-        "metadata.productId": similarProducts[index]._id,
-        "metadata.toGrid": 1
-      }, {
-        sort: { "metadata.priority": 1, "uploadedAt": 1 }
+  const queryParams = {
+    relatedTag: product.relatedTag ? product.relatedTag : ""
+  };
+  const productsSub = Meteor.subscribe("Products/grid", 5, queryParams);
+  if (productsSub.ready()) {
+    const products = Catalog.find();
+    const productIds = products.map((p) => p._id);
+    // reactiveProductIds.set(productIds);
+    const mediaSub = Meteor.subscribe("ProductGridMedia", productIds);
+    if (mediaSub.ready()) {
+      onData(null, {
+        ...props,
+        products: products.fetch()
       });
-      return media instanceof FS.File ? media : false;
-    };
-
-    onData(null, {
-      ...props,
-      productMedia: productMedia,
-      products: similarProducts
-    });
+    }
   }
 }
 
