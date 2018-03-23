@@ -5,6 +5,7 @@ import { FileRecord } from "@reactioncommerce/file-collections";
 import { Shops, Products, Tags, Shipping, MediaRecords, Packages, Catalog } from "/lib/collections";
 import { Media } from "/imports/plugins/core/files/server";
 import { Logger, Reaction } from "/server/api";
+import { publishProductsToCatalog } from "/imports/plugins/core/catalog/server/methods/catalog";
 
 function checkForShops() {
   const numShops = Shops.find().count();
@@ -98,11 +99,8 @@ methods.loadProducts = function () {
 
 methods.publishProducts = function () {
   if (!checkForCatalog()) {
-    const userId = Meteor.users.findOne({ name: "Admin" })._id;
     const productIds = Products.find({ type: "simple" }).map((doc) => doc._id);
-    Meteor.runAsUser(userId, () => {
-      Meteor.call("catalog/publish/products", productIds);
-    });
+    publishProductsToCatalog(productIds);
   }
 };
 
