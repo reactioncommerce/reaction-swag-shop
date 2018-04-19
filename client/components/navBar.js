@@ -21,13 +21,19 @@ class NavBar extends NavBarCore {
   renderSearchButton() {
     if (this.props.searchEnabled) {
       return (
-        <div onClick={this.handleOpenSearchModal} className="search" role="presentation">
-          <Components.FlatButton
-            icon="fa fa-search"
-            kind="flat"
+        <div>
+          <div onClick={this.handleOpenSearchModal} className="search" role="presentation">
+            <Components.FlatButton
+              icon="fa fa-search"
+              kind="flat"
+            />
+            <Components.Translation className="search-label" defaultValue="search" i18nKey="admin.dashboard.searchLabel" />
+          </div>
+          <Components.SearchSubscription
+              open={this.state.searchModalOpen}
+              onClose={this.handleCloseSearchModal}
           />
-          <Components.Translation className="search-label" defaultValue="search" i18nKey="admin.dashboard.searchLabel" />
-        </div>
+        </div
       );
     }
   }
