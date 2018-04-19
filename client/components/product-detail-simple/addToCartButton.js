@@ -27,7 +27,7 @@ class AddToCartButton extends getRawComponent("AddToCartButton") {
       return {
         value: prev.value + value
       };
-    });
+    },() => this.props.onCartQuantityChange(null, this.state.value) );
   };
 
   render() {
