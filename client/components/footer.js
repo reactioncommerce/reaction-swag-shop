@@ -3,7 +3,7 @@ import { Meteor } from "meteor/meteor";
 import SimpleSchema from "simpl-schema";
 import Alert from "sweetalert2";
 import { i18next } from "/client/api";
-import { Validation } from "@reactioncommerce/reaction-collections";
+import { Validation } from "@reactioncommerce/schemas";
 import { registerComponent, Components } from "@reactioncommerce/reaction-components";
 import { Card, CardHeader, CardBody } from "/imports/plugins/core/ui/client/components";
 

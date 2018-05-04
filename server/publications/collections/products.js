@@ -1,13 +1,11 @@
 import _ from "lodash";
 import { Meteor } from "meteor/meteor";
 import { check, Match } from "meteor/check";
+import Schemas from "@reactioncommerce/schemas";
 import { Shops, Tags, Catalog } from "/lib/collections";
 import { Logger } from "/server/api";
-import { getSchemas } from "@reactioncommerce/reaction-collections";
-
 
 // Validate the subscription filter against our extended filter schema.
-const Schemas = getSchemas();
 const { filters } = Schemas;
 
 function filterProducts(productFilters) {
