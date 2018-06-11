@@ -71,7 +71,7 @@ class ProductGrid extends ProductGridCore {
         const insertAt = (products.length && Math.ceil(products.length / 2)) || 0;
         products.splice(insertAt, 0, { src: "/plugins/reaction-swag-shop/mountain-road.jpg" });
       }
-      const currentTag = ReactionProduct.getTag();
+      const currentTag = Reaction.getCurrentTag();
       return products.map((product, index) => {
         if (product.src) {
           return (
