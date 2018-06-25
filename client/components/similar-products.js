@@ -8,7 +8,8 @@ import { ReactionProduct } from "/lib/api";
 class SimilarProducts extends Component {
   static propTypes = {
     productMedia: PropTypes.func,
-    products: PropTypes.arrayOf(PropTypes.object)
+    products: PropTypes.arrayOf(PropTypes.object),
+    shopCurrencyCode: PropTypes.string.isRequired
   }
 
   handleClick = (event, handle) => {
@@ -20,9 +21,9 @@ class SimilarProducts extends Component {
   }
 
   render() {
-    const { products } = this.props;
+    const { products, shopCurrencyCode } = this.props;
     if (products && products.length > 0) {
-      const currentTag = ReactionProduct.getTag();
+      const currentTag = ReactionProduct.getTagIdForPosition();
       return (
         <div className="similar-block">
           <div>
@@ -37,6 +38,7 @@ class SimilarProducts extends Component {
                 product={product}
                 position={(product.positions && product.positions[currentTag]) || {}}
                 showFeaturedLabel={false}
+                shopCurrencyCode={shopCurrencyCode}
               />)}
           </div>
         </div>);

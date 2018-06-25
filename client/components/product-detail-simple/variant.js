@@ -45,7 +45,6 @@ class Variant extends getRawComponent("Variant") {
 
           <div className="alerts">
             {this.renderDeletionStatus()}
-            {this.renderInventoryStatus()}
             {this.renderValidationButton()}
             {this.props.editButton}
           </div>

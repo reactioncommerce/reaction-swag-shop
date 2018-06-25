@@ -1,2 +1,2 @@
 import "./icon/index";
-import "./tags";
+// import "./tags";

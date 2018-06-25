@@ -242,7 +242,7 @@ class SwagShopFooter extends React.Component {
   renderBottomLine() {
     return (
       <div className="bottomline row">
-        &copy;{"2017 REACTION COMMERCE, INC. Privacy & Terms"}
+        REACTION COMMERCE, INC. &copy;2018 | <a href="https://reactioncommerce.com/legal">Legal</a>
       </div>
     );
   }

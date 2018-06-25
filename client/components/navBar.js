@@ -1,9 +1,9 @@
 import React from "react";
-import { Components } from "@reactioncommerce/reaction-components";
-import NavBarCore from "/imports/plugins/core/ui-navbar/client/components/navbar";
+import { Components, getRawComponent, replaceComponent } from "@reactioncommerce/reaction-components";
+// import NavBarCore from "/imports/plugins/core/ui-navbar/client/components/navbar";
 
 
-class NavBar extends NavBarCore {
+class NavBar extends getRawComponent("NavBar") {
   static defaultProps = {
     visibility: {
       hamburger: true,
@@ -32,6 +32,8 @@ class NavBar extends NavBarCore {
     }
   }
 }
+
+replaceComponent("NavBar", NavBar);
 
 export default NavBar;
 
