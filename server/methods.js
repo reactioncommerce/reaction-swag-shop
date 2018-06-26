@@ -102,6 +102,7 @@ methods.loadProducts = function () {
 
 methods.publishProducts = function () {
   if (!checkForCatalog()) {
+    Logger.info("Publishing swag shop products.")
     const productIds = Products.find({ type: "simple" }).map((doc) => doc._id);
     Promise.await(publishProductsToCatalog(productIds, collections));
   }
@@ -172,33 +173,43 @@ methods.importProductImages = function () {
   if (!checkForMedia()) {
     const products = Products.find({ type: "simple" }).fetch();
     for (const product of products) {
-      const productId = product._id;
-      if (!MediaRecords.findOne({ "metadata.productId": productId })) {
-        const { shopId } = product;
-        const filepath = `plugins/reaction-swag-shop/images/${productId}.jpg`;
-        const uint8array = Assets.getBinary(filepath);
-        const topVariant = getTopVariant(productId);
-
-        const metadata = {
-          productId,
+      const fileName = `${product._id}.jpg`;
+      const filepath = `plugins/reaction-swag-shop/images/${fileName}`;
+      const binary = Assets.getBinary(filepath);
+      const buffer = new Buffer(binary);
+      const fileRecord = new FileRecord({
+        original: {
+          name: fileName,
+          size: buffer.length,
+          type: "image/jpeg",
+          updatedAt: new Date()
+        }
+      });
+      fileRecord.attachData(buffer);
+      const { shopId } = product;
+      if (product.type === "simple") {
+        const topVariant = getTopVariant(product._id);
+        fileRecord.metadata = {
+          productId: product._id,
           variantId: topVariant._id,
           toGrid: 1,
           shopId,
           priority: 0,
           workflow: "published"
         };
-        const fileRecord = new FileRecord({
-          original: {
-            size: uint8array.length,
-            name: `${productId}.jpg`,
-            type: "image/jpeg"
-          }
-        });
-        fileRecord.attachData(new Buffer(uint8array));
-        fileRecord.metadata = metadata;
-        Media.insert(fileRecord);
-        Promise.await(storeFromAttachedBuffer(fileRecord));
+      } else {
+        const parent = getPrimaryProduct(product);
+        fileRecord.metadata = {
+          productId: parent._id,
+          variantId: product._id,
+          toGrid: 1,
+          shopId,
+          priority: 0,
+          workflow: "published"
+        };
       }
+      Promise.await(Media.insert(fileRecord));
+      Promise.await(storeFromAttachedBuffer(fileRecord));
     }
     Logger.info("Loaded swag product images");
   } else {

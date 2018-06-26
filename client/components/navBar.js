@@ -1,6 +1,6 @@
 import React from "react";
 import { Components, getRawComponent, replaceComponent } from "@reactioncommerce/reaction-components";
-// import NavBarCore from "/imports/plugins/core/ui-navbar/client/components/navbar";
+import { i18next } from "/client/api";
 
 
 class NavBar extends getRawComponent("NavBar") {
@@ -21,12 +21,19 @@ class NavBar extends getRawComponent("NavBar") {
   renderSearchButton() {
     if (this.props.searchEnabled) {
       return (
-        <div onClick={this.handleOpenSearchModal} className="search" role="presentation">
+        <div className="search">
           <Components.FlatButton
-            icon="fa fa-search"
             kind="flat"
+            onClick={this.handleOpenSearchModal}
+          >
+            <span>{i18next.t("admin.dashboard.searchLabel", "Search")}</span>
+            &nbsp;
+            <i className="fa fa-search"/>
+          </Components.FlatButton>
+          <Components.SearchSubscription
+            open={this.state.searchModalOpen}
+            onClose={this.handleCloseSearchModal}
           />
-          <Components.Translation className="search-label" defaultValue="search" i18nKey="admin.dashboard.searchLabel" />
         </div>
       );
     }

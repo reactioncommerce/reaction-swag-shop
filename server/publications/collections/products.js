@@ -367,8 +367,6 @@ function publishFeaturedSwagProducts(productScrollLimit = 24, productFilters, so
   if (productFilters && Array.isArray(productFilters.tagIds) && productFilters.tagIds.length) {
     [tagIdForPosition] = productFilters.tagIds;
   }
-
-  console.log(newSelector);
   
   return Catalog.find(newSelector, {
     sort: {

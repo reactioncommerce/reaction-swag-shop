@@ -15,8 +15,8 @@ Hooks.Events.add("afterCoreInit", () => {
   methods.loadShops();
   methods.loadProducts();
   methods.importProductImages();
-  methods.publishProducts();
   methods.loadTags();
+  methods.publishProducts();
   methods.loadShipping();
   methods.enableShipping();
   methods.enablePayment();

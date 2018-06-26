@@ -39,6 +39,7 @@ class SimilarProducts extends Component {
                 position={(product.positions && product.positions[currentTag]) || {}}
                 showFeaturedLabel={false}
                 shopCurrencyCode={shopCurrencyCode}
+                similarProducts={true}
               />)}
           </div>
         </div>);
