@@ -52,78 +52,7 @@
           }
         }
       ]
-    ],
-    "env": {
-      "devserver": {
-        "presets": [
-          [
-            "@babel/env",
-            {
-              "targets": {
-                "node": "current"
-              }
-            }
-          ],
-          [
-            "@babel/preset-stage-2",
-            {
-              "decoratorsLegacy": true
-            }
-          ]
-        ],
-        "plugins": [
-          "babel-plugin-inline-import",
-          [
-            "module-resolver",
-            {
-              "root": [
-                "./"
-              ],
-              "alias": {
-                "@reactioncommerce/reaction-components": "./imports/plugins/core/components/lib",
-                "meteor": "./.reaction/devserver/mockmeteor",
-                "underscore": "lodash"
-              }
-            }
-          ]
-        ]
-      },
-      "jesttest": {
-        "presets": [
-          [
-            "@babel/env",
-            {
-              "targets": {
-                "node": "current"
-              }
-            }
-          ],
-          [
-            "@babel/preset-stage-2",
-            {
-              "decoratorsLegacy": true
-            }
-          ]
-        ],
-        "plugins": [
-          "rewire-exports",
-          "babel-plugin-inline-import",
-          [
-            "module-resolver",
-            {
-              "root": [
-                "./"
-              ],
-              "alias": {
-                "@reactioncommerce/reaction-components": "./imports/plugins/core/components/lib",
-                "meteor": "./imports/test-utils/__mocks__/meteor",
-                "underscore": "lodash"
-              }
-            }
-          ]
-        ]
-      }
-    }
+    ]
   },
   "eslintConfig": {
     "extends": "@reactioncommerce"

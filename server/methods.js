@@ -2,11 +2,12 @@ import { Meteor } from "meteor/meteor";
 import { check } from "meteor/check";
 import bufferStreamReader from "buffer-stream-reader";
 import { FileRecord } from "@reactioncommerce/file-collections";
+import Logger from "@reactioncommerce/logger";
 import { Shops, Products, Tags, Shipping, MediaRecords, Packages, Catalog } from "/lib/collections";
 import collections from "/imports/collections/rawCollections";
+import Reaction from "/imports/plugins/core/core/server/Reaction";
 import publishProductsToCatalog from "/imports/plugins/core/catalog/server/no-meteor/utils/publishProductsToCatalog";
 import { Media } from "/imports/plugins/core/files/server";
-import { Logger, Reaction } from "/server/api";
 
 function checkForShops() {
   const numShops = Shops.find().count();

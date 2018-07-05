@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Components } from "@reactioncommerce/reaction-components";
+import Logger from "@reactioncommerce/logger";
 import ProductGridCore from "/imports/plugins/included/product-variant/components/customer/productGrid";
 import { Reaction } from "/client/api/index";
-import { ReactionProduct, Logger } from "/lib/api";
+import { ReactionProduct } from "/lib/api";
 
 
 class ProductGrid extends ProductGridCore {
