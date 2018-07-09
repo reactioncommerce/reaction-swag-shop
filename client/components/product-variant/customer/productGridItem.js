@@ -1,22 +1,39 @@
 import React from "react";
 import { PropTypes } from "prop-types";
+import { $ } from "meteor/jquery";
 import { replaceComponent } from "@reactioncommerce/reaction-components";
+import { Router } from "/client/api";
 import ProductGridItemCore from "/imports/plugins/included/product-variant/components/customer/productGridItem";
 
 
 class ProductGridItem extends ProductGridItemCore {
   static propTypes = {
     showFeaturedLabel: PropTypes.bool,
+    similarProducts: PropTypes.bool,
     ...ProductGridItemCore.propTypes
   };
 
   static defaultProps = {
-    showFeaturedLabel: true
+    showFeaturedLabel: true,
+    similarProducts: false
   };
+
+  handleClick = (event) => {
+    event.preventDefault();
+    Router.go(this.productURL);
+    if (this.props.similarProducts) {
+      $("html,body").animate(
+        {
+          scrollTop: 0
+        },
+        0
+      );
+    }
+  }
 
   static labelColorPalette = [
     "#2899D3", // blue
-    "#40e0d0", // turquoise
+    "#40E0D0", // turquoise
     "#F2542F" // orange
   ];
 

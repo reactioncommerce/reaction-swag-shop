@@ -12,10 +12,11 @@ Hooks.Events.add("beforeCoreInit", () => {
 
 Hooks.Events.add("afterCoreInit", () => {
   methods.initLayout();
+  methods.loadShops();
   methods.loadProducts();
   methods.importProductImages();
-  methods.publishProducts();
   methods.loadTags();
+  methods.publishProducts();
   methods.loadShipping();
   methods.enableShipping();
   methods.enablePayment();

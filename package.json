@@ -28,6 +28,9 @@
   },
   "babel": {
     "plugins": [
+      "transform-class-properties",
+      "dynamic-import-node",
+      "babel-plugin-inline-import",
       [
         "lodash",
         {
@@ -44,32 +47,21 @@
             "./"
           ],
           "alias": {
-            "@reactioncommerce/reaction-collections": "./imports/plugins/core/collections",
             "@reactioncommerce/reaction-components": "./imports/plugins/core/components/lib",
-            "@reactioncommerce/reaction-router": "./imports/plugins/core/router/lib",
-            "@reactioncommerce/reaction-ui": "./imports/plugins/core/ui/client/components",
             "underscore": "lodash"
           }
         }
       ]
-    ],
-    "presets": [
-      "env",
-      "react",
-      "stage-2"
     ]
   },
   "eslintConfig": {
     "extends": "@reactioncommerce"
   },
   "devDependencies": {
-    "eslint-import-resolver-meteor": "^0.4.0",
-    "babel-eslint": "^8.2.1",
     "@reactioncommerce/eslint-config": "^1.0.1",
     "eslint": "^4.17.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.6.1",
-    "eslint-plugin-jest": "^21.14.0"
+    "eslint-plugin-react": "^7.6.1"
   }
 }

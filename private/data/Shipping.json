@@ -1,5 +1,6 @@
 [{
   "name": "Default shipping provider",
+  "shopId": "J8Bhq3uTtdgwZx3rz",
   "methods": [{
     "name": "Free",
     "label": "Free Shipping",

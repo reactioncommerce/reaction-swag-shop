@@ -3,9 +3,10 @@ import { check } from "meteor/check";
 import bufferStreamReader from "buffer-stream-reader";
 import { FileRecord } from "@reactioncommerce/file-collections";
 import { Shops, Products, Tags, Shipping, MediaRecords, Packages, Catalog } from "/lib/collections";
+import collections from "/imports/collections/rawCollections";
+import publishProductsToCatalog from "/imports/plugins/core/catalog/server/no-meteor/utils/publishProductsToCatalog";
 import { Media } from "/imports/plugins/core/files/server";
 import { Logger, Reaction } from "/server/api";
-import { publishProductsToCatalog } from "/imports/plugins/core/catalog/server/methods/catalog";
 
 function checkForShops() {
   const numShops = Shops.find().count();
@@ -70,19 +71,21 @@ async function storeFromAttachedBuffer(fileRecord) {
 const methods = {};
 
 methods.loadShops = function () {
-  Logger.info("Starting load Shops");
+  Logger.info("Started loading swag shop");
   if (!checkForShops()) {
     const shops = require("../private/data/Shops.json");
     shops.forEach((shop) => {
       Shops.insert(shop);
       Logger.info(`Inserted shop: ${shop.name}`);
     });
-    Logger.info("Shops loaded");
+    Logger.info("Swag shop loaded");
+  } else {
+    Logger.info("Shop already exists.");
   }
 };
 
 methods.loadProducts = function () {
-  Logger.info("Starting load Products");
+  Logger.info("Started loading swag shop products");
   if (!checkForProducts()) {
     const products = require("../private/data/Products.json");
     products.forEach((product) => {
@@ -91,39 +94,40 @@ methods.loadProducts = function () {
       product.updatedAt = new Date();
       Products.insert(product, {}, { publish: true });
     });
-    Logger.info("Products loaded");
+    Logger.info("Swag shop products loaded");
   } else {
-    Logger.info("Products skipped. Already exists");
+    Logger.info("Loading swag shop products skipped. Products already exist");
   }
 };
 
 methods.publishProducts = function () {
   if (!checkForCatalog()) {
+    Logger.info("Publishing swag shop products.")
     const productIds = Products.find({ type: "simple" }).map((doc) => doc._id);
-    publishProductsToCatalog(productIds);
+    Promise.await(publishProductsToCatalog(productIds, collections));
   }
 };
 
 methods.loadTags = function () {
   if (!checkForTags()) {
-    Logger.info("Starting load Tags");
+    Logger.info("Started loading swag shop tags");
     const tags = require("../private/data/Tags.json");
     tags.forEach((tag) => {
       tag.updatedAt = new Date();
       Tags.insert(tag);
     });
-    Logger.info("Tags loaded");
+    Logger.info("Swag shop tags loaded");
   }
 };
 
 methods.loadShipping = function () {
   if (!checkForShipping()) {
-    Logger.info("Starting load Shipping");
+    Logger.info("Started loading swag shop shipping settings");
     const shipping = require("../private/data/Shipping.json");
     shipping.forEach((shippingRecord) => {
       Shipping.insert(shippingRecord);
     });
-    Logger.info("Shipping loaded");
+    Logger.info("Swag shop shipping settings loaded");
   }
 };
 
@@ -165,41 +169,51 @@ function getTopVariant(productId) {
 }
 
 methods.importProductImages = function () {
-  Logger.info("Started loading product images");
+  Logger.info("Started loading swag shop product images");
   if (!checkForMedia()) {
     const products = Products.find({ type: "simple" }).fetch();
     for (const product of products) {
-      const productId = product._id;
-      if (!MediaRecords.findOne({ "metadata.productId": productId })) {
-        const { shopId } = product;
-        const filepath = `plugins/reaction-swag-shop/images/${productId}.jpg`;
-        const uint8array = Assets.getBinary(filepath);
-        const topVariant = getTopVariant(productId);
-
-        const metadata = {
-          productId,
+      const fileName = `${product._id}.jpg`;
+      const filepath = `plugins/reaction-swag-shop/images/${fileName}`;
+      const binary = Assets.getBinary(filepath);
+      const buffer = new Buffer(binary);
+      const fileRecord = new FileRecord({
+        original: {
+          name: fileName,
+          size: buffer.length,
+          type: "image/jpeg",
+          updatedAt: new Date()
+        }
+      });
+      fileRecord.attachData(buffer);
+      const { shopId } = product;
+      if (product.type === "simple") {
+        const topVariant = getTopVariant(product._id);
+        fileRecord.metadata = {
+          productId: product._id,
           variantId: topVariant._id,
           toGrid: 1,
           shopId,
           priority: 0,
           workflow: "published"
         };
-        const fileRecord = new FileRecord({
-          original: {
-            size: uint8array.length,
-            name: `${productId}.jpg`,
-            type: "image/jpeg"
-          }
-        });
-        fileRecord.attachData(new Buffer(uint8array));
-        fileRecord.metadata = metadata;
-        Media.insert(fileRecord);
-        Promise.await(storeFromAttachedBuffer(fileRecord));
+      } else {
+        const parent = getPrimaryProduct(product);
+        fileRecord.metadata = {
+          productId: parent._id,
+          variantId: product._id,
+          toGrid: 1,
+          shopId,
+          priority: 0,
+          workflow: "published"
+        };
       }
+      Promise.await(Media.insert(fileRecord));
+      Promise.await(storeFromAttachedBuffer(fileRecord));
     }
-    Logger.info("loaded product images");
+    Logger.info("Loaded swag product images");
   } else {
-    Logger.info("Skipped loading product images");
+    Logger.info("Skipped loading swag shop product images");
   }
 };
 

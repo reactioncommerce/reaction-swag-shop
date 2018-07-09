@@ -71,7 +71,7 @@ class ProductGrid extends ProductGridCore {
         const insertAt = (products.length && Math.ceil(products.length / 2)) || 0;
         products.splice(insertAt, 0, { src: "/plugins/reaction-swag-shop/mountain-road.jpg" });
       }
-      const currentTag = ReactionProduct.getTag();
+      const currentTag = ReactionProduct.getTagIdForPosition();
       return products.map((product, index) => {
         if (product.src) {
           return (
@@ -129,12 +129,6 @@ class ProductGrid extends ProductGridCore {
     return chunks;
   }
 
-  shopAllLabel() {
-    return (
-      <span><Components.Translation defaultValue={"Shop all products"} i18nKey={"shopAllProducts"} />&nbsp;<i className="fa fa-long-arrow-right" /></span>
-    );
-  }
-
   renderCategories() {
     return (
       <div className={"categories row"}>
@@ -143,7 +137,10 @@ class ProductGrid extends ProductGridCore {
             <div className={"btn-essentials"}>
               <Components.Button
                 className={"btn-blue"}
-                label={this.shopAllLabel()}
+                label={"Shop all products"}
+                i18nKeyLabel={"shopAllProducts"}
+                icon={"fa fa-long-arrow-right"}
+                iconAfter
                 bezelStyle={"solid"}
                 primary={false}
                 type="button"
