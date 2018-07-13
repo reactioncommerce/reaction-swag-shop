@@ -87,7 +87,13 @@ function composer(props, onData) {
   canLoadMoreProducts = catalogCursor.count() >= scrollLimit;
 
   // BOF: swag shop tags for category tiles
-  tags = Tags.find({ isTopLevel: true }, { sort: { position: 1 } }).fetch();
+  tags = Tags.find({
+    isTopLevel: true,
+    catTileImageUrl: {
+      $exists: true,
+      $ne: ""
+    }
+  }, { sort: { position: 1 } }).fetch();
   tags = _.sortBy(tags, "position"); // puts tags without position at end of array
   // EOF: swag shop tags for category tiles
 
@@ -96,7 +102,7 @@ function composer(props, onData) {
   const currentShop = Shops.findOne({
     _id: Reaction.getPrimaryShopId()
   });
-  
+
   onData(null, {
     canLoadMoreProducts,
     products,
