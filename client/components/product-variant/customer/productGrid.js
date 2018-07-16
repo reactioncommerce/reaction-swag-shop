@@ -5,7 +5,7 @@ import Logger from "@reactioncommerce/logger";
 import ProductGridCore from "/imports/plugins/included/product-variant/components/customer/productGrid";
 import { Reaction } from "/client/api/index";
 import { ReactionProduct } from "/lib/api";
-
+import Link from "../../Link";
 
 class ProductGrid extends ProductGridCore {
   static propTypes = {
@@ -18,10 +18,6 @@ class ProductGrid extends ProductGridCore {
   constructor(...args) {
     super(...args);
     this.tagRouteSlug = Reaction.Router.getParam("slug");
-  }
-
-  heroClicked = () => {
-    Logger.info("clicked");
   }
 
   renderHero() {
@@ -50,15 +46,12 @@ class ProductGrid extends ProductGridCore {
           <div className="hero-huge-text">
             <Components.Translation defaultValue={"You’re in the right place."} i18nKey={"youAreInTheRightPlace"} />
           </div>
-          <Components.Button
-            className="hero__button"
-            label={"Shop swag"}
-            i18nKeyLabel={"shopSwag"}
-            bezelStyle={"solid"}
-            primary={true}
-            type="button"
-            onClick={this.heroClicked}
-          />
+          <a
+            href="#featured-swag"
+            className="rui btn btn-primary solid hero__button"
+          >
+            <Components.Translation defaultValue={"Shop swag"} i18nKey={"shopSwag"} />
+          </a>
         </div>
       </div>
     );
@@ -106,10 +99,10 @@ class ProductGrid extends ProductGridCore {
   renderCategory(tag) {
     return (
       <div className={"cat-tile col-xs-12"} key={tag._id}>
-        <a href={`/tag/${tag.slug}`}>
+        <Link href={`/tag/${tag.slug}`}>
           <img alt={tag.name} src={`/plugins/reaction-swag-shop/${tag.catTileImageUrl}`} />
           <span className={"category"}>{tag.name}</span>
-        </a>
+        </Link>
       </div>
     );
   }
@@ -136,17 +129,13 @@ class ProductGrid extends ProductGridCore {
         <div className={"cat-tile col-xs-12 col-sm-push-4 col-sm-4"}>
           <div className={"pic-essentials"}>
             <div className={"btn-essentials"}>
-              <Components.Button
-                className={"btn-blue"}
-                label={"Shop all products"}
-                i18nKeyLabel={"shopAllProducts"}
-                icon={"fa fa-long-arrow-right"}
-                iconAfter
-                bezelStyle={"solid"}
-                primary={false}
-                type="button"
-                onClick={this.heroClicked}
-              />
+              <a
+                href="#featured-swag"
+                className="rui btn btn-default solid btn-blue"
+              >
+                <Components.Translation defaultValue={"Shop all products"} i18nKey={"shopAllProducts"} />
+                <i className="rui font-icon fa fa-long-arrow-right" role="presentation"></i>
+              </a>
             </div>
           </div>
         </div>
@@ -160,7 +149,7 @@ class ProductGrid extends ProductGridCore {
       <div>
         {this.renderHero()}
         {!this.tagRouteSlug && this.props.tags && this.renderCategories()}
-        <div className="container-main">
+        <div className="container-main" id="featured-swag">
           {!this.tagRouteSlug &&
           <div className="row">
             <div className="text-center">
