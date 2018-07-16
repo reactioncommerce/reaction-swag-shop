@@ -8,6 +8,7 @@ import collections from "/imports/collections/rawCollections";
 import Reaction from "/imports/plugins/core/core/server/Reaction";
 import publishProductsToCatalog from "/imports/plugins/core/catalog/server/no-meteor/utils/publishProductsToCatalog";
 import { Media } from "/imports/plugins/core/files/server";
+import copyProductFieldsToCatalog from "./lib/copyProductFieldsToCatalog";
 
 function checkForShops() {
   const numShops = Shops.find().count();
@@ -107,13 +108,10 @@ methods.publishProducts = function () {
     const productIds = Products.find({ type: "simple" }).map((doc) => doc._id);
     Promise.await(publishProductsToCatalog(productIds, collections));
 
-    // Manually set relatedTag and relatedTagId on Catalog documents
+    // Manually set custom fields on Catalog documents
     productIds.forEach(productId => {
-      const product = Products.findOne({ _id: productId });
-      const selector = { "product.productId": productId};
-      const modifier = { $set: { "product.relatedTag": product.relatedTag, "product.relatedTagId": product.relatedTagId } };
-      Catalog.update(selector, modifier);
-    })
+      copyProductFieldsToCatalog(productId);
+    });
   }
 };
 
