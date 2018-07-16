@@ -106,6 +106,14 @@ methods.publishProducts = function () {
     Logger.info("Publishing swag shop products.")
     const productIds = Products.find({ type: "simple" }).map((doc) => doc._id);
     Promise.await(publishProductsToCatalog(productIds, collections));
+
+    // Manually set relatedTag and relatedTagId on Catalog documents
+    productIds.forEach(productId => {
+      const product = Products.findOne({ _id: productId });
+      const selector = { "product.productId": productId};
+      const modifier = { $set: { "product.relatedTag": product.relatedTag, "product.relatedTagId": product.relatedTagId } };
+      Catalog.update(selector, modifier);
+    })
   }
 };
 
@@ -233,23 +241,46 @@ methods.setupRoutes = function () {
   );
 };
 
-methods.createTag = function (name) {
-  check(name, String);
-  const existingTag = Tags.findOne({ name });
-  // keep the tag names unique
-  if (!existingTag) {
-    const tag = {
-      name,
-      slug: Reaction.getSlug(name),
+/**
+ * @name createRelatedTag
+ * @summary Inserts a new tag known as a product's "related tag" based on product's handle.
+ *  Ex: Product handle = "reaction-mug". Tag is created w/ name "reaction-mug-related".
+ *  Other products can be tagged with "reaction-mug-related" in order to appear on Mug's "Similar Products" block.
+ * @param {String} productId - _id of product
+ * @returns {undefined}
+ */
+methods.createRelatedTag = function (productId) {
+  check(productId, String);
+
+  const product = Products.findOne({ _id: productId }, { fields: { handle: 1 } });
+  if (!product) {
+    throw new Meteor.Error("not-found", "Product not found");
+  }
+
+  const relatedTagName = `${product.handle}-related`;
+  const relatedTag = Tags.findOne({ name: relatedTagName });
+
+  let relatedTagId = "";
+  if (relatedTag) {
+    relatedTagId = relatedTag._id;
+  } else {
+    relatedTagId = Tags.insert({
+      name: relatedTagName,
+      shopId: Reaction.getPrimaryShopId(),
+      slug: Reaction.getSlug(relatedTagName),
       isTopLevel: false,
       updatedAt: new Date(),
       createdAt: new Date()
-    };
-
-    return Tags.insert(tag);
+    });
   }
+
+  // Add relatedTagId to product
+  Products.update({ _id: productId },
+    { $set: { relatedTag: relatedTagName, relatedTagId } },
+    { selector: { type: "simple" }, publish: true }
+  );
 };
 
-Meteor.methods({ createTag: methods.createTag });
+Meteor.methods({ createRelatedTag: methods.createRelatedTag });
 
 export default methods;
