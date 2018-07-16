@@ -5,6 +5,7 @@
 	"shopId": "J8Bhq3uTtdgwZx3rz",
 	"title": "Reaction Bag of Beans",
 	"relatedTag": "reaction-bag-of-beans-related",
+	"relatedTagId": "hZdSevCBP8dDc66Bb",
 	"originCountry": "US",
 	"requiresShipping": true,
 	"handle": "reaction-bag-of-beans",
@@ -126,6 +127,7 @@
 	"shopId": "J8Bhq3uTtdgwZx3rz",
 	"title": "Reaction Mug",
 	"relatedTag": "reaction-mug-related",
+	"relatedTagId": "hZdSevCBP8dDc66Bc",
 	"originCountry": "US",
 	"requiresShipping": true,
 	"handle": "reaction-mug",
@@ -190,6 +192,7 @@
 	"shopId": "J8Bhq3uTtdgwZx3rz",
 	"title": "Reaction Commerce Pouch",
 	"relatedTag": "reaction-commerce-pouch-related",
+	"relatedTagId": "hZdSevCBP8dDc66Bd",
 	"originCountry": "US",
 	"requiresShipping": true,
 	"handle": "reaction-commerce-pouch",
@@ -249,6 +252,7 @@
 	"shopId": "J8Bhq3uTtdgwZx3rz",
 	"title": "Reaction Scout Book",
 	"relatedTag": "reaction-scout-book-related",
+	"relatedTagId": "hZdSevCBP8dDc66Be",
 	"originCountry": "US",
 	"requiresShipping": true,
 	"handle": "reaction-scout-book",
@@ -307,6 +311,7 @@
 	"shopId": "J8Bhq3uTtdgwZx3rz",
 	"title": "Reaction Ladies Shirt",
 	"relatedTag": "reaction-ladies-shirt-related",
+	"relatedTagId": "hZdSevCBP8dDc66Bf",
 	"originCountry": "US",
 	"requiresShipping": true,
 	"handle": "reaction-ladies-shirt",
@@ -483,6 +488,7 @@
 	"shopId": "J8Bhq3uTtdgwZx3rz",
 	"title": "Reaction Mens Shirt",
 	"relatedTag": "reaction-mens-shirt-related",
+	"relatedTagId": "hZdSevCBP8dDc66Bg",
 	"originCountry": "US",
 	"requiresShipping": true,
 	"isDeleted": false,
@@ -658,6 +664,7 @@
 	"shopId": "J8Bhq3uTtdgwZx3rz",
 	"title": "Reaction Sticker",
 	"relatedTag": "reaction-sticker-related",
+	"relatedTagId": "hZdSevCBP8dDc66Bh",
 	"originCountry": "US",
 	"requiresShipping": true,
 	"handle": "reaction-sticker",
@@ -710,4 +717,3 @@
 		"status": "new"
 	}
 }]
-
