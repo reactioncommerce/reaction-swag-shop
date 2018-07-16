@@ -14,9 +14,9 @@ Hooks.Events.add("beforeCoreInit", () => {
 Hooks.Events.add("afterCoreInit", () => {
   methods.initLayout();
   methods.loadShops();
+  methods.loadTags();
   methods.loadProducts();
   methods.importProductImages();
-  methods.loadTags();
   methods.publishProducts();
   methods.loadShipping();
   methods.enableShipping();
