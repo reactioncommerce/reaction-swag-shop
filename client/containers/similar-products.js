@@ -32,12 +32,12 @@ function composer(props, onData) {
     const currentShop = Shops.findOne({
       _id: Reaction.getPrimaryShopId()
     });
-    const products = productsCursor.fetch().map(({ product }) => product);
+    const products = productsCursor.fetch().map(({ aProduct }) => aProduct);
     if (mediaSub.ready()) {
       onData(null, {
-        ...props,
-        products: products,
-        shopCurrencyCode: currentShop.currency
+        products,
+        shopCurrencyCode: currentShop.currency,
+        ...props
       });
     }
   }

@@ -1,6 +1,5 @@
 import { Meteor } from "meteor/meteor";
 import MethodHooks from "/imports/plugins/core/core/server/method-hooks";
-import { Catalog, Products } from "/lib/collections";
 import copyProductFieldsToCatalog from "../lib/copyProductFieldsToCatalog";
 
 /**
@@ -8,9 +7,7 @@ import copyProductFieldsToCatalog from "../lib/copyProductFieldsToCatalog";
 
  */
 MethodHooks.after("catalog/publish/products", (options) => {
-  const { arguments } = options;
-
-  const productIds = arguments[0];
+  const productIds = options.arguments[0];
   productIds.forEach((productId) => {
     // Create a "related tag" for product if one doesn't already exist
     Meteor.call("createRelatedTag", productId);

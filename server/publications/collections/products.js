@@ -2,13 +2,9 @@ import _ from "lodash";
 import SimpleSchema from "simpl-schema";
 import { Meteor } from "meteor/meteor";
 import { check, Match } from "meteor/check";
-import Schemas from "@reactioncommerce/schemas";
 import Logger from "@reactioncommerce/logger";
 import Reaction from "/imports/plugins/core/core/server/Reaction";
-import { Shops, Tags, Catalog } from "/lib/collections";
-
-// Validate the subscription filter against our extended filter schema.
-const { filters } = Schemas;
+import { Shops, Catalog } from "/lib/collections";
 
 const catalogProductFiltersSchema = new SimpleSchema({
   "shopIdsOrSlugs": {

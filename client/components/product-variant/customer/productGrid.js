@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Components } from "@reactioncommerce/reaction-components";
-import Logger from "@reactioncommerce/logger";
 import ProductGridCore from "/imports/plugins/included/product-variant/components/customer/productGrid";
 import { Reaction } from "/client/api/index";
 import { ReactionProduct } from "/lib/api";
@@ -134,7 +133,7 @@ class ProductGrid extends ProductGridCore {
                 className="rui btn btn-default solid btn-blue"
               >
                 <Components.Translation defaultValue={"Shop all products"} i18nKey={"shopAllProducts"} />
-                <i className="rui font-icon fa fa-long-arrow-right" role="presentation"></i>
+                <i className="rui font-icon fa fa-long-arrow-right" role="presentation" />
               </a>
             </div>
           </div>

@@ -104,12 +104,12 @@ methods.loadProducts = function () {
 
 methods.publishProducts = function () {
   if (!checkForCatalog()) {
-    Logger.info("Publishing swag shop products.")
+    Logger.info("Publishing swag shop products.");
     const productIds = Products.find({ type: "simple" }).map((doc) => doc._id);
     Promise.await(publishProductsToCatalog(productIds, collections));
 
     // Manually set custom fields on Catalog documents
-    productIds.forEach(productId => {
+    productIds.forEach((productId) => {
       copyProductFieldsToCatalog(productId);
     });
   }
@@ -204,16 +204,6 @@ methods.importProductImages = function () {
           priority: 0,
           workflow: "published"
         };
-      } else {
-        const parent = getPrimaryProduct(product);
-        fileRecord.metadata = {
-          productId: parent._id,
-          variantId: product._id,
-          toGrid: 1,
-          shopId,
-          priority: 0,
-          workflow: "published"
-        };
       }
       Promise.await(Media.insert(fileRecord));
       Promise.await(storeFromAttachedBuffer(fileRecord));
@@ -273,7 +263,8 @@ methods.createRelatedTag = function (productId) {
   }
 
   // Add relatedTagId to product
-  Products.update({ _id: productId },
+  Products.update(
+    { _id: productId },
     { $set: { relatedTag: relatedTagName, relatedTagId } },
     { selector: { type: "simple" }, publish: true }
   );
