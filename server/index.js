@@ -1,6 +1,6 @@
 import "../lib/collections/schemas";
-import "./methodHooks";
 import "./publications";
+import "./hooks";
 import "./init";
 import "./requestApproachFromStaff";
-import "./register.js";
+import "./register";
