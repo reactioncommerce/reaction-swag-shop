@@ -8,7 +8,7 @@ import collections from "/imports/collections/rawCollections";
 import Reaction from "/imports/plugins/core/core/server/Reaction";
 import publishProductsToCatalog from "/imports/plugins/core/catalog/server/no-meteor/utils/publishProductsToCatalog";
 import { Media } from "/imports/plugins/core/files/server";
-import copyProductFieldsToCatalog from "./lib/copyProductFieldsToCatalog";
+import copyProductFieldsToCatalog from "./lib/copy-product-fields-to-catalog";
 
 function checkForShops() {
   const numShops = Shops.find().count();

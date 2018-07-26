@@ -1,6 +1,6 @@
 import { Meteor } from "meteor/meteor";
 import MethodHooks from "/imports/plugins/core/core/server/method-hooks";
-import copyProductFieldsToCatalog from "./lib/copyProductFieldsToCatalog";
+import copyProductFieldsToCatalog from "./lib/copy-product-fields-to-catalog";
 
 /**
  * @summary When a product is published, manually set custom fields from Products to Catalog.
