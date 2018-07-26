@@ -54,8 +54,8 @@ async function storeFromAttachedBuffer(fileRecord) {
 
       // Make a new read stream in each loop because you can only read once
       const readStream = new bufferStreamReader(bufferData);
-      const writeStream = await store.createWriteStream(fileRecord);
-      await new Promise((resolve, reject) => {
+      const writeStream = await store.createWriteStream(fileRecord); // eslint-disable-line no-await-in-loop
+      await new Promise((resolve, reject) => { // eslint-disable-line no-await-in-loop
         fileRecord.once("error", reject);
         fileRecord.once("stored", resolve);
         readStream.pipe(writeStream);
