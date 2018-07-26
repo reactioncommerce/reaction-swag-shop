@@ -42,7 +42,7 @@ class SwagShopFooter extends React.Component {
     });
   }
 
-  handleFieldBlur = (event) => {
+  handleSubmit = (event) => {
     const validationStatus = this.validation.validate({
       email: event.currentTarget.value
     });
@@ -107,9 +107,8 @@ class SwagShopFooter extends React.Component {
             <Components.TextField
               i18nKeyPlaceholder="emailAddress"
               name="email"
-              onBlur={this.handleFieldBlur}
               onChange={this.handleChange}
-              onReturnKeyDown={this.handleFieldBlur}
+              onReturnKeyDown={this.handleSubmit}
               placeholder="email address"
               ref="emailInput"
               value={this.state.email}
