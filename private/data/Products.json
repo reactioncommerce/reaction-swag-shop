@@ -658,34 +658,6 @@
 	"title": "XL"
 },
 {
-	"_id": "aXsSSpddrPcBWppFK",
-	"ancestors": [
-		"9zxhE27pAvx8vbKr5"
-	],
-	"price": 4,
-	"type": "variant",
-	"isVisible": true,
-	"isDeleted": false,
-	"compareAtPrice": 6,
-	"weight": 1,
-	"length": 1,
-	"width": 1,
-	"height": 1,
-	"inventoryManagement": true,
-	"inventoryPolicy": false,
-	"lowInventoryWarningThreshold": 0,
-	"inventoryQuantity": 1000,
-	"shopId": "J8Bhq3uTtdgwZx3rz",
-	"taxable": true,
-	"taxCode": "0000",
-	"title": "One Size",
-	"optionTitle": "One Size",
-	"originCountry": "US",
-	"workflow": {
-		"status": "new"
-	}
-},
-{
 	"_id": "9zxhE27pAvx8vbKr5",
 	"type": "simple",
 	"ancestors": [],
@@ -716,4 +688,32 @@
     "hZdSevCBP8dDc66Ba",
 	"hZdSevCBP8dDc66Bc"
   ]
+},
+{
+	"_id": "aXsSSpddrPcBWppFK",
+	"ancestors": [
+		"9zxhE27pAvx8vbKr5"
+	],
+	"price": 4,
+	"type": "variant",
+	"isVisible": true,
+	"isDeleted": false,
+	"compareAtPrice": 6,
+	"weight": 1,
+	"length": 1,
+	"width": 1,
+	"height": 1,
+	"inventoryManagement": true,
+	"inventoryPolicy": false,
+	"lowInventoryWarningThreshold": 0,
+	"inventoryQuantity": 1000,
+	"shopId": "J8Bhq3uTtdgwZx3rz",
+	"taxable": true,
+	"taxCode": "0000",
+	"title": "One Size",
+	"optionTitle": "One Size",
+	"originCountry": "US",
+	"workflow": {
+		"status": "new"
+	}
 }]

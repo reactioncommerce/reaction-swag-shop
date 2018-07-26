@@ -1,9 +1,9 @@
-import { Meteor } from "meteor/meteor";
-import { check } from "meteor/check";
 import bufferStreamReader from "buffer-stream-reader";
 import { FileRecord } from "@reactioncommerce/file-collections";
 import Logger from "@reactioncommerce/logger";
-import { Shops, Products, Tags, Shipping, MediaRecords, Packages, Catalog } from "/lib/collections";
+import { Meteor } from "meteor/meteor";
+import { check } from "meteor/check";
+import { Catalog, MediaRecords, Packages, Products, Shipping, Shops, Tags } from "/lib/collections";
 import collections from "/imports/collections/rawCollections";
 import Reaction from "/imports/plugins/core/core/server/Reaction";
 import publishProductsToCatalog from "/imports/plugins/core/catalog/server/no-meteor/utils/publishProductsToCatalog";
@@ -52,18 +52,14 @@ async function storeFromAttachedBuffer(fileRecord) {
         return Promise.resolve();
       }
 
-      store.createWriteStream(fileRecord)
-        .then((writeStream) => {
-          // Make a new read stream in each loop because you can only read once
-          const readStream = new bufferStreamReader(bufferData);
-          return new Promise((resolve, reject) => {
-            fileRecord.once("error", reject);
-            fileRecord.once("stored", resolve);
-            readStream.pipe(writeStream);
-          });
-        }).catch((error) => {
-          Logger.error("Error in createWriteStream:", error);
-        });
+      // Make a new read stream in each loop because you can only read once
+      const readStream = new bufferStreamReader(bufferData);
+      const writeStream = await store.createWriteStream(fileRecord);
+      await new Promise((resolve, reject) => {
+        fileRecord.once("error", reject);
+        fileRecord.once("stored", resolve);
+        readStream.pipe(writeStream);
+      });
     }
   } catch (error) {
     throw new Error("Error in storeFromAttachedBuffer:", error);
