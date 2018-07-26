@@ -1,7 +1,6 @@
 import React from "react";
 import { PropTypes } from "prop-types";
 import { replaceComponent } from "@reactioncommerce/reaction-components";
-import { Router } from "/client/api";
 import ProductGridItemCore from "/imports/plugins/included/product-variant/components/customer/productGridItem";
 import Link from "../../Link";
 
