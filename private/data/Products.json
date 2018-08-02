@@ -257,7 +257,7 @@
 	"requiresShipping": true,
 	"handle": "reaction-scout-book",
 	"isDeleted": false,
-	"isVisible": false,
+	"isVisible": true,
 	"template": "productDetailSimple",
 	"price": {
 		"range": "0.00",
@@ -283,7 +283,7 @@
 	],
 	"price": 6,
 	"type": "variant",
-	"isVisible": false,
+	"isVisible": true,
 	"isDeleted": false,
 	"compareAtPrice": 8,
 	"weight": 1,
