@@ -1,4 +1,4 @@
-import { Reaction } from "/server/api";
+import Reaction from "/imports/plugins/core/core/server/Reaction";
 
 function changeProductDetailPageLayout() {
   // Customize default productDetailSimple page's layout

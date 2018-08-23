@@ -1,9 +1,8 @@
 import React from "react";
 import { PropTypes } from "prop-types";
-import { $ } from "meteor/jquery";
 import { replaceComponent } from "@reactioncommerce/reaction-components";
-import { Router } from "/client/api";
 import ProductGridItemCore from "/imports/plugins/included/product-variant/components/customer/productGridItem";
+import Link from "../../Link";
 
 
 class ProductGridItem extends ProductGridItemCore {
@@ -17,19 +16,6 @@ class ProductGridItem extends ProductGridItemCore {
     showFeaturedLabel: true,
     similarProducts: false
   };
-
-  handleClick = (event) => {
-    event.preventDefault();
-    Router.go(this.productURL);
-    if (this.props.similarProducts) {
-      $("html,body").animate(
-        {
-          scrollTop: 0
-        },
-        0
-      );
-    }
-  }
 
   static labelColorPalette = [
     "#2899D3", // blue
@@ -65,19 +51,19 @@ class ProductGridItem extends ProductGridItemCore {
         <div className={(isSearch) ? "item-content" : ""}>
           <span className="product-grid-item-alerts" />
 
-          <a className="product-grid-item-images"
+          <Link
             href={this.productURL}
+            className="product-grid-item-images"
             data-event-category="grid"
             data-event-label="grid product click"
             data-event-value={product._id}
-            onClick={this.handleClick}
           >
             <div className="product-primary-images">
               {this.props.showFeaturedLabel && this.renderFeaturedProductLabel()}
               {this.renderMedia()}
             </div>
             {this.renderAdditionalMedia()}
-          </a>
+          </Link>
 
           {!isSearch && this.renderNotices()}
           {this.renderGridContent()}

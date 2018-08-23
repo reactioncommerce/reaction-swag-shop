@@ -1,12 +1,14 @@
-import { Meteor } from "meteor/meteor";
-import { check } from "meteor/check";
 import bufferStreamReader from "buffer-stream-reader";
 import { FileRecord } from "@reactioncommerce/file-collections";
-import { Shops, Products, Tags, Shipping, MediaRecords, Packages, Catalog } from "/lib/collections";
+import Logger from "@reactioncommerce/logger";
+import { Meteor } from "meteor/meteor";
+import { check } from "meteor/check";
+import { Catalog, MediaRecords, Packages, Products, Shipping, Shops, Tags } from "/lib/collections";
 import collections from "/imports/collections/rawCollections";
+import Reaction from "/imports/plugins/core/core/server/Reaction";
 import publishProductsToCatalog from "/imports/plugins/core/catalog/server/no-meteor/utils/publishProductsToCatalog";
 import { Media } from "/imports/plugins/core/files/server";
-import { Logger, Reaction } from "/server/api";
+import copyProductFieldsToCatalog from "./lib/copy-product-fields-to-catalog";
 
 function checkForShops() {
   const numShops = Shops.find().count();
@@ -50,18 +52,14 @@ async function storeFromAttachedBuffer(fileRecord) {
         return Promise.resolve();
       }
 
-      store.createWriteStream(fileRecord)
-        .then((writeStream) => {
-          // Make a new read stream in each loop because you can only read once
-          const readStream = new bufferStreamReader(bufferData);
-          return new Promise((resolve, reject) => {
-            fileRecord.once("error", reject);
-            fileRecord.once("stored", resolve);
-            readStream.pipe(writeStream);
-          });
-        }).catch((error) => {
-          Logger.error("Error in createWriteStream:", error);
-        });
+      // Make a new read stream in each loop because you can only read once
+      const readStream = new bufferStreamReader(bufferData);
+      const writeStream = await store.createWriteStream(fileRecord); // eslint-disable-line no-await-in-loop
+      await new Promise((resolve, reject) => { // eslint-disable-line no-await-in-loop
+        fileRecord.once("error", reject);
+        fileRecord.once("stored", resolve);
+        readStream.pipe(writeStream);
+      });
     }
   } catch (error) {
     throw new Error("Error in storeFromAttachedBuffer:", error);
@@ -102,9 +100,14 @@ methods.loadProducts = function () {
 
 methods.publishProducts = function () {
   if (!checkForCatalog()) {
-    Logger.info("Publishing swag shop products.")
+    Logger.info("Publishing swag shop products.");
     const productIds = Products.find({ type: "simple" }).map((doc) => doc._id);
     Promise.await(publishProductsToCatalog(productIds, collections));
+
+    // Manually set custom fields on Catalog documents
+    productIds.forEach((productId) => {
+      copyProductFieldsToCatalog(productId);
+    });
   }
 };
 
@@ -197,16 +200,6 @@ methods.importProductImages = function () {
           priority: 0,
           workflow: "published"
         };
-      } else {
-        const parent = getPrimaryProduct(product);
-        fileRecord.metadata = {
-          productId: parent._id,
-          variantId: product._id,
-          toGrid: 1,
-          shopId,
-          priority: 0,
-          workflow: "published"
-        };
       }
       Promise.await(Media.insert(fileRecord));
       Promise.await(storeFromAttachedBuffer(fileRecord));
@@ -232,23 +225,47 @@ methods.setupRoutes = function () {
   );
 };
 
-methods.createTag = function (name) {
-  check(name, String);
-  const existingTag = Tags.findOne({ name });
-  // keep the tag names unique
-  if (!existingTag) {
-    const tag = {
-      name,
-      slug: Reaction.getSlug(name),
+/**
+ * @name createRelatedTag
+ * @summary Inserts a new tag known as a product's "related tag" based on product's handle.
+ *  Ex: Product handle = "reaction-mug". Tag is created w/ name "reaction-mug-related".
+ *  Other products can be tagged with "reaction-mug-related" in order to appear on Mug's "Similar Products" block.
+ * @param {String} productId - _id of product
+ * @returns {undefined}
+ */
+methods.createRelatedTag = function (productId) {
+  check(productId, String);
+
+  const product = Products.findOne({ _id: productId }, { fields: { handle: 1 } });
+  if (!product) {
+    throw new Meteor.Error("not-found", "Product not found");
+  }
+
+  const relatedTagName = `${product.handle}-related`;
+  const relatedTag = Tags.findOne({ name: relatedTagName });
+
+  let relatedTagId = "";
+  if (relatedTag) {
+    relatedTagId = relatedTag._id;
+  } else {
+    relatedTagId = Tags.insert({
+      name: relatedTagName,
+      shopId: Reaction.getPrimaryShopId(),
+      slug: Reaction.getSlug(relatedTagName),
       isTopLevel: false,
       updatedAt: new Date(),
       createdAt: new Date()
-    };
-
-    return Tags.insert(tag);
+    });
   }
+
+  // Add relatedTagId to product
+  Products.update(
+    { _id: productId },
+    { $set: { relatedTag: relatedTagName, relatedTagId } },
+    { selector: { type: "simple" }, publish: true }
+  );
 };
 
-Meteor.methods({ createTag: methods.createTag });
+Meteor.methods({ createRelatedTag: methods.createRelatedTag });
 
 export default methods;

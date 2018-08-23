@@ -6,15 +6,24 @@ import { Catalog, Shops } from "/lib/collections";
 import { Reaction } from "/client/api";
 import SimilarProducts from "../components/similar-products";
 
+/**
+ * @file
+ * Similar Products container
+ * Subscribes to products that are related to currently-viewed PDP
+ */
 
 const reactiveProductIds = new ReactiveVar([], (oldVal, newVal) => JSON.stringify(oldVal.sort()) === JSON.stringify(newVal.sort()));
 
 function composer(props, onData) {
   const { product } = props;
-  const queryParams = {
-    relatedTag: product.relatedTag ? product.relatedTag : ""
-  };
-  const productsSub = Meteor.subscribe("Products/grid", 5, queryParams);
+  const { relatedTagId } = product;
+  const filters = {};
+
+  if (relatedTagId) {
+    filters.tagIds = [relatedTagId];
+  }
+
+  const productsSub = Meteor.subscribe("Products/grid", 5, filters);
   if (productsSub.ready()) {
     const productsCursor = Catalog.find();
     const productIds = productsCursor.map((p) => p._id);
@@ -23,11 +32,11 @@ function composer(props, onData) {
     const currentShop = Shops.findOne({
       _id: Reaction.getPrimaryShopId()
     });
-    const products = productsCursor.fetch().map(({ product }) => product);
+    const products = productsCursor.fetch().map(({ product: aProduct }) => aProduct);
     if (mediaSub.ready()) {
       onData(null, {
         ...props,
-        products: products,
+        products,
         shopCurrencyCode: currentShop.currency
       });
     }

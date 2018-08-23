@@ -1,4 +1,5 @@
-import { Hooks, Logger } from "/server/api";
+import Hooks from "@reactioncommerce/hooks";
+import Logger from "@reactioncommerce/logger";
 import "./i18n";
 import methods from "./methods";
 
@@ -13,9 +14,9 @@ Hooks.Events.add("beforeCoreInit", () => {
 Hooks.Events.add("afterCoreInit", () => {
   methods.initLayout();
   methods.loadShops();
+  methods.loadTags();
   methods.loadProducts();
   methods.importProductImages();
-  methods.loadTags();
   methods.publishProducts();
   methods.loadShipping();
   methods.enableShipping();

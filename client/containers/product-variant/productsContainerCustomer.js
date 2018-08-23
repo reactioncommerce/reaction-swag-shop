@@ -1,14 +1,10 @@
 import _ from "lodash";
 import { composeWithTracker, getHOCs, replaceComponent } from "@reactioncommerce/reaction-components";
-import { ReactiveVar } from "meteor/reactive-var";
 import { Meteor } from "meteor/meteor";
 import { Session } from "meteor/session";
 import { Reaction } from "/client/api";
-import { ReactionProduct } from "/lib/api";
 import { Catalog, Tags, Shops } from "/lib/collections";
 import ProductGrid from "../../components/product-variant/customer/productGrid";
-
-const reactiveProductIds = new ReactiveVar([], (oldVal, newVal) => JSON.stringify(oldVal.sort()) === JSON.stringify(newVal.sort()));
 
 /*
  * Customized version of imports/plugins/included/product-variant/containers/productsContainerCustomer.js
@@ -48,18 +44,6 @@ function composer(props, onData) {
     queryParams.query = queryString.query;
   }
 
-  // BOF: swag shop featuredProduct filter
-  let swagShopScrollLimit;
-  if (slug) {
-    // e.g. route /tag/:slug?
-    swagShopScrollLimit = Session.get("productScrollLimit");
-  } else {
-    // e.g. index route /
-    // Only interested in first 3 products for "Products we love" section
-    swagShopScrollLimit = 3;
-    queryParams.featuredProductLabel = ""; // subscribe to all featured products, regardless of label
-  }
-
   const scrollLimit = Session.get("productScrollLimit");
   const productsSubscription = Meteor.subscribe("Products/grid", scrollLimit, queryParams);
 
@@ -87,7 +71,13 @@ function composer(props, onData) {
   canLoadMoreProducts = catalogCursor.count() >= scrollLimit;
 
   // BOF: swag shop tags for category tiles
-  tags = Tags.find({ isTopLevel: true }, { sort: { position: 1 } }).fetch();
+  let tags = Tags.find({
+    isTopLevel: true,
+    catTileImageUrl: {
+      $exists: true,
+      $ne: ""
+    }
+  }, { sort: { position: 1 } }).fetch();
   tags = _.sortBy(tags, "position"); // puts tags without position at end of array
   // EOF: swag shop tags for category tiles
 
@@ -96,7 +86,7 @@ function composer(props, onData) {
   const currentShop = Shops.findOne({
     _id: Reaction.getPrimaryShopId()
   });
-  
+
   onData(null, {
     canLoadMoreProducts,
     products,
