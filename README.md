@@ -8,7 +8,7 @@ who's facing the task of customizing Reaction for her/his own shop implementatio
 If you would like to use this shop plugin as a starting point for your own project, please follow the steps outlined below:
 
 #### Step 1
-Create a new Reaction project for your new shop: https://docs.reactioncommerce.com/reaction-docs/master/installation
+Create a new Reaction project for your new shop: https://docs.reactioncommerce.com/docs/1.14.0/installation
 
 #### Step 2
 Clone this shop repository into the custom plugin folder. In your project directory, execute the following bash
