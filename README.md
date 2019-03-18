@@ -1,3 +1,4 @@
+## Deprecated! This repository is no longer being maintained and does not work with the current version of Reaction Commerce.
 # Reaction Swag Shop
 
 This repository contains the reaction-swag-shop plugin that's intended as a learning resource for everybody
